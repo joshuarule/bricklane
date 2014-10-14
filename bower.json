@@ -1,0 +1,23 @@
+{
+  "name": "bricklane",
+  "version": "0.0.0",
+  "homepage": "http://www.bricklanerecords.com",
+  "authors": [
+    "joshuarule <joshua@joshuarule.com>"
+  ],
+  "description": "development for Seattle Record Label",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "singularity": "~1.4.0",
+    "meyer-rest": "ianrose/reset-scss.git"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "_meyer-reset",
+  "_cacheHeaders": {
+    "ETag": "\"f0462aeddb492ad5ce802558b19a018d3e0eb27a\"",
+    "Content-Length": "1272",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:f0462aedd",
+  "main": "index.scss",
+  "_source": "https://github.com/adamstac/meyer-reset/raw/master/stylesheets/_meyer-reset.scss",
+  "_target": "*",
+  "_originalSource": "https://github.com/adamstac/meyer-reset/raw/master/stylesheets/_meyer-reset.scss",
+  "_direct": true
+}
