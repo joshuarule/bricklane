@@ -40,3 +40,6 @@ node_modules/**/*
 .sass-cache
 .sass-cache/*
 assets/css/*
+
+_docs/**/*
+_docs
