@@ -10,7 +10,7 @@
 // ==========================================================================
 
 // @import '../bower_components/_meyer-reset/index.scss';
-@import '../bower_components/breakpoint-sass/stylesheets/breakpoint.scss';
-@import '../bower_components/singularity/stylesheets/singularitygs.scss';
+@import "../bower_components/bourbon/dist/bourbon";
+@import "../bower_components/neat/app/assets/stylesheets/neat";
 
-@import 'lib/pesticide';
+// @import 'lib/pesticide';

@@ -77,27 +77,34 @@ $green: #ff0000;
   box-sizing: border-box;
 }
 
-@include add-grid(12);
-@include add-gutter(1/3);
-@include add-gutter-style('split');
-// @include sgs-change('debug', true);
-$include-clearfix: true;
-
-
 .container {
   max-width: 80em;
   margin: 0 auto;
-  @include background-grid($color: #0000ff);
+  @include outer-container;
+}
 
-  @include breakpoint(50em) {
-    // background: blue;
-  }
+%red {
+  background: #00FF00;
 }
 
 .box {
   display: block;
-  background: #0000ff;
-  // @include grid-span(2, 1);
-  // transform: rotate(45deg);
-  // @extend %clearfix;
+  background: #00ff00;
 }
+
+.box-1,
+.box-2 {
+  @extend %red;
+  height: 50px;
+  outline: 1px solid red;
+}
+
+.box-1 {
+  @include span-columns(1);
+}
+.box-2 {
+  @include span-columns(6);
+}
+
+
+

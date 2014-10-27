@@ -1,5 +1,5 @@
 var gulp        = require("gulp");
-var sass        = require("gulp-ruby-sass");
+var sass        = require("gulp-sass");
 var filter      = require('gulp-filter');
 var browserSync = require("browser-sync");
 var scsslint    = require('gulp-scss-lint');
@@ -15,21 +15,20 @@ gulp.task('browser-sync', function() {
   });
 });
 
-// gulp.task('sass', function(){
-
-//   return gulp.src('scss/**/*.scss')
-//     .pipe(sourcemaps.init())
-//     .pipe(sass())
-//     .pipe(sourcemaps.write('./'))
-//     .pipe(gulp.dest('assets/css'))
-// })
-
 gulp.task('sass', function () {
     return gulp.src('app/scss/**/*.scss')
         .pipe(scsslint({'config': '.scss-lint.yml'}))
 
+        // Load existing internal sourcemap
+        .pipe(sourcemaps.init())
+
         // Convert sass into css
-        .pipe(sass({sourcemap: true, sourcemapPath: '../../app/scss'}))
+        .pipe(sass({
+            errLogToConsole: true
+            // sync: true
+          }))
+
+        .pipe(sourcemaps.write('./maps'))
 
         // Catch any SCSS errors and prevent them from crashing gulp
         .on('error', function (error) {
@@ -37,17 +36,12 @@ gulp.task('sass', function () {
             this.emit('end');
         })
 
-        // Load existing internal sourcemap
-        .pipe(sourcemaps.init())
-
         // Autoprefix properties
-        .pipe(prefix())
-
-        // Write final .map file
-        .pipe(sourcemaps.write('./'))
+        // .pipe(prefix())
 
         // Save the CSS
         .pipe(gulp.dest('assets/css'))
+
 
       .pipe(filter('**/*.css')) // Filtering stream to only css files
       .pipe(browserSync.reload({stream:true}));

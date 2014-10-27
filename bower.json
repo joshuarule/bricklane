@@ -17,7 +17,8 @@
     "tests"
   ],
   "dependencies": {
-    "singularity": "~1.4.0",
+    "bourbon": "3.2.1",
+    "neat": "1.4.0",
     "meyer-rest": "ianrose/reset-scss.git"
   }
 }
