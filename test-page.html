@@ -1,42 +1,39 @@
 {% capture content %}
 
-<div class="box">box</div>
-
-<div class="container">
-  <div class="row">
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-    <div class="box-1">Box 1</div>
-  </div>
-  
-  <div class="box-2">Box 2</div>
-  <div class="box-2">Box 2</div>
-</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-1">Box 1</div>
+<div class="box-2">Box 2</div>
+<div class="box-2">Box 2</div>
+<div class="cf"></div>
 
 <h1>testing this h1</h1>
+<h2>testing this h2</h2>
 <h3>testing this h3</h3>
 <h4>testing this h4</h4>
+<h5>testing this h5</h5>
+<h6>testing this h6</h6>
 
-<header class="primary-header">
-  <h1 class="site-title">
-    <a href="/">{{site.title}}</a>
-  </h1>
+<p>
+  <strong>Paragraph</strong> Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis.
+</p>
+<p>
+  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis.
+</p>
 
-  <ul class="page-menu">
-  {% for page in site.pages %}
-    <li><a href="{{page.url}}"{% if page.url == url %} class="is-current-page"{% endif %}>{{page.title}}</a></li>
-  {% endfor %}
-  </ul>
-</header>
+<div class="three-twenty">
+  320px
+</div>
+
 
 <section class="content">
   <div id="wall"></div>

@@ -1,6 +1,55 @@
 // ==========================================================================
 // $FONT-FACE
 // ==========================================================================
+// 
+
+/**
+ * @license
+ * MyFonts Webfont Build ID 2911248, 2014-10-28T16:33:23-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: FranklinGothicURW-Lig by URW++
+ * URL: http://www.myfonts.com/fonts/urw/franklin-gothic/t-light/
+ * Copyright: (URW)++,Copyright 2006 by (URW)++ Design &amp; Development
+ * 
+ * Webfont: FranklinGothicURW-Boo by URW++
+ * URL: http://www.myfonts.com/fonts/urw/franklin-gothic/t-book/
+ * Copyright: (URW)++,Copyright 2006 by (URW)++ Design &amp; Development
+ * 
+ * Webfont: FranklinGothicURW-BooIta by URW++
+ * URL: http://www.myfonts.com/fonts/urw/franklin-gothic/t-book-italic/
+ * Copyright: (URW)++,Copyright 2006 by (URW)++ Design &amp; Development
+ * 
+ * Webfont: FranklinGothicURW-Dem by URW++
+ * URL: http://www.myfonts.com/fonts/urw/franklin-gothic/t-demi/
+ * Copyright: Copyright 2010 URW++ Design &amp; Development Hamburg
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2911248
+ * Licensed pageviews: 10,000
+ * 
+ * © 2014 MyFonts Inc
+*/  
+
+@import url("//hello.myfonts.net/count/2c6c10");
+
+  
+@font-face {font-family: 'FranklinGothicURW-Lig'; src: url('/assets/fonts/2C6C10_0_0.eot'); src: url('/assets/fonts/2C6C10_0_0.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/2C6C10_0_0.woff2') format('woff2'), url('/assets/fonts/2C6C10_0_0.woff') format('woff'), url('/assets/fonts/2C6C10_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'FranklinGothicURW-Boo'; src: url('/assets/fonts/2C6C10_1_0.eot'); src: url('/assets/fonts/2C6C10_1_0.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/2C6C10_1_0.woff2') format('woff2'), url('/assets/fonts/2C6C10_1_0.woff') format('woff'), url('/assets/fonts/2C6C10_1_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'FranklinGothicURW-BooIta'; src: url('/assets/fonts/2C6C10_2_0.eot'); src: url('/assets/fonts/2C6C10_2_0.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/2C6C10_2_0.woff2') format('woff2'), url('/assets/fonts/2C6C10_2_0.woff') format('woff'), url('/assets/fonts/2C6C10_2_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'FranklinGothicURW-Dem'; src: url('/assets/fonts/2C6C10_3_0.eot'); src: url('/assets/fonts/2C6C10_3_0.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/2C6C10_3_0.woff2') format('woff2'), url('/assets/fonts/2C6C10_3_0.woff') format('woff'), url('/assets/fonts/2C6C10_3_0.ttf') format('truetype');}
+
 
 @if variable-exists(google-fonts-url) {
   @import url($google-fonts-url);

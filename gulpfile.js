@@ -1,5 +1,5 @@
 var gulp        = require("gulp");
-var sass        = require("gulp-sass");
+var sass        = require("gulp-ruby-sass");
 var filter      = require('gulp-filter');
 var browserSync = require("browser-sync");
 var scsslint    = require('gulp-scss-lint');
@@ -23,12 +23,7 @@ gulp.task('sass', function () {
         .pipe(sourcemaps.init())
 
         // Convert sass into css
-        .pipe(sass({
-            errLogToConsole: true
-            // sync: true
-          }))
-
-        .pipe(sourcemaps.write('./maps'))
+        .pipe(sass({ sourcemapPath: '/app/scss'}))
 
         // Catch any SCSS errors and prevent them from crashing gulp
         .on('error', function (error) {
@@ -36,12 +31,15 @@ gulp.task('sass', function () {
             this.emit('end');
         })
 
+        .pipe(sourcemaps.write('.'))
+
+        
+
         // Autoprefix properties
-        // .pipe(prefix())
+        // .pipe(prefix("last 2 versions", "> 1%", "ie 8"))
 
         // Save the CSS
         .pipe(gulp.dest('assets/css'))
-
 
       .pipe(filter('**/*.css')) // Filtering stream to only css files
       .pipe(browserSync.reload({stream:true}));

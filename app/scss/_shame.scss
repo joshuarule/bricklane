@@ -36,4 +36,32 @@
    // .site-nav a{
    //     color:#BADA55!important;
    // }
+   // 
+
+.box-1,
+.box-2,
+.three-twenty {
+  height: vr(8);
+  margin-bottom: $base-spacing-unit;
+}
+
+.box-1 {
+  @include span(1);
+  outline: 1px solid #ff0000;
+  background: #0000ff;
+
+  @include mq($small) {
+    background: #ff0000;
+  }
+}
+
+.box-2 {
+  @include span(6);
+  background: #800080;
+}
+
+.three-twenty {
+  width: rem(320);
+  background: purple;
+}
 

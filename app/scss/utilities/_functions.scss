@@ -13,10 +13,10 @@
  * @returns {number}
  */
 
-@function em($target, $context: $base-font-size) {
-  @if $target == 0 { @return 0 }
-  @return $target / $context + 0em;
-}
+// @function em($target, $context: $base-font-size) {
+//   @if $target == 0 { @return 0 }
+//   @return $target / $context + 0em;
+// }
 
 /**
  * px to rem
@@ -29,10 +29,10 @@
  * @returns {number}
  */
 
-@function rem($target, $context: $base-font-size) {
-  @if $target == 0 { @return 0 }
-  @return $target / $context + 0rem;
-}
+// @function rem($target, $context: $base-font-size) {
+//   @if $target == 0 { @return 0 }
+//   @return $target / $context + 0rem;
+// }
 
 /**
  * em to px conversion
@@ -45,10 +45,10 @@
  * @returns {number}
  */
 
-@function px($target, $context: $base-font-size) {
-  @if $target == 0 { @return 0 }
-  @return $target * $context + 0px;
-}
+// @function px($target, $context: $base-font-size) {
+//   @if $target == 0 { @return 0 }
+//   @return $target * $context + 0px;
+// }
 
 /**
  * Aspect Ratio
@@ -102,4 +102,16 @@
 
 @function strip-unit($num) {
   @return $num / ($num * 0 + 1);
+}
+
+/**
+ * Spacing Units
+ * @param {string} $num
+ * @example scss
+ * .foobar { padding-bottom: spacer(3); }
+ * @returns {number}
+ */
+
+@function vr($amount: 1) {
+  @return $amount * $base-spacing-unit;
 }

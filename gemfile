@@ -1,0 +1,3 @@
+source :rubygems
+
+gem "siteleaf", "~> 0.9.22"

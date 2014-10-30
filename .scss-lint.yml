@@ -27,7 +27,7 @@ linters:
     enabled: true
 
   DuplicateProperty:
-    enabled: true
+    enabled: false
 
   ElsePlacement:
     enabled: true
@@ -45,7 +45,7 @@ linters:
     present: true
 
   HexLength:
-    enabled: true
+    enabled: false
     style: long # or 'short'
 
   HexNotation:
