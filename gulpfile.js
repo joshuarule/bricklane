@@ -11,7 +11,7 @@ var sourcemaps  = require('gulp-sourcemaps');
 // browser-sync task for starting the server.
 gulp.task('browser-sync', function() {
   browserSync({
-    proxy: "bricklanerecords.dev"
+    proxy: "localhost:9292"
   });
 });
 
