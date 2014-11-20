@@ -11,11 +11,10 @@
 				{% for asset in artist.assets limit: 1 %}
 			  	<img src="{{asset.url}}" alt="{{title}} - profile photo">
 			  {% endfor %}
-				{% comment %}<img src="http://placekitten.com/g/600/300" alt="">{% endcomment %}
 			</a>
 		</li>
 	{% endfor %}
-	
+
 </ul>
 
 {% endcapture %}
