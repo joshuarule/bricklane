@@ -1,14 +1,14 @@
 {% capture content %}
 
-<pre>albums/default.html</pre>
+<pre>releases/default.html</pre>
 
 <section>
 	
 	<h2 class="section-title">Album</h2>
 
 	<img src="http://placekitten.com/g/300/300">
-	<strong class="album-artist">Mayors of Liberty</strong>
-	<span class="album-title">Dream On</span>
+	<strong class="album-artist">{{parent.title}}</strong>
+	<span class="album-title">{{title}}</span>
 	<br>
 	<span class="album-release-date">Released February 11th, 2014</span>
 	<span class="album-formats">CD, Digital, LP</span>
@@ -20,6 +20,10 @@
 
 <section>
 	<h2 class="section-title">Track list</h2>
+
+	{% for post in posts %}
+		{{post.title}}
+	{% endfor %}
 
 	<ol class="track-list">
 		<li class="track">

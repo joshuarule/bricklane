@@ -4,47 +4,18 @@
 
 <ul class="artists">
 		
-	<li class="artist">
-
-		<h2>Benjamin Verdoes</h2>
-		<img src="http://placekitten.com/g/600/300" alt="">
-	</li>
-
-	<li class="artist">
-			
-		<h2>Brick Lane Records</h2>
-		<img src="http://placekitten.com/g/600/300" alt="">
-	</li>
-
-	<li class="artist">
-			
-		<h2>Chimurenga Renaissance</h2>
-		<img src="http://placekitten.com/g/600/300" alt="">
-	</li>
-
-	<li class="artist">
-						
-		<h2>Iska Dhaaf</h2>
-		<img src="http://placekitten.com/g/600/300" alt="">
-	</li>
-
-	<li class="artist">
-			
-		<h2>Mayors of Liberty</h2>
-		<img src="http://placekitten.com/g/600/300" alt="">
-	</li>
-
-	<li class="artist">
-
-		<h2>Smile Machine</h2>
-		<img src="http://placekitten.com/g/600/300" alt="">	
-	</li>
-
-	<li class="artist">
-			
-		<h2>You Are Pural</h2>
-		<img src="http://placekitten.com/g/600/300" alt="">
-	</li>
+	{% for artist in pages %}
+		<li class="artist">
+			<a href="{{artist.url}}">
+				<h2>{{artist.title}}</h2>
+				{% for asset in artist.assets limit: 1 %}
+			  	<img src="{{asset.url}}" alt="{{title}} - profile photo">
+			  {% endfor %}
+				{% comment %}<img src="http://placekitten.com/g/600/300" alt="">{% endcomment %}
+			</a>
+		</li>
+	{% endfor %}
+	
 </ul>
 
 {% endcapture %}

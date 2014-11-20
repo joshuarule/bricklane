@@ -4,141 +4,20 @@
 
 <ul class="artist-events">
 
-	<li>
-		<h1 class="section-title"><a href="#">Benjamin Verdoes</a></h1>
-		<ul class="events">
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-			<button>View More</button>
-		</ul>
-	</li>
-
-	<li>
-		<h1 class="section-title"><a href="#">Iska Dhaaf</a></h1>
-		<ul class="events">
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-			<button>View More</button>
-		</ul>
-	</li>
+	{% for artist in pages %}
+		<h1 class="section-title">{{artist.title}}</h1>
+		{% if artist.posts.length > 0 %}
+			<ul class="events">
+				{% for post in artist.posts reversed %}
+					{% include 'includes/event' %}
+				{% endfor %}
+			</ul>
+		{% else %}
+		no events at this time
+		{% endif %}
+	{% endfor %}
 
 </ul>
-
-<li>
-		<h1 class="section-title"><a href="#">Chimurenga Renaissance</a></h1>
-		<ul class="events">
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-			<button>View More</button>
-		</ul>
-	</li>
-
-</ul>
-
-<li>
-		<h1 class="section-title"><a href="#">Mayors of Liberty</a></h1>
-		<ul class="events">
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-			<li class="event">
-    		<h4 class="event-date">August 30</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-
-			<li class="event">
-    		<h4 class="event-date">August 31</h4>
-				<a href="#">Neck of the Woods</a> - <small>San Fransisco</small>
-			</li>
-			<button>View More</button>
-		</ul>
-	</li>
-
-</ul>
-
-
 
 {% endcapture %}
 

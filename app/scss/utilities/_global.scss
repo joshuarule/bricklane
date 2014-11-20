@@ -141,9 +141,9 @@ $susy: (
   gutters: 1/3,
   gutter-position: after,
   debug: (
-    image: show,
+    image: hide,
     color: rgba(#00ff00, .2),
-    output: background ,
+    output: background,
     toggle: top right,
   ),
 );

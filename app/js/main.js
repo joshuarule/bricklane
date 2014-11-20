@@ -40,7 +40,6 @@ window.fbAsyncInit = function() {
         for (var i =0; i < 5; i++) {
           $('#wall').append( "<li>" + response.data[i].message + "</li>");
         };
-
     }
   });
 };

@@ -5,8 +5,11 @@
 
 <ul class="videos">
 
+	{% for post in posts %}
+	
+
 	<li class="video">
-		<h1 class="video-date section-header"><time>September 17,<br>2014</time></h1>
+		<h1 class="video-date section-header"><time>{{post.date | date: "%B %-d" }},<br>{{post.date | date: "%Y" }}</time></h1>
 		<video src="https://www.youtube.com/watch?v=mpAYg2PDhmw" autoplay poster="http://placekitten.com/g/300/200"></video>
 		<div class="video-info">
 			<span class="video-title"><a href="#">The Vinyl District presents Mayors of Liberty - Unforgiven</a></span>
@@ -18,6 +21,7 @@
 			</p>
 		</div>
 	</li>
+	{% endfor %}
 </ul>
 
 
