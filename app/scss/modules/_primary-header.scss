@@ -22,7 +22,7 @@
 }
 
 .site-title {
-  @include span(6);
+  float: left;
   margin: 0;
 
   a {
@@ -35,6 +35,24 @@
   span {
     display: none;
   }
+
+  .logo {
+    width: inherit;
+    height: inherit;
+    color: $gray;
+
+    .main-nav-active & {
+      color: $white;
+
+      @include mq($med) {
+        color: $gray;
+      }
+    }
+  }
+}
+
+.blr-logo {
+  fill: currentColor;
 }
 
 .main-nav-toggle {
