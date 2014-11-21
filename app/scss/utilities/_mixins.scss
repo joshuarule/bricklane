@@ -167,8 +167,8 @@
 
   @include old-ie {
     zoom: 1;
-    *display: inline;
-    *vertical-align: auto;
+    // *display: inline; // unnecessary for ie8+ support
+    // *vertical-align: auto; // unnecessary for ie8+ support
   }
 }
 
@@ -271,6 +271,7 @@
 
 @mixin link {
   text-shadow: none;
+  
   &:hover {
     background: none;
   }

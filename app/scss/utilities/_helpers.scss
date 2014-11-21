@@ -10,7 +10,7 @@
 
 //  clearfix
 %clearfix {
-  *zoom: 1;
+  // *zoom: 1; // unnecessary for ie8+ support
 
   &:before,
   &:after { content: ''; display: table; }
@@ -30,7 +30,7 @@
   background-color: transparent;
   border: 0;
   overflow: hidden;/* IE 6/7 fallback */
-  *text-indent: -9999px;
+  // *text-indent: -9999px; // unnecessary for ie8+ support
 
   &:before {
     content: '';
