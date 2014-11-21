@@ -73,9 +73,9 @@ gulp.task('svg', function () {
     done(null, $svg)
   }
   return gulp
-    .src('_layouts/default.html')
+    .src('_includes/svgstore.html')
     .pipe(inject(svgs, { transform: fileContents }))
-    .pipe(gulp.dest('_layouts/'))
+    .pipe(gulp.dest('_includes/'))
 })
 
 
