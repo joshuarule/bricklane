@@ -64,7 +64,7 @@ gulp.task('scripts', function() {
 
 gulp.task('svg', function () {
   var svgs = gulp.src('app/svg/*.svg')
-                 .pipe(svgstore({ prefix: 'icon-', inlineSvg: true }))
+                 .pipe(svgstore({inlineSvg: true }))
   function fileContents (filePath, file) {
     return file.contents.toString('utf8')
   }
