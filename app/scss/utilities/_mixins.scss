@@ -268,3 +268,10 @@
     margin-bottom: 0rem + ($line-height / $font-size);  
   }
 }
+
+@mixin link {
+  text-shadow: none;
+  &:hover {
+    background: none;
+  }
+}

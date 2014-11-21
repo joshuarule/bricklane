@@ -1,0 +1,19 @@
+.section {
+	@extend %clearfix;
+}
+
+.section-header {
+	color: $pink;
+	font-size: rem(18);
+	@include mq($med) {
+		@include span(4);
+		font-size: rem(36);
+	}
+}
+
+.section-content {
+	@include mq($med) {
+		@include span(8);
+		@include last;
+	}
+}
