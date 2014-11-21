@@ -1,43 +1,50 @@
 .main-nav {
-	@extend .container;
-	position: absolute;
-	left: 0;
-	top: 100%;
-	width: 100%;
-	display: none;
-	padding-bottom: vr(2);
-	background: $pink;
-	@include mq($med) {
-		@include span(8);
-		@include last;
-		display: block;
-		position: static;
-		padding: 0;
-		background: none;
-	}
-	.main-nav-active & {
-		display: block;
-	}
-	li {
-		padding-top: vr(2);
-		@include mq($med) {
-			padding: 0;
-			display: inline;
-			margin-right: vr(1);
-		}
-	}
-	a {
-		@include link;
-		font-size: rem(18);
-		color: $white;
-		text-transform: uppercase;
-		@include mq($med) {
-			color: $pink;
-			font-size: rem(14);
-			font-weight: bold;
-		}
-	}
-	.is-current-page {
-		color: $gray;
-	}
+  @extend %container;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  display: none;
+  padding-bottom: vr(2);
+  background: $pink;
+
+  @include mq($med) {
+    @include span(8);
+    @include last;
+    display: block;
+    position: static;
+    padding: 0;
+    background: none;
+  }
+
+  .main-nav-active & {
+    display: block;
+  }
+
+  li {
+    padding-top: vr(2);
+
+    @include mq($med) {
+      padding: 0;
+      display: inline;
+      margin-right: vr(1);
+    }
+  }
+
+  a {
+    @include link;
+    font-size: rem(18);
+    color: $white;
+    text-transform: uppercase;
+
+    @include mq($med) {
+      color: $pink;
+      font-size: rem(14);
+      font-weight: bold;
+    }
+  }
+
+  .is-current-page {
+    color: $gray;
+  }
 }
