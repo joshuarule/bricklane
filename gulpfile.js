@@ -6,6 +6,8 @@ var scsslint    = require('gulp-scss-lint');
 var prefix      = require('gulp-autoprefixer');
 var concat      = require('gulp-concat');
 var sourcemaps  = require('gulp-sourcemaps');
+var svgstore    = require('gulp-svgstore')
+var inject      = require('gulp-inject')
 
 
 // browser-sync task for starting the server.
@@ -59,6 +61,22 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('assets/scripts'))
 });
 
+
+gulp.task('svg', function () {
+  var svgs = gulp.src('app/svg/*.svg')
+                 .pipe(svgstore({ prefix: 'icon-', inlineSvg: true }))
+  function fileContents (filePath, file) {
+    return file.contents.toString('utf8')
+  }
+  function transformSvg ($svg, done) {
+    $svg.find('[fill]').removeAttr('fill')
+    done(null, $svg)
+  }
+  return gulp
+    .src('_layouts/default.html')
+    .pipe(inject(svgs, { transform: fileContents }))
+    .pipe(gulp.dest('_layouts/'))
+})
 
 
 // Default task to be run with `gulp`
