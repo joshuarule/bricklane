@@ -269,6 +269,7 @@
   }
 }
 
+// strip default styles from anchor
 @mixin link {
   text-shadow: none;
   

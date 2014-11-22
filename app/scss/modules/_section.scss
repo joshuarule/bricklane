@@ -1,5 +1,10 @@
 .section {
   @extend %clearfix;
+  margin-bottom: vr(2);
+
+  @include mq($med) {
+    margin-bottom: vr(4);
+  }
 }
 
 .section-header {
@@ -17,5 +22,9 @@
   @include mq($med) {
     @include span(8);
     @include last;
+  }
+
+  *:last-child {
+    margin-bottom: 0;
   }
 }

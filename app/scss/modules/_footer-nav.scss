@@ -1,11 +1,9 @@
 .footer-nav {
-  margin-top: vr(1);
-  padding-bottom: vr(1);
+  margin-bottom: vr(1);
 
   @include mq($med) {
     @include span(8);
     @include last;
-    margin-top: vr(3);
   }
 
   li {

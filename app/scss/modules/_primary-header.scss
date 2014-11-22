@@ -5,11 +5,14 @@
 
   @include mq($med) {
     margin-bottom: vr(8);
-    background: none !important;
   }
 
   .main-nav-active & {
     background: $pink;
+
+    @include mq($med) {
+      background: none;
+    }
   }
 }
 
@@ -49,10 +52,6 @@
       }
     }
   }
-}
-
-.blr-logo {
-  fill: currentColor;
 }
 
 .main-nav-toggle {
