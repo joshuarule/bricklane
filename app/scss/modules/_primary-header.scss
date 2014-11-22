@@ -58,28 +58,31 @@
 .main-nav-toggle {
 
   @include link;
-  @include span(6);
-  @include last;
-  text-align: right;
+  max-width: 50%;
+  position: relative;
+  float: right;
   cursor: pointer;
   text-transform: uppercase;
   color: $gray;
   font-weight: bold;
   font-size: rem(14);
+  padding: vr(1) rem(16) vr(1) 0;
+  margin: vr(-1) 0;
 
   @include mq($med) {
     display: none;
   }
 
   &:before {
-    float: right;
+    position: absolute;
+    right: 0;
+    top: rem(21);
     width: 0; 
     height: 0; 
     border-left: rem(5) solid transparent;
     border-right: rem(5) solid transparent;
     border-top: rem(5) solid $gray;
     content: '';
-    margin: rem(5) 0 0 rem(5);
   }
 
   .main-nav-active & {
