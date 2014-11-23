@@ -1,0 +1,12 @@
+.*
+_DOCS/*
+node_modules/*
+app/
+.scss-lint.yml
+bower.json
+gemfile
+gemfile.lock
+gulpfile.js
+package.json
+.git
+.sass-cache
