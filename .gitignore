@@ -45,3 +45,5 @@ assets/css/*
 
 _docs/**/*
 _docs
+
+gulpfile.js
