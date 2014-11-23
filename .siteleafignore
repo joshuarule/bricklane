@@ -1,7 +1,7 @@
 .*
 _DOCS/*
 node_modules/*
-app/
+app/**/*
 .scss-lint.yml
 bower.json
 gemfile
