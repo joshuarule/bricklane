@@ -13,7 +13,7 @@ var inject      = require('gulp-inject')
 // browser-sync task for starting the server.
 gulp.task('browser-sync', function() {
   browserSync({
-    proxy: "localhost:9292"
+    proxy: "bricklanerecords.dev"
   });
 });
 

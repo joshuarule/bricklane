@@ -31,7 +31,7 @@
   a {
     @include link;
     display: block;
-    width: rem(103);
+    width:  rem(103);
     height: rem(42);
   }
 
@@ -78,9 +78,9 @@
     top: rem(21);
     width: 0; 
     height: 0; 
-    border-left: rem(5) solid transparent;
+    border-left:  rem(5) solid transparent;
     border-right: rem(5) solid transparent;
-    border-top: rem(5) solid $gray;
+    border-top:   rem(5) solid $gray;
     content: '';
   }
 
