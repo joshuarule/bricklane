@@ -51,14 +51,14 @@ gulp.task('sass', function () {
 // Scripts
 gulp.task('scripts', function() {
   return gulp.src('app/js/**/*.js')
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'))
+    //.pipe(jshint('.jshintrc'))
+    //.pipe(jshint.reporter('default'))
     .pipe(concat('app.js'))
     .pipe(gulp.dest('assets/scripts'))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(browserify())
-    .pipe(uglify())
-    .pipe(gulp.dest('assets/scripts'))
+    //.pipe(rename({ suffix: '.min' }))
+    //.pipe(browserify())
+    //.pipe(uglify())
+    //.pipe(gulp.dest('assets/scripts'))
 });
 
 
@@ -73,9 +73,9 @@ gulp.task('svg', function () {
     done(null, $svg)
   }
   return gulp
-    .src('_layouts/default.html')
+    .src('_includes/svgstore.html')
     .pipe(inject(svgs, { transform: fileContents }))
-    .pipe(gulp.dest('_layouts/'))
+    .pipe(gulp.dest('_includes/'))
 })
 
 
@@ -83,5 +83,5 @@ gulp.task('svg', function () {
 gulp.task('default', ['sass', 'browser-sync'], function () {
   gulp.watch("app/scss/**/*.scss", ['sass']);
   gulp.watch("**/*.html", browserSync.reload);
-  gulp.watch("app/js/*.js", ['js', browserSync.reload]);
+  gulp.watch("app/js/*.js", ['scripts', browserSync.reload]);
 });

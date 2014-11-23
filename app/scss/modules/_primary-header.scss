@@ -1,0 +1,94 @@
+.primary-header {
+  position: relative;
+  padding-top: vr(1);
+  margin-bottom: vr(1);
+
+  @include mq($med) {
+    margin-bottom: vr(8);
+  }
+
+  .main-nav-active & {
+    background: $pink;
+
+    @include mq($med) {
+      background: none;
+    }
+  }
+}
+
+.mobile-container {
+  @extend %clearfix;
+
+  @include mq($med) {
+    @include span(4);
+  }
+}
+
+.site-title {
+  float: left;
+  margin: 0;
+
+  a {
+    @include link;
+    display: block;
+    width:  rem(103);
+    height: rem(42);
+  }
+
+  span {
+    display: none;
+  }
+
+  .logo {
+    width: inherit;
+    height: inherit;
+    color: $gray;
+
+    .main-nav-active & {
+      color: $white;
+
+      @include mq($med) {
+        color: $gray;
+      }
+    }
+  }
+}
+
+.main-nav-toggle {
+
+  @include link;
+  max-width: 50%;
+  position: relative;
+  float: right;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: $gray;
+  font-weight: bold;
+  font-size: rem(14);
+  padding: vr(1) rem(16) vr(1) 0;
+  margin: vr(-1) 0;
+
+  @include mq($med) {
+    display: none;
+  }
+
+  &:before {
+    position: absolute;
+    right: 0;
+    top: rem(21);
+    width: 0; 
+    height: 0; 
+    border-left:  rem(5) solid transparent;
+    border-right: rem(5) solid transparent;
+    border-top:   rem(5) solid $gray;
+    content: '';
+  }
+
+  .main-nav-active & {
+    color: $white;
+
+    &:before {
+      border-top-color: $white;
+    }
+  }
+}

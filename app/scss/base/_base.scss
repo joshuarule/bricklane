@@ -1,12 +1,16 @@
-* {box-sizing: border-box;}
+*,
+*:before,
+*:after {box-sizing: border-box;}
 
-html, body { 
+html,
+body { 
   font-size: $font-size + 0px;
   line-height: $line-height + 0px;
 }
 
 body {
   font-family: $font-sans;
+  color: $gray;
 }
 
 section {
@@ -44,5 +48,18 @@ img {
 pre {
   display: inline-block;
   padding: 0 3px;
-  border: 1px solid red;
+  border: 1px solid #ff0000;
+}
+
+a {
+  color: $pink;
+  text-decoration: none;
+  text-shadow: -1px -1px 0 $white, 1px  1px 0 $white, -1px  1px 0 $white, 1px -1px 0 $white;
+
+  &:hover {
+    background-position: 0 92%;
+    background-repeat: repeat-x;
+    background-size: 1px 1px;
+    background-image: linear-gradient(transparent 50%, $pink 50%);
+  }
 }

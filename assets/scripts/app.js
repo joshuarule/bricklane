@@ -55,7 +55,10 @@ window.fbAsyncInit = function() {
 
 
 $(document).ready(function(){
-  
+  // nav toggle
+  $('.main-nav-toggle').on('click', function() {
+    $('body').toggleClass('main-nav-active');
+  });
 });
 /*********************************************************************
 *  #### Twitter Post Fetcher v12.0 ####

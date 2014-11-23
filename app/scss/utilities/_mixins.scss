@@ -167,8 +167,8 @@
 
   @include old-ie {
     zoom: 1;
-    *display: inline;
-    *vertical-align: auto;
+    // *display: inline; // unnecessary for ie8+ support
+    // *vertical-align: auto; // unnecessary for ie8+ support
   }
 }
 
@@ -266,5 +266,14 @@
   } @else { // if you're keeping the vertical rhythm with the margin
     margin-bottom: 0px + $line-height;
     margin-bottom: 0rem + ($line-height / $font-size);  
+  }
+}
+
+// strip default styles from anchor
+@mixin link {
+  text-shadow: none;
+  
+  &:hover {
+    background: none;
   }
 }

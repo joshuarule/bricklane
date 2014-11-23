@@ -1,0 +1,75 @@
+.main-nav {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  display: none;
+  padding: vr(1) 0;
+  background: $pink;
+
+  @include mq($med) {
+    @include span(8);
+    @include last;
+    display: block;
+    position: static;
+    padding: 0;
+    background: none;
+  }
+
+  .main-nav-active & {
+    display: block;
+  }
+
+  li {
+
+    @include mq($med) {
+      float: left;
+      margin-right: vr(1);
+    }
+  }
+
+  a {
+    @include link;
+    display: block;
+    font-size: rem(18);
+    color: $white;
+    text-transform: uppercase;
+    padding: vr(0.7) gutter();
+
+    @include mq($med) {
+      color: $pink;
+      font-size: rem(14);
+      font-weight: bold;
+      padding: vr(1) 0;
+      margin: vr(-1) 0;
+    }
+
+    &:hover {
+      background: darken($pink, 5%);
+
+      @include mq($med) {
+        background: none;
+        background-position: 0 66%;
+        background-repeat: repeat-x;
+        background-size: 1px 1px;
+        background-image: linear-gradient(transparent 50%, $pink 50%);
+      }
+    }
+  }
+
+  .is-current-page {
+    background: lighten($pink, 5%);
+
+    @include mq($med) {
+      color: $gray;
+      background: none;
+    }
+
+    &:hover {
+
+      @include mq($med) {
+        background-image: linear-gradient(transparent 50%, $gray 50%);
+      }
+    }
+  }
+}
