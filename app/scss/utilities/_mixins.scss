@@ -269,11 +269,17 @@
   }
 }
 
-// strip default styles from anchor
-@mixin link {
+// underline link styles
+@mixin link-underline($underline-color: $pink, $background-color: $white, $position: 97%) {
+  text-shadow: -1px -1px 0 $background-color, 1px 1px 0 $background-color, -1px 1px 0 $background-color, 1px -1px 0 $background-color;
+  background-position: 0 $position;
+  background-repeat: repeat-x;
+  background-size: 1px 1px;
+  background-image: linear-gradient(transparent 50%, $underline-color 50%);
+}
+
+// reset link to default styles
+@mixin link-reset {
   text-shadow: none;
-  
-  &:hover {
-    background: none;
-  }
+  background: none;
 }

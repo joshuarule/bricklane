@@ -28,11 +28,14 @@
   float: left;
   margin: 0;
 
-  a {
-    @include link;
+  a {    
     display: block;
     width:  rem(103);
     height: rem(42);
+
+    &:hover {
+      @include link-reset;
+    }
   }
 
   span {
@@ -55,8 +58,6 @@
 }
 
 .main-nav-toggle {
-
-  @include link;
   max-width: 50%;
   position: relative;
   float: right;
@@ -70,6 +71,10 @@
 
   @include mq($med) {
     display: none;
+  }
+
+  &:hover {
+    @include link-reset;
   }
 
   &:before {

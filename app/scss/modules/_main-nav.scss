@@ -29,14 +29,13 @@
   }
 
   a {
-    @include link;
     display: block;
     font-size: rem(18);
     color: $white;
     text-transform: uppercase;
     padding: vr(0.7) gutter();
 
-    @include mq($med) {
+    @include mq($med) {      
       color: $pink;
       font-size: rem(14);
       font-weight: bold;
@@ -45,14 +44,12 @@
     }
 
     &:hover {
+      @include link-reset;
       background: darken($pink, 5%);
 
       @include mq($med) {
-        background: none;
-        background-position: 0 66%;
-        background-repeat: repeat-x;
-        background-size: 1px 1px;
-        background-image: linear-gradient(transparent 50%, $pink 50%);
+        @include link-reset;
+        @include link-underline($pink, $white, 68%);
       }
     }
   }
@@ -66,9 +63,10 @@
     }
 
     &:hover {
+      background: lighten($pink, 5%);
 
       @include mq($med) {
-        background-image: linear-gradient(transparent 50%, $gray 50%);
+        @include link-reset;
       }
     }
   }
