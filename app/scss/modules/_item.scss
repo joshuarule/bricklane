@@ -1,0 +1,28 @@
+.item {
+  margin-bottom: vr(1);
+
+  @include mq($med) {
+    margin-bottom: vr(2);
+  }
+}
+
+.item-image {
+  display: block;
+  margin-bottom: vr(1);
+}
+
+.item-artist {
+  font-weight: bold;
+
+  @include mq($med) {
+    display: inline-block;
+  }
+}
+
+.item-album {
+  margin-bottom: vr(1);
+
+  @include mq($med) {
+    display: inline-block;
+  }
+}

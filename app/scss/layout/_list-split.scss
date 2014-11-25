@@ -1,0 +1,18 @@
+.list-split {
+
+  li {
+    @include span(6);
+
+    @include mq($med) {
+      @include span(4 of 8);
+    }
+
+    &:nth-child(2n) {
+      @include last;
+    }
+
+    &:nth-child(2n+1) {
+      clear: both;
+    }
+  }
+}

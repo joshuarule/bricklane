@@ -283,3 +283,9 @@
   text-shadow: none;
   background: none;
 }
+
+// horizontally flush an element thats inside a padded container
+@mixin flush {
+  margin-left: -(gutter());
+  margin-right: -(gutter());
+}

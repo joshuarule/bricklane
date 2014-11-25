@@ -1,0 +1,63 @@
+.hero {
+  position: relative;  
+  margin-bottom: vr(2);
+
+  @include mq($med) {
+    margin-top: -(rem(168));
+    margin-bottom: vr(4);
+  }
+}
+
+.hero-mobile {
+  position: relative;
+}
+
+.hero-image {
+  @include flush;
+  position: relative;
+  margin-bottom: vr(1);
+  
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    background: $black;
+    content: '';
+  }
+}
+
+.hero-title {
+  @include span(4);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $white;
+  font-size: rem(18);
+  line-height: 1;
+
+  @include mq($med) {
+    @include span(3);
+    font-size: rem(36);
+    transform: none;
+  }
+
+  span {
+    color: $pink;
+  }
+}
+
+.hero-subtitle {
+
+  @include mq($med) {
+    @include push(4);
+    @include span(4);
+    position: absolute;
+    top: 50%;
+    color: $white;
+    font-size: rem(14);
+  }
+}

@@ -1,0 +1,12 @@
+.button { 
+  background: $pink;
+  color: $white;
+  font-weight: bold;
+  display: inline-block;
+  padding: vr(0.75) vr(1.5);
+
+  &:hover {
+    @include link-reset;
+    background: darken($pink, 5%);
+  }
+}

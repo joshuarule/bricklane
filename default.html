@@ -1,153 +1,203 @@
 {% capture content %}
 
 <section class="hero">
-  
-  <img src="http://placekitten.com/g/1000/345" alt="">
+
+	<div class="hero-mobile">  
+		<div class="hero-image">
+			<img src="http://placekitten.com/g/1000/360" alt="">
+		</div>			
+		<h1 class="hero-title">Mayors of Liberty<br><span>Dream On</span></h1>
+	</div>
+	<p class="hero-subtitle">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+
+</section>
+
+<section class="section">
+	
+	<h2 class="section-header">New Releases</h2>
+
+	<div class="section-content">
+		<ul class="items list-split">
+			{% include 'includes/item' %}
+			{% include 'includes/item' %}
+			{% include 'includes/item' %}
+			{% include 'includes/item' %}
+		</ul>
+	</div>
+
+</section>
+
+<section class="section">
+	
+	<h2 class="section-header">Tweets</h2>
+
+	<div class="section-content">
+		
+		<ul class="tweets list-split">
+			<li class="tweet">
+				<div class="tweet-name">Distiller Promo</div>
+				<span class="handle"><a href="#">@distillerpromo</a></span>
+				<span>-</span>
+				<span class="twitter_date">Jun 2</span>
+				<br>
+				<span>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id eli.</span>
+			</li>
+
+			<li class="tweet">
+				<div class="tweet-name">Brick Lane Records</div>
+				<span class="handle"><a href="#">@bricklanerecs</a></span>
+				<span>-</span>
+				<span class="twitter_date">June 6</span>
+				<br>
+				<span>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</span>
+			</li>
+
+			<li class="tweet">
+				<div class="tweet-name">Brick Lane Record</div>
+				<span class="handle"><a href="#">@bricklanerecs</a></span>
+				<span>-</span>
+				<span class="twitter_date">May 31</span>
+				<br>
+				<span>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</span>
+			</li>
+				
+			<li class="tweet">
+				<div class="tweet-name">Nathan Quiroga</div>
+				<span class="handle"><a href="#">@buffalomadonna</a></span>
+				<span>-</span>
+				<span class="twitter_date">May 31</span>
+				<br>
+				<span>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit</span>
+			</li>
+		</ul>
+
+	</div>
+
+</section>
+
+<section class="section">
+	
+	<h2 class="section-header">News</h2>
+
+	<div class="section-content">
+		
+		<ul class="articles list-split">
 			
-		<div class="hero_text">
-			<h1 class="hero_title">Mayors of Liberty</h1>
-			<p class="hero_subtitle">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-		</div>	
-
-</section>
-
-<section>
-	
-	<h2 class="section-title">New Releases</h2>
-
-	<ul class="items">
-		{% include 'includes/item' %}
-		{% include 'includes/item' %}
-		{% include 'includes/item' %}
-		{% include 'includes/item' %}
-	</ul>
-
-</section>
-
-<section>
-	
-	<h2 class="section-title">Tweets</h2>
+			<li class="article">
+				<img src="http://placekitten.com/g/300/200" alt="">
+				<div class="article-date">
+					June 11
+				</div>
+				<div class="article-text">
+					Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.
+				</div>
+				<div class="article-share">
+					<span class="like_link"><a href="#">Like</a> |</span>
+					<span class="number_of_likes"><a href="#">12 people</a> like this.</span>
+				</div>
+			</li>
 		
-	<ul class="tweets">
-		<li class="tweet">
-			<strong>Distiller Promo</strong>
-			<small class="handle"><a href="#">@distillerpromo</a></small>
-			<small>-</small>
-			<small class="twitter_date">Jun 2</small>
-			<br>
-			<small>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id eli.</small>
-		</li>
+			<li class="article">
+				<img src="http://placekitten.com/g/300/200" alt="">
+				<div class="article-date">
+					June 12
+				</div>
+				<div class="article-text">
+					Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.
+				</div>
+				<div class="article-share">
+					<span class="like_link"><a href="#">Like</a> |</span>
+					<span class="number_of_likes"><a href="#">23 people</a> like this.</span>
+				</div>
+			</li>
+		</ul>
 
-		<li class="tweet">
-			<strong>Brick Lane Records</strong>
-			<small class="handle"><a href="#">@bricklanerecs</a></small>
-			<small>-</small>
-			<small class="twitter_date">June 6</small>
-			<br>
-			<small>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</small>
-		</li>
+	</div>
 
-		<li class="tweet">
-			<strong>Brick Lane Record</strong>
-			<small class="handle"><a href="#">@bricklanerecs</a></small>
-			<small>-</small>
-			<small class="twitter_date">May 31</small>
-			<br>
-			<small>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</small>
-		</li>
+</section>
+
+<section class="section">
+	
+	<h2 class="section-header">Touring Now</h2>
+
+	<div class="section-content">
+
+		<ul class="events list-split">
+			<li class="event">
+	    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
+				<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
+			</li>
 			
-		<li class="tweet">
-			<strong>Nathan Quiroga</strong>
-			<small class="handle"><a href="#">@buffalomadonna</a></small>
-			<small>-</small>
-			<small class="twitter_date">May 31</small>
-			<br>
-			<small>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit</small>
-		</li>
-	</ul>
+			<li class="event">
+				<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
+				<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
+			</li>
+		
+			<li class="event">
+	    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
+				<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
+			</li>
+			
+			<li class="event">
+				<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
+				<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
+			</li>
+
+			<li class="event">
+	    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
+				<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
+			</li>
+			
+			<li class="event">
+				<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
+				<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
+			</li>
+
+			<li class="event">
+	    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
+				<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
+			</li>
+			
+			<li class="event">
+				<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
+				<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
+			</li>
+		</ul>
+
+	</div>
+
 </section>
 
-<section>
-	
-	<h2 class="section-title">News</h2>
-		
-	<ul class="articles">
-		
-		<li class="article">
-			<img src="http://placekitten.com/g/300/200" alt="">
-			<strong>June 11</strong>
-			<small>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</small>
-			<small class="like_link"><a href="#">Like</a> |</small>
-			<small class="number_of_likes"><a href="#">12 people</a> like this.</small>
-		</li>
-	
-		<li class="article">
-			<img src="http://placekitten.com/g/300/200" alt="">
-			<strong>June 12</strong>
-			<small>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</small>
-			<small class="like_link"><a href="#">Like</a> |</small>
-			<small class="number_of_likes"><a href="#">23 people</a> like this.</small>
-		</li>
-	</ul>
-</section>
+<section class="section"> 
 
-<section>
-	
-	<h2 class="section-title">Touring Now</h2>
+	<h2 class="section-header">Videos</h2>
 
-	<ul class="events">
-		<li class="event">
-    		<strong class="event-artist">Iska Dhaaf</strong> - <strong class="event-date">June 20</strong>
-				<small class="event-venue">Neck of the Woods</small> - <small class="event-city">San Fransisco</small>
-		</li>
-		
-		<li class="event">
-			<strong class="event-artist">Iska Dhaaf</strong> - <strong class="event-date">June 20</strong>
-			<small class="event-venue">Neck of the Woods</small> - <small class="event-city">San Fransisco</small>
-		</li>
-	
-		<li class="event">
-    		<strong class="event-artist">Iska Dhaaf</strong> - <strong class="event-date">June 20</strong>
-			<small class="event-venue">Neck of the Woods</small> - <small class="event-city">San Fransisco</small>
-		</li>
-		
-		<li class="event">
-			<strong class="event-artist">Iska Dhaaf</strong> - <strong class="event-date">June 20</strong>
-			<small class="event-venue">Neck of the Woods</small> - <small class="event-city">San Fransisco</small>
-		</li>
-
-		<li class="event">
-    		<strong class="event-artist">Iska Dhaaf</strong> - <strong class="event-date">June 20</strong>
-			<small class="event-venue">Neck of the Woods</small> - <small class="event-city">San Fransisco</small>
-		</li>
-		
-		<li class="event">
-			<strong class="event-artist">Iska Dhaaf</strong> - <strong class="event-date">June 20</strong>
-			<small class="event-venue">Neck of the Woods</small> - <small class="event-city">San Fransisco</small>
-		</li>
-	</ul>
-</section>
-
-<section> 
-
-	<h2 class="section-title">Videos</h2>
-
-	<ul class="videos">
-		<li class="video">
-			<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/300/200"></video>
-			<a href="#" class="video-title">Where All Directions Lead</a>
-			<small>by <a href="#" class="video-artist">You Are Pural</a> -</small>
-			<small>- <span class="video-publication">3 years ago</span></small> 
-			<small>- <span class="video-views">28,514</span> views</small>
-		</li>
-		<li class="video">
-			<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/300/200"></video>
-			<a href="#" class="video-title">Where All Directions Lead</a>
-			<small>by <a href="#" class="video-artist">You Are Pural</a> -</small>
-			<small>- <span class="video-publication">3 years ago</span></small> 
-			<small>- <span class="video-views">28,514</span> views</small>
-		</li>
-	</ul>
+	<div class="section-content">
+		<ul class="videos list-split">
+			<li class="video">
+				<div class="video-responsive">
+					<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>
+				</div>
+				<div class="video-title">
+					<a href="#">Where All Directions Lead</a>
+				</div>
+				<span>by <a href="#" class="video-artist">You Are Pural</a></span>
+				<span>- <span class="video-publication">3 years ago</span></span> 
+				<span>- <span class="video-views">28,514</span> views</span>
+			</li>
+			<li class="video">
+				<div class="video-responsive">
+					<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>
+				</div>
+				<div class="video-title">
+					<a href="#">Where All Directions Lead</a>
+				</div>
+				<span>by <a href="#" class="video-artist">You Are Pural</a></span>
+				<span>- <span class="video-publication">3 years ago</span></span> 
+				<span>- <span class="video-views">28,514</span> views</span>
+			</li>
+		</ul>
+	</div>
 </section>
 
 {% endcapture %}

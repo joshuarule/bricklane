@@ -10,9 +10,10 @@
 .section-header {
   color: $pink;
   font-size: rem(18);
+  line-height: 1;
 
   @include mq($med) {
-    @include span(4);
+    @include span(3);
     font-size: rem(36);
   }
 }

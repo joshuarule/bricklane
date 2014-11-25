@@ -59,4 +59,8 @@ $(document).ready(function(){
   $('.main-nav-toggle').on('click', function() {
     $('body').toggleClass('main-nav-active');
   });
+  // add body class if hero exists
+  if ($('.hero').length) {
+    $('body').addClass('has-hero');
+  }
 });

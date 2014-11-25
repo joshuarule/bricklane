@@ -1,0 +1,28 @@
+.event {
+  margin-bottom: vr(1);
+}
+
+.event-artist {
+  margin-right: vr(0.5);
+  font-weight: bold;
+}
+
+.event-date {
+  margin-left: vr(0.5);
+  font-weight: bold;
+}
+
+.event-city {
+  display: block;
+
+  @include mq($med) {
+    display: inline;
+  }
+
+  &:before {
+
+    @include mq($med) {
+      content: ' - ';
+    }
+  }
+}
