@@ -286,6 +286,7 @@
 
 // horizontally flush an element thats inside a padded container
 @mixin flush {
-  margin-left: -(gutter());
-  margin-right: -(gutter());
+  $gutter-adjusted: gutter() * (100% / (100% - (gutter() * 2)));
+  margin-left: -#{$gutter-adjusted};
+  margin-right: -#{$gutter-adjusted};
 }
