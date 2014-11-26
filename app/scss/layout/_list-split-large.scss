@@ -1,19 +1,24 @@
-.list-split {
+.list-split-large {
   overflow: hidden;
 
   li {
-    @include span(6);
 
     @include mq($med) {
       @include span(4 of 8);
     }
 
     &:nth-child(2n) {
-      @include last;
+
+      @include mq($med) {
+        @include last;
+      }      
     }
 
     &:nth-child(2n+1) {
-      clear: both;
+
+      @include mq($med) {
+        clear: both;
+      }      
     }
   }
 }

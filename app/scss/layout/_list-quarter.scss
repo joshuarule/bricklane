@@ -1,0 +1,48 @@
+.list-quarter {
+  overflow: hidden;
+
+  li {
+    @include span(6);
+
+    @include mq($med) {
+      @include span(2 of 8);
+    }
+
+    // mobile
+    &:nth-child(2n) {
+      @include last;
+
+      // reset for desktop
+      @include mq($med) {
+        float: left;
+        margin-right: gutter(8);
+      }
+    }
+
+    // mobile
+    &:nth-child(2n+1) {
+      clear: both;
+
+      // reset for desktop
+      @include mq($med) {
+        clear: none;
+      }
+    }
+
+    // desktop
+    &:nth-child(4n) {
+
+      @include mq($med) {
+        @include last;
+      }
+    }
+
+    // desktop
+    &:nth-child(4n+1) {
+
+      @include mq($med) {
+        clear: both;
+      }
+    }
+  }
+}
