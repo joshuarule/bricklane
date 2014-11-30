@@ -13,16 +13,19 @@
 
 .item-artist {
   font-weight: bold;
-
-  @include mq($med) {
-    display: inline-block;
-  }
+  display: inline-block;
+  margin-right: vr(1);
 }
 
 .item-album {
-  margin-bottom: vr(1);
+  display: inline-block;
+  margin-right: vr(1);
+}
 
-  @include mq($med) {
-    display: inline-block;
-  }
+.item-type {
+  display: inline-block;
+}
+
+.item-buy {
+  margin-top: vr(1);
 }

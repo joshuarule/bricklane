@@ -5,3 +5,14 @@
     @include span(2 of 8);
   }
 }
+
+.float-right {
+  @include span(4);
+  @include last;
+  text-align: right;
+
+  @include mq($med) {
+    @include span(2 of 8);
+    @include last;
+  }
+}

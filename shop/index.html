@@ -1,151 +1,287 @@
 {% capture content %}
 
-<pre>shop/index.html</pre>
-
 <section class="hero">
-  
-  <img src="http://placekitten.com/g/900/345" alt="">
-			
-		<div class="hero_text">
-			<h1 class="hero_title">Mayors of Liberty</h1>
-			<p class="hero_subtitle">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-			<button><a href="#">Buy</a></button></button>
-		</div>	
-
+	<div class="hero-mobile">  
+		<div class="hero-image">
+			<img src="http://placekitten.com/g/1000/360" alt="">
+		</div>			
+		<h1 class="hero-title">Mayors of Liberty<br><span>Dream On</span></h1>
+	</div>
+	<p class="hero-subtitle">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.<br><br><a class="button" href="#">Buy</a></p>
 </section>
 
-<section>
-	
-	<h2 class="section-title"><a href="#">Featured</a></h2>
-
-	<ul class="items--featured">
-		<li class="item">
-			<img src="http://placekitten.com/g/200/200">
-			<strong>Benjamin Verdoes</strong>
-			<span>The Evil Eye</span>
-			<a href="#">Buy</a>
-		</li>
-		<li class="item">
-			<img src="http://placekitten.com/g/200/200">
-			<strong>Brick Lane Records</strong>
-			<span>Dream On</span>
-			<a href="#">Buy</a>
-		</li>
-	</ul>
-
-</section>
-
-<section>
-	
-	<h2 class="section-title"><a href="#">Vinyl</a></h2>	
-
-		<ul class="items">
-
+<div class="section">
+	<h2 class="section-header">Featured</h2>
+	<div class="section-content">
+		<ul class="items split-1-2">
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<fill="currentColor" class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
-			
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
+		</ul>
+	</div>
+</div>
 
+<div class="section">
+	<h2 class="section-header">Vinyl</h2>
+	<div class="section-content">
+		<ul class="items split-2-4">
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
-
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
-
-			<a href="#">View all</a>
-	</ul>
-</section>
-
-<section>
-
-	<h2 class="section-title"><a href="#">Releases</a></h2>
-
-		<ul class="items">
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
-			
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
+		</ul>
+		<p class="float-right"><a class="more" href="#">View all</a></p>
+	</div>
+</div>
 
+<div class="section">
+	<h2 class="section-header">Releases</h2>
+	<div class="section-content">
+		<ul class="items split-2-4">
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
-
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
-			
-			<a href="#">View all</a>
-	</ul>
-</section>
-
-<section>
-	
-	<h2 class="section-title"><a href="#">Merch</a></h2>
-
-	<ul class="items">
-		<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
-			</li>
-			
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
-
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
+		</ul>
+		<p class="float-right"><a class="more" href="#">View all</a></p>
+	</div>
+</div>
 
+<div class="section">
+	<h2 class="section-header">Merch</h2>
+	<div class="section-content">
+		<ul class="items split-2-4">
 			<li class="item">
-				<img src="http://placekitten.com/g/200/200">
-				<strong class="item-title">Benjamin Verdoes</strong>
-				<span class="item-subtitle">The Evil Eye</span>
-				<a href="#">Buy</a>
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
 			</li>
-		<a href="#">View all</a>
-	</ul>
-</section>
-
+			<li class="item">
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
+			</li>
+			<li class="item">
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
+			</li>
+			<li class="item">
+			  <div class="item-image">
+			    <a href="{{item.url}}"><img src="http://placekitten.com/g/200/200" alt=""></a>
+			  </div>
+			  <div class="item-artist">
+			    Benjamin Verdoes
+			  </div>
+			  <div class="item-album">
+			    The Evil Eye
+			  </div>
+			  <div class="item-type">
+			  	LP, CD, Digital
+			  </div>
+			  <div class="item-buy">
+			    <a class="button" href="{{item.url}}">Buy</a>
+			  </div>
+			</li>
+		</ul>
+		<p class="float-right"><a class="more" href="#">View all</a></p>
+	</div>
+</div>
 
 {% endcapture %}
 
