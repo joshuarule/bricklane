@@ -1,7 +1,7 @@
 .list-split-large {
   overflow: hidden;
 
-  li {
+  > * {
 
     @include mq($med) {
       @include span(4 of 8);

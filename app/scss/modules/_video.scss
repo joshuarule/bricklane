@@ -1,19 +1,6 @@
-.videos {
-  margin-bottom: vr(1);
-}
-
 .video {
-  margin-bottom: vr(1);
   
   @include mq($med) {
-    margin-bottom: vr(2);
-  }
-  
-  .video-responsive {
     margin-bottom: vr(1);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 }

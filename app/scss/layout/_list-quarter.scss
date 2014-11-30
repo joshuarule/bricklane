@@ -1,7 +1,7 @@
 .list-quarter {
   overflow: hidden;
 
-  li {
+  > * {
     @include span(6);
 
     @include mq($med) {

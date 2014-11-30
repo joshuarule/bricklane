@@ -1,29 +1,24 @@
 {% capture content %}
 
-<pre>videos.html</pre>
-
-
-<ul class="videos">
-
-	{% for post in posts %}
-	
-
-	<li class="video">
-		<h1 class="video-date section-header"><time>{{post.date | date: "%B %-d" }},<br>{{post.date | date: "%Y" }}</time></h1>
-		<video src="https://www.youtube.com/watch?v=mpAYg2PDhmw" autoplay poster="http://placekitten.com/g/300/200"></video>
-		<div class="video-info">
-			<span class="video-title"><a href="#">The Vinyl District presents Mayors of Liberty - Unforgiven</a></span>
-			<span class="video-artist">by <a href="#">Mayors of Liberty</a></span>
-			<span class="video-publication">- 3 months ago</span> 
-			<span class="video-views"> - 129 views</span>
-			<p>
-				Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.
-			</p>
+{% for post in posts %}	
+	<div class="section">
+		<h1 class="section-header">{{post.date | date: "%B %-d" }}, {{post.date | date: "%Y" }}</h1>
+		<div class="section-content">
+			<div class="list-split-large">
+				<div>
+					<div class="video-responsive">
+						<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>
+					</div>
+				</div>
+				<div>
+					<a href="#">The Vinyl District presents Mayors of Liberty - Unforgiven</a><br>
+					by <a href="#">Mayors of Liberty</a> - 3 months ago - 129 views
+					<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+				</div>
+			</div>
 		</div>
-	</li>
-	{% endfor %}
-</ul>
-
+	</div>
+{% endfor %}
 
 {% endcapture %}
 
