@@ -46,7 +46,7 @@
 		{% if hasReleases %}
 		  {% for artist in site.pages.releases.pages %}
 				{% if artist.slug == {{slug}} && artist.posts %}
-						<ul class="items list-quarter">
+						<ul class="items split-2-4">
 						  {% for release in artist.posts %}
 						    {% include 'includes/item' %}
 						  {% endfor %}
@@ -80,7 +80,7 @@
 		{% endcomment %}
 
 		{% if hasEvents %}
-			<ul class="events list-split">
+			<ul class="events split-2">
 				{% for artists in site.pages.tour-dates.pages %}
 					{% if artists.slug == {{slug}} %}
 					  {% for post in artists.posts %}
@@ -180,7 +180,7 @@
 			Pulled from Youtube
 		{% endcomment %}
 
-		<ul class="videos list-split-large">
+		<ul class="videos split-1-2">
 			<li class="video">
 				<div class="video-responsive">
 					<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>

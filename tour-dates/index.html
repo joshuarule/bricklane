@@ -5,7 +5,7 @@
 		<h1 class="section-header">{{artist.title}}</h1>
 		<div class="section-content">
 			{% if artist.posts.length > 0 %}
-				<ul class="events list-split">
+				<ul class="events split-2">
 					{% for post in artist.posts reversed %}
 						{% include 'includes/event' %}
 					{% endfor %}
