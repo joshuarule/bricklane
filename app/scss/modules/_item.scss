@@ -11,6 +11,10 @@
   margin-bottom: vr(1);
 }
 
+.item-image-shop {
+  border: 2px solid $gray-light;
+}
+
 .item-artist {
   font-weight: bold;
   display: inline-block;
@@ -28,4 +32,30 @@
 
 .item-buy {
   margin-top: vr(1);
+}
+
+.item-title {
+  font-weight: bold;
+}
+
+.item-thumbs {
+  overflow: hidden;
+
+  > * {
+    @include span(3);
+    margin-bottom: vr(1);
+    border: 2px solid $gray-light;
+
+    @include mq($med) {
+      @include span(1 of 4);
+    }
+
+    &:nth-child(4n) {
+      @include last;
+    }
+
+    &:nth-child(2n+1) {
+      clear: both;
+    }
+  }
 }

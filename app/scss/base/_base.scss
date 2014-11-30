@@ -59,3 +59,14 @@ a {
     @include link-underline;
   }
 }
+
+select {
+  border: 1px solid $pink;
+  border-radius: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-weight: bold;
+  color: $pink;
+}
