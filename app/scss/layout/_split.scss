@@ -1,3 +1,28 @@
+.split-1-2 {
+  overflow: hidden;
+
+  > * {
+
+    @include mq($med) {
+      @include span(4 of 8);
+    }
+
+    &:nth-child(2n) {
+
+      @include mq($med) {
+        @include last;
+      }      
+    }
+
+    &:nth-child(2n+1) {
+
+      @include mq($med) {
+        clear: both;
+      }      
+    }
+  }
+}
+
 .split-2-4 {
   overflow: hidden;
 
@@ -43,6 +68,26 @@
       @include mq($med) {
         clear: both;
       }
+    }
+  }
+}
+
+.split-2 {
+  overflow: hidden;
+
+  > * {
+    @include span(6);
+
+    @include mq($med) {
+      @include span(4 of 8);
+    }
+
+    &:nth-child(2n) {
+      @include last;
+    }
+
+    &:nth-child(2n+1) {
+      clear: both;
     }
   }
 }

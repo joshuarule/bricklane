@@ -1,0 +1,7 @@
+.float-left {
+  @include span(4);
+
+  @include mq($med) {
+    @include span(2 of 8);
+  }
+}
