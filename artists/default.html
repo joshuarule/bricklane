@@ -46,7 +46,7 @@
 		{% if hasReleases %}
 		  {% for artist in site.pages.releases.pages %}
 				{% if artist.slug == {{slug}} && artist.posts %}
-						<ul class="items split-2-4">
+						<ul class="split-2-4">
 						  {% for release in artist.posts %}
 						    {% include 'includes/item' %}
 						  {% endfor %}
@@ -54,7 +54,7 @@
 				{% endif %}
 			{% endfor %}
 		{% else %}
-			no releases at this time
+			<p>no releases at this time</p>
 		{% endif %}
 
 	</div>
@@ -80,7 +80,7 @@
 		{% endcomment %}
 
 		{% if hasEvents %}
-			<ul class="events split-2">
+			<ul class="split-2">
 				{% for artists in site.pages.tour-dates.pages %}
 					{% if artists.slug == {{slug}} %}
 					  {% for post in artists.posts %}
@@ -90,7 +90,7 @@
 				{% endfor %}
 			</ul>
 		{% else %}
-			no tour dates at this time
+			<p>no tour dates at this time</p>
 		{% endif %}
 
 	</div>
@@ -130,11 +130,11 @@
 				{% endfor %}
 			</ul>
 		{% else %}
-			no press articles at this time
+			<p>no press articles at this time</p>
 		{% endif %}
 -->
 
-		<ul class="events">
+		<ul>
 		    <li class="press">
 				<span class="press-title">post.title</span>
 				<p>post.body Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor odio dolor, ac bibendum magna porta non. Etiam sodales est sed ipsum volutpat porttitor. Duis dui leo, aliquet sit amet semper vitae, ullamcorper eget eros. Fusce lobortis lacinia sapien vel malesuada. Aliquam mattis, diam at placerat imperdiet, diam diam vestibulum elit, a blandit dui mi nec diam. Nam suscipit, lacus et dictum faucibus, mauris augue tempus augue, et tempor erat dui sed erat. Sed congue non libero id cursus. Curabitur condimentum nunc erat, et accumsan risus euismod quis. Proin libero leo, vestibulum nec sem commodo, tristique sollicitudin lacus. Proin sed auctor mauris, at fringilla mauris.</p>
@@ -163,12 +163,14 @@
 		{% comment %}
 			Pulled from Facebook I believe
 		{% endcomment %}
-			
-		<div class="news">
-			<span class="press-title">KEXP</span>
-			<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-			<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-		</div>
+
+		<ul>
+			<li>
+				<span class="press-title">KEXP</span>
+				<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+				<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+			</li>
+		</ul>
 	</div>
 </section>
 
@@ -180,7 +182,7 @@
 			Pulled from Youtube
 		{% endcomment %}
 
-		<ul class="videos split-1-2">
+		<ul class="split-1-2">
 			<li class="video">
 				<div class="video-responsive">
 					<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>

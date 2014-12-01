@@ -5,14 +5,14 @@
 		<h1 class="section-header">{{artist.title}}</h1>
 		<div class="section-content">
 			{% if artist.posts.length > 0 %}
-				<ul class="events split-2">
+				<ul class="split-2">
 					{% for post in artist.posts reversed %}
 						{% include 'includes/event' %}
 					{% endfor %}
-					<li><a class="more" href="#">View more</a></li>
+					<li><p><a class="more" href="#">View more</a></p></li>
 				</ul>
 			{% else %}
-				no events at this time
+				<p>no events at this time</p>
 			{% endif %}
 		</div>
 	</div>

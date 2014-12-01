@@ -1,24 +1,18 @@
 {% capture content %}
 
-<ul class="artists">
-		
-	{% for artist in pages %}
-		<li class="artist">
-			<a href="{{artist.url}}">
-				<div class="section">
-					<h2 class="section-header">{{artist.title}}</h2>
-					<div class="section-content">
-						{% for asset in artist.assets limit: 1 %}
-							<img src="//placekitten.com/g/600/300" alt="">
-					  		<!-- <img src="{{asset.url}}" alt="{{title}} - profile photo"> -->
-					  	{% endfor %}
-				  	</div>
-			  	</div>
-			</a>
-		</li>
-	{% endfor %}
-
-</ul>
+{% for artist in pages %}
+	<a href="{{artist.url}}">
+		<div class="section">
+			<h2 class="section-header">{{artist.title}}</h2>
+			<div class="section-content">
+				{% for asset in artist.assets limit: 1 %}
+					<img src="//placekitten.com/g/600/300" alt="">
+			  		<!-- <img src="{{asset.url}}" alt="{{title}} - profile photo"> -->
+			  	{% endfor %}
+		  	</div>
+	  	</div>
+	</a>
+{% endfor %}
 
 {% endcapture %}
 
