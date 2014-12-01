@@ -3,9 +3,10 @@
 <section class="hero">
 	<div class="hero-mobile">  
 		<div class="hero-image">
+			{{assets.first}}
 		  {% for asset in assets limit: 1 %}
-		  	<img src="http://placekitten.com/g/1000/360" alt="">
-		  	<!-- <img src="{{asset.url}}" alt="{{title}} - profile photo"> -->
+		  	<!-- <img src="http://placekitten.com/g/1000/360" alt=""> -->
+		  	<img src="{{asset.url}}" alt="{{title}} - profile photo">
 		  {% endfor %}
 		</div>			
 		<h1 class="hero-title"><span>{{title}}</span></h1>
