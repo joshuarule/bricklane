@@ -70,3 +70,15 @@ select {
   font-weight: bold;
   color: $pink;
 }
+
+blockquote {
+  margin-bottom: vr(1);
+}
+
+cite {
+  display: block;
+  
+  &:before {
+    content: '- ';
+  }
+}

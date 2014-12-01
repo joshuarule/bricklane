@@ -1,117 +1,131 @@
 {% capture content %}
 
-<pre>releases/default.html</pre>
+<div class="section">
+	<h2 class="section-header">Album</h2>
+	<div class="section-content">
+		<div class="split-1-2">
+			<div class="item-image">
+				<img src="http://placekitten.com/g/200/200" alt="">
+			</div>
+			<div>
+				<p><span class="item-title">Chimurenga Renaissance</span><br>riZe vadZimu riZe</p>
+				<p>Released February 11th, 2014<br>USB, Digital</p>
+				<p><a class="button" href="#">Buy</a></p>
+				<p><a class="share" href="#">Share</a></p>
+			</div>
+		</div>
+	</div>
+</div>
 
-<section>
-	
-	<h2 class="section-title">Album</h2>
+<div class="section">
+	<h2 class="section-header">Track list</h2>
+	<div class="section-content">
+		<div class="split-1-2">
+			<ol class="track-list">
+				<li class="track">
+					<a href="#" class="track-play"><span>Play</span></a>
+					<a href="#" class="track-play-video"><span>Play video</span></a>
+					1. <span class="track-title">Come Home</span> <span class="track-time">03:12</span>
+				</li>
+				<li class="track">
+					<a href="#" class="track-play"><span>Play</span></a>
+					<a href="#" class="track-play-video"><span>Play video</span></a>
+					2. <span class="track-title">Out Of My Hands</span> <span class="track-time">03:12</span>
+				</li>
+				<li class="track">
+					<a href="#" class="track-play"><span>Play</span></a>
+					3. <span class="track-title">When You Were Part Of Me</span> <span class="track-time">03:12</span>
+				</li>
+				<li class="track">
+					<a href="#" class="track-play"><span>Play</span></a>
+					<a href="#" class="track-play-video"><span>Play video</span></a>
+					4. <span class="track-title">Kiss Like The Last Time</span> <span class="track-time">03:12</span>
+				</li>
+				<li class="track">
+					<a href="#" class="track-play"><span>Play</span></a>
+					5. <span class="track-title">If You Leave Me Behind</span> <span class="track-time">03:12</span>
+				</li>
+				<li class="track">
+					<a href="#" class="track-play"><span>Play</span></a>
+					6. <span class="track-title">Paradise</span> <span class="track-time">03:12</span>
+				</li>
+				<li class="track">
+					<a href="#" class="track-play"><span>Play</span></a>
+					7. <span class="track-title">Adrift</span> <span class="track-time">03:12</span>
+				</li>
+				<li class="track">
+					<a href="#" class="track-play"><span>Play</span></a>
+					8. <span class="track-title">Soft Goodbyes</span> <span class="track-time">03:12</span>
+				</li>
+			</ol>
+		</div>
+	</div>
+</div>
 
-	<img src="http://placekitten.com/g/300/300">
-	<strong class="album-artist">{{parent.title}}</strong>
-	<span class="album-title">{{title}}</span>
-	<br>
-	<span class="album-release-date">Released February 11th, 2014</span>
-	<span class="album-formats">CD, Digital, LP</span>
-	<br>
-	<button>Buy</button>
-	<a class="share" href="#">Share</a>
+<div class="section">
+	<h2 class="section-header">About</h2>
+	<div class="section-content">
+		<div class="split-1-2">
+			<div>
+				<blockquote>
+					"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+					<cite>Stereo Subversion</cite>
+				</blockquote>
+				<blockquote>
+					"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+					<cite>Stereo Subversion</cite>
+				</blockquote>
+				<blockquote>
+					"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+					<cite>Stereo Subversion</cite>
+				</blockquote>
+				<blockquote>
+					"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+					<cite>Stereo Subversion</cite>
+				</blockquote>
+			</div>
+			<div>
+				<blockquote>
+					"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+					<cite>Stereo Subversion</cite>
+				</blockquote>
+				<blockquote>
+					"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+					<cite>Stereo Subversion</cite>
+				</blockquote>
+				<blockquote>
+					"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+					<cite>Stereo Subversion</cite>
+				</blockquote>
+				<blockquote>
+					"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+					<cite>Stereo Subversion</cite>
+				</blockquote>
+			</div>
+		</div>
+	</div>
+</div>
 
-</section>
-
-<section>
-	<h2 class="section-title">Track list</h2>
-
-	{% for post in posts %}
-		{{post.title}}
-	{% endfor %}
-
-	<ol class="track-list">
-		<li class="track">
-			<a href="#" class="track-play"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-			<span class="track-title">Come Home</span> <span class="track-time">03:12</span>
-			<a href="#" class="track-video"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-		</li>
-		<li class="track">
-			<a href="#" class="track-play"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-			<span class="track-title">Come Home</span> <span class="track-time">03:12</span>
-			<a href="#" class="track-video"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-		</li>
-		<li class="track">
-			<a href="#" class="track-play"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-			<span class="track-title">Come Home</span> <span class="track-time">03:12</span>
-			<a href="#" class="track-video"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-		</li>
-		<li class="track">
-			<a href="#" class="track-play"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-			<span class="track-title">Come Home</span> <span class="track-time">03:12</span>
-			<a href="#" class="track-video"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-		</li>
-		<li class="track">
-			<a href="#" class="track-play"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-			<span class="track-title">Come Home</span> <span class="track-time">03:12</span>
-			<a href="#" class="track-video"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-		</li>
-		<li class="track">
-			<a href="#" class="track-play"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-			<span class="track-title">Come Home</span> <span class="track-time">03:12</span>
-			<a href="#" class="track-video"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-		</li>
-		<li class="track">
-			<a href="#" class="track-play"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-			<span class="track-title">Come Home</span> <span class="track-time">03:12</span>
-			<a href="#" class="track-video"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-		</li>
-		<li class="track">
-			<a href="#" class="track-play"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-			<span class="track-title">Come Home</span> <span class="track-time">03:12</span>
-			<a href="#" class="track-video"><img src="http://cal-adapt.org/media/images/icons/play.png" alt=""></a>
-		</li>
-	</ol>
-
-</section>
-
-<section>
-	<h2 class="section-title">About</h2>
-
-	<blockquote>
-		"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
-		<cite>Stereo Subversion</cite>
-	</blockquote>
-	<blockquote>
-		"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
-		<cite>Stereo Subversion</cite>
-	</blockquote>
-	<blockquote>
-		"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
-		<cite>Stereo Subversion</cite>
-	</blockquote>
-	<blockquote>
-		"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
-		<cite>Stereo Subversion</cite>
-	</blockquote>
-
-</section>
-
-<section>
-	<h2 class="section-title">Credits</h2>
-
-	<p>
-		<!-- this will probably just get pulled in as a body paragraph -->
-		{{album credits}}
-	</p>
-
-	<ul class="tags">
-			tags: 
-			<li><a href="#">alternative</a></li>
-			<li><a href="#">indie</a></li>
-			<li><a href="#">blues</a></li>
-			<li><a href="#">Seattle</a></li>
-		</ul>
-
-		<p>all rights reserved</p>
-
-</section>
-
+<div class="section">
+	<h2 class="section-header">Credits</h2>
+	<div class="section-content">
+		<div class="split-1-2">
+			<div>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec vestibulum tortor. Sed ac mauris ultricies, euismod neque sit amet, feugiat arcu.</p>
+				<p>Duis imperdiet eros risus, nec vehicula ex convallis laoreet.</p>
+				<p>Pellentesque eget lobortis metus. Donec facilisis, eros ultricies semper sagittis, enim augue maximus ligula, ac tristique dolor odio ac tellus. Cras vitae consectetur nunc, vehicula lobortis eros.</p>
+				<p>Praesent fringilla justo porttitor velit pellentesque dictum.</p>
+			</div>
+			<div>
+				<p>Sed ac nulla non tortor fermentum consectetur.</p>
+				<p>Maecenas eu dignissim nunc. Praesent malesuada risus non posuere scelerisque. In ac lobortis nisl, nec aliquet urna. Quisque a justo fringilla, tempor lectus eu, vulputate ex.</p>
+				<p>Nunc non nisi id mauris dignissim semper.</p>
+				<p>tags: <a href="#">alternative</a>, <a href="#">indie</a>, <a href="#">blues</a>, <a href="#"></a>folk</p>
+				<p>all rights reserved</p>
+			</div>
+		</div>
+	</div>
+</div>
 
 {% endcapture %}
 

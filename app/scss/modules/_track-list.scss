@@ -1,0 +1,57 @@
+.track {
+  margin-bottom: vr(1);
+}
+
+.track-play {
+  float: left;
+  margin-right: vr(0.5);
+
+  &:before {
+    display: inline-block;
+    width: 0; 
+    height: 0; 
+    border-top: rem(7) solid transparent;
+    border-bottom: rem(7) solid transparent;  
+    border-left: rem(10) solid $pink;
+    content: '';
+  }
+
+  span {
+    display: none;
+  }
+}
+
+.track-play-video {
+  float: right;
+  margin-left: vr(0.25);
+  position: relative;
+
+  &:before {
+    display: block;
+    width: rem(20);
+    height: rem(14);
+    background: $pink;
+    content: '';
+  }
+
+  &:after {
+    position: absolute;
+    left: rem(8);
+    top: rem(3);
+    width: 0; 
+    height: 0; 
+    border-top: rem(4) solid transparent;
+    border-bottom: rem(4) solid transparent;  
+    border-left: rem(6) solid $white;
+    content: '';
+  }
+
+  span {
+    display: none;
+  }
+}
+
+.track-title {
+  font-weight: bold;
+  margin: 0 vr(0.25);
+}
