@@ -117,12 +117,12 @@
 
 <!--
 		{% if hasArticles %}
-			<ul class="events">
+			<ul>
 				{% for artists in site.pages.press.pages %}
 					{% if artists.slug == {{slug}} %}
 					  {% for post in artists.posts %}
-					    <li class="press">
-							<span class="press-title">{{post.title}}</span>
+					    <li>
+							<span class="item-title">{{post.title}}</span>
 							{{post.body}}
 						</li>
 					  {% endfor %}
@@ -135,20 +135,20 @@
 -->
 
 		<ul>
-		    <li class="press">
-				<span class="press-title">post.title</span>
+		    <li>
+				<span class="item-title">post.title</span>
 				<p>post.body Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor odio dolor, ac bibendum magna porta non. Etiam sodales est sed ipsum volutpat porttitor. Duis dui leo, aliquet sit amet semper vitae, ullamcorper eget eros. Fusce lobortis lacinia sapien vel malesuada. Aliquam mattis, diam at placerat imperdiet, diam diam vestibulum elit, a blandit dui mi nec diam. Nam suscipit, lacus et dictum faucibus, mauris augue tempus augue, et tempor erat dui sed erat. Sed congue non libero id cursus. Curabitur condimentum nunc erat, et accumsan risus euismod quis. Proin libero leo, vestibulum nec sem commodo, tristique sollicitudin lacus. Proin sed auctor mauris, at fringilla mauris.</p>
 			</li>
-			<li class="press">
-				<span class="press-title">post.title</span>
+			<li>
+				<span class="item-title">post.title</span>
 				<p>post.body Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor odio dolor, ac bibendum magna porta non. Etiam sodales est sed ipsum volutpat porttitor. Duis dui leo, aliquet sit amet semper vitae, ullamcorper eget eros. Fusce lobortis lacinia sapien vel malesuada. Aliquam mattis, diam at placerat imperdiet, diam diam vestibulum elit, a blandit dui mi nec diam. Nam suscipit, lacus et dictum faucibus, mauris augue tempus augue, et tempor erat dui sed erat. Sed congue non libero id cursus. Curabitur condimentum nunc erat, et accumsan risus euismod quis. Proin libero leo, vestibulum nec sem commodo, tristique sollicitudin lacus. Proin sed auctor mauris, at fringilla mauris.</p>
 			</li>
-			<li class="press">
-				<span class="press-title">post.title</span>
+			<li>
+				<span class="item-title">post.title</span>
 				<p>post.body Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor odio dolor, ac bibendum magna porta non. Etiam sodales est sed ipsum volutpat porttitor. Duis dui leo, aliquet sit amet semper vitae, ullamcorper eget eros. Fusce lobortis lacinia sapien vel malesuada. Aliquam mattis, diam at placerat imperdiet, diam diam vestibulum elit, a blandit dui mi nec diam. Nam suscipit, lacus et dictum faucibus, mauris augue tempus augue, et tempor erat dui sed erat. Sed congue non libero id cursus. Curabitur condimentum nunc erat, et accumsan risus euismod quis. Proin libero leo, vestibulum nec sem commodo, tristique sollicitudin lacus. Proin sed auctor mauris, at fringilla mauris.</p>
 			</li>
-			<li class="press">
-				<span class="press-title">post.title</span>
+			<li>
+				<span class="item-title">post.title</span>
 				<p>post.body Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor odio dolor, ac bibendum magna porta non. Etiam sodales est sed ipsum volutpat porttitor. Duis dui leo, aliquet sit amet semper vitae, ullamcorper eget eros. Fusce lobortis lacinia sapien vel malesuada. Aliquam mattis, diam at placerat imperdiet, diam diam vestibulum elit, a blandit dui mi nec diam. Nam suscipit, lacus et dictum faucibus, mauris augue tempus augue, et tempor erat dui sed erat. Sed congue non libero id cursus. Curabitur condimentum nunc erat, et accumsan risus euismod quis. Proin libero leo, vestibulum nec sem commodo, tristique sollicitudin lacus. Proin sed auctor mauris, at fringilla mauris.</p>
 			</li>
 		</ul>
@@ -166,7 +166,7 @@
 
 		<ul>
 			<li>
-				<span class="press-title">KEXP</span>
+				<span class="item-title">KEXP</span>
 				<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 				<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 			</li>
@@ -183,17 +183,17 @@
 		{% endcomment %}
 
 		<ul class="split-1-2">
-			<li class="video">
+			<li>
 				<div class="video-responsive">
 					<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>
 				</div>
 			</li>
-			<li class="video">
+			<li>
 				<div class="video-responsive">
 					<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>
 				</div>
 			</li>
-			<li class="video">
+			<li>
 				<div class="video-responsive">
 					<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>
 				</div>
