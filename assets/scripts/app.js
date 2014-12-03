@@ -63,6 +63,21 @@ $(document).ready(function(){
   if ($('.hero').length) {
     $('body').addClass('has-hero');
   }
+  // view more check
+  $('.view-more').each(function() {
+    // items to show initially, update alongside variable in scss/modules/_view-more.scss
+    var viewMore = 2;
+    var count = $('> *', this).length;
+    if (count > viewMore) {
+      $(this).append('<li class="view-more-item"><p><a class="item-title view-more-link">View more</a></p></li>');
+    }
+  });
+  // view more link
+  $('.view-more-link').on('click', function() {
+    var container = $(this).closest('.view-more');
+    $(this).remove();
+    $('> *', container).show();
+  });
 });
 /*********************************************************************
 *  #### Twitter Post Fetcher v12.0 ####
