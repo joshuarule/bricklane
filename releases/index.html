@@ -1,23 +1,17 @@
 {% capture content %}
-
-<pre>releases/index.html</pre>
-
-<ul class="releases">
-
+  
   {% for artist in pages %}
-
-    <h2 class="section-title">{{artist.title}}</h2>
-    <ul class="items">
-
-      {% for item in artist.posts %}
-        {% include 'includes/item' %}
-      {% endfor %}
-
-    </ul>
-
-  {% endfor %}
-
-</ul>
+	  <div class="section">
+	    <h2 class="section-header">{{artist.title}}</h2>
+	    <div class="section-content">
+	    	<ul class="split-2-4">
+		      {% for item in artist.posts %}
+		        {% include 'includes/item' %}
+		      {% endfor %}
+	      	</ul>
+	    </div>
+	  </div>
+  {% endfor %}  
 
 {% endcapture %}
 
