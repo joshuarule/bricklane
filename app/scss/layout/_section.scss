@@ -8,10 +8,10 @@
 }
 
 .section-compact {
-  margin-bottom: vr(1);
+  margin-bottom: 0;
 
   @include mq($med) {
-    margin-bottom: vr(2);
+    margin-bottom: vr(1);
   }
 }
 
