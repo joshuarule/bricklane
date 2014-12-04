@@ -53,6 +53,32 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 
 
+var twitterFeed = {
+  "id": '515595862995525633',
+  "domId": '',
+  "maxTweets": 4,
+  "enableLinks": true,
+  "showUser": true,
+  "showTime": true,
+  "dateFunction": '',
+  "showRetweet": false,
+  "customCallback": handleTweets,
+  "showInteraction": false
+};
+
+function handleTweets(tweets){
+  console.log
+    var x = tweets.length;
+    var n = 0;
+    var element = document.getElementById('tweets');
+    var html = '';
+    while(n < x) {
+      html += '<li>' + tweets[n] + '</li>';
+      n++;
+    }
+    element.innerHTML = html;
+}
+
 
 $(document).ready(function(){
   // nav toggle
@@ -63,6 +89,7 @@ $(document).ready(function(){
   if ($('.hero').length) {
     $('body').addClass('has-hero');
   }
+
   // view more check
   $('.view-more').each(function() {
     // items to show initially, update alongside variable in scss/modules/_view-more.scss
@@ -89,4 +116,9 @@ $(document).ready(function(){
   $('.drop-down-toggle').on('click', function() {
     $(this).closest('.drop-down').toggleClass('drop-down-active');
   });
+
+  // Pull in Brick x Brick List from Twitter
+  if($('body').is('.home')) {
+    twitterFetcher.fetch(twitterFeed);
+  }
 });

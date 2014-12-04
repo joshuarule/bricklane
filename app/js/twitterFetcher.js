@@ -225,14 +225,15 @@ var twitterFetcher = function() {
         var op = '';
         if (parseLinks) {
           if (printUser) {
-            op += '<div class="user"><span class="full-name">' + strip(names[n].innerHTML) + '</span><a href='+ urls[n].getAttribute('href') +' target="_blank">' + strip(handles[n].innerHTML) +
-                '</a></div>';
+            op += '<div class="user"><div class="item-title">' + strip(names[n].innerHTML) + '</div><a href='+ urls[n].getAttribute('href') +' target="_blank">' + strip(handles[n].innerHTML) +
+                '</a><span class="timePosted"> - ' +
+                times[n].getAttribute('aria-label') + '</span></div>';
           }
           op += '<p class="tweet">' + strip(tweets[n].innerHTML) + '</p>';
-          if (printTime) {
-            op += '<p class="timePosted">' +
-                times[n].getAttribute('aria-label') + '</p>';
-          }
+          // if (printTime) {
+          //   op += '<span class="timePosted">' +
+          //       times[n].getAttribute('aria-label') + '</span>';
+          // }
         } else {
           if (tweets[n].innerText) {
             if (printUser) {
