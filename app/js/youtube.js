@@ -1,6 +1,7 @@
 
 $(function(){
-    var htmlString  = '<ul id="videoslisting">';
+    var htmlString  = '<ul id="videoslisting" class="split-2">';
+    // https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCbW18JZRgko_mOGm5er8Yzg&order=date&type=video&videoSyndicated=true&key=AIzaSyDijI1TCFSIFAaWHStmW-4DGG0wCzubyzo
     var ytapiurl    = 'http://gdata.youtube.com/feeds/api/users/UC47KabRQUTCDIFRnvYcTi3A/uploads?alt=json&max-results=10';
   
     $.getJSON(ytapiurl, function(data) {
@@ -24,8 +25,10 @@ $(function(){
 
         console.log(video);
       
-        htmlString +='<li class="clearfix"><h2>' + title + '</h2>';
-        htmlString +='<iframe width="560" height="315" src="//www.youtube.com/embed/' + video +'?list=UU47KabRQUTCDIFRnvYcTi3A" frameborder="0" allowfullscreen></iframe>';
+        htmlString +='<li><div class="video-responsive">';
+        htmlString +='<iframe width="560" height="315" src="//www.youtube.com/embed/' + video + '?list=PLd9HIwJD5brDyO3_kNz_AOtBoQu4VSSkf" frameborder="0" allowfullscreen></iframe></div>';
+        htmlString +='<a href="' + ytlink + '" target="_blank">' + title + '</a>';
+        htmlString +='<div class="meta"><p>by <a href="#">Artist Name</a> - ' + fulldate + ' - ' + commafy(numviews) + ' views</p></li>'
         // htmlString +='<div class="videothumb"><a href="' + ytlink + '" target="_blank"><img src="' + thumbimg + '" width="480" height="360"></a></div>';
         // htmlString +='<div class="meta"><p>Published on <strong>' + fulldate + '</strong></p><p>Total views: <strong>' + commafy(numviews) + '</strong></p><p>Total comments: <strong>'+ numcomms +'</strong></p><p><a href="'+ ytlink +'" class="external" target="_blank">View on YouTube</a></p><p><a href="'+ vlink +'" class="external" target="_blank">View in Fullscreen</a></p><p><strong>Alternate Thumbnails</strong>:<br><img src="'+ tinyimg1 +'"> <img src="' + tinyimg2 + '"> <img src="'+ tinyimg3 +'"></p></div></li>';
       }); // end each loop
