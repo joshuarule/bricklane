@@ -31,7 +31,7 @@
 }
 
 .item-thumbs {
-  overflow: hidden;
+  @extend %cf;
 
   > * {
     @include span(3);

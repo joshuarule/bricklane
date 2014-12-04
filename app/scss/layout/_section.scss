@@ -7,6 +7,14 @@
   }
 }
 
+.section-compact {
+  margin-bottom: vr(1);
+
+  @include mq($med) {
+    margin-bottom: vr(2);
+  }
+}
+
 .section-header {
   color: $pink;
   font-size: rem(18);

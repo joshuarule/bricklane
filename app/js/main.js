@@ -85,4 +85,8 @@ $(document).ready(function(){
         target = $('.item-image-shop', section);
     $(target).html(image);
   });
+  // drop-down toggle
+  $('.drop-down-toggle').on('click', function() {
+    $(this).closest('.drop-down').toggleClass('drop-down-active');
+  });
 });

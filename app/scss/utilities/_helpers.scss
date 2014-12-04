@@ -18,7 +18,8 @@
   &:after { clear: both; }
 }
 
-.cf {
+.cf,
+%cf {
   @extend %clearfix;
 }
 
