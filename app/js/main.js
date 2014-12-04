@@ -66,8 +66,8 @@ $(document).ready(function(){
   // view more check
   $('.view-more').each(function() {
     // items to show initially, update alongside variable in scss/modules/_view-more.scss
-    var viewMore = 2;
-    var count = $('> *', this).length;
+    var viewMore = 2,
+        count = $('> *', this).length;
     if (count > viewMore) {
       $(this).append('<li class="view-more-item"><p><a class="item-title view-more-link">View more</a></p></li>');
     }
@@ -77,5 +77,12 @@ $(document).ready(function(){
     var container = $(this).closest('.view-more');
     $(this).remove();
     $('> *', container).show();
+  });
+  // item thumbs
+  $('.item-thumbs a').on('click', function() {
+    var image = $(this).html(),
+        section = $(this).closest('.section'),
+        target = $('.item-image-shop', section);
+    $(target).html(image);
   });
 });
