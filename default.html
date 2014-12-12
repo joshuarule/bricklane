@@ -1,5 +1,31 @@
 {% capture content %}
 
+{% capture json %}
+{
+{% for page in site.pages %}
+  {% if page.title == "Tour Dates" %}
+    "artists": [
+    {% for page in page.pages %}
+      {
+        "name" : "{{page.title}}",
+        "events" : [
+        {% for post in page.posts %}
+          {
+            "title":  {{post.title | json}},
+            "posted": "{{post.date | date: "%D"}}",
+            "city": "{{post.meta['city']}}",
+            "url": "{{post.url}}"
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+        ]
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ]
+  {% endif %}
+{% endfor %}
+}
+{% endcapture %}
+
 <section class="hero">
 	<div class="hero-mobile">  
 		<div class="hero-image">
@@ -57,56 +83,10 @@
 <section class="section">	
 	<h2 class="section-header">Touring Now</h2>
 	<div class="section-content">
-		<ul class="split-2">
-			<li>
-				<p>
-		    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
-					<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
-				</p>
-			</li>
-			<li>
-				<p>
-		    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
-					<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
-				</p>
-			</li>
-			<li>
-				<p>
-		    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
-					<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
-				</p>
-			</li>
-			<li>
-				<p>
-		    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
-					<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
-				</p>
-			</li>
-			<li>
-				<p>
-		    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
-					<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
-				</p>
-			</li>
-			<li>
-				<p>
-		    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
-					<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
-				</p>
-			</li>
-			<li>
-				<p>
-		    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
-					<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
-				</p>
-			</li>
-			<li>
-				<p>
-		    		<span class="event-artist">Iska Dhaaf</span> &bull; <span class="event-date">June 20</span><br>
-					<span class="event-venue">Neck of the Woods</span> <span class="event-city">San Fransisco</span>
-				</p>
-			</li>
-		</ul>
+		<div class="split-2">
+		<ul id="events-l"></ul>
+		<ul id="events-r"></ul>
+		</div>
 	</div>
 </section>
 
@@ -129,6 +109,60 @@
 	</div>
 </section>
 
+<script> 
+
+	// 
+	// Tour Dates Array
+	// 
+
+  // sorts the array by date
+
+  var custom_sort = function(a, b) {
+    return new Date(a.date).getTime() - new Date(b.date).getTime();
+  }
+
+  var tourDates = {{ json | strip_newlines | replace:'  ','' }},
+  arr = [],
+  // counter to set the array id #
+  k = 0;
+
+  // finds number of artists
+
+  var artistsNum = tourDates.artists.length;
+
+  for (var i = 0; i < artistsNum; i++){
+    var artistName = tourDates.artists[i].name;
+    var artistEvents = tourDates.artists[i].events;
+    var dates = artistEvents.length;
+
+    for (var j = 0; j < dates; j++ ) {
+      k++;
+      // add items to array
+      arr.push({"id": k, "artist": artistName, "date": artistEvents[j].posted, "venue": artistEvents[j].title, "city": artistEvents[j].city, "url": artistEvents[j].url });
+    }
+  }
+
+  // call sort function on arr
+  arr.sort(custom_sort);
+
+  // set id to place first column of items
+  var list = $("#events-l");
+  var arrLength = arr.length;
+
+  for(var l = 0; l < 8 && arrLength; l++) {
+  	if (l > 3 ) {
+  		list = $("#events-r");
+  	}
+    list.append('<li><p><a href="' + arr[l].url + '"><span class="event-artist">' + arr[l].artist + '</span>' + 
+                ' • <span class="event-date">' + arr[l].date + '</span><br>' +
+                '<span class="event-venue">' + arr[l].venue + '</span>' + 
+                '<span class="event-city">' + arr[l].city + '</span>' +
+                '</a></p></li>');
+  }
+</script>
+
 {% endcapture %}
 
 {% include 'layouts/default' %}
+
+

@@ -4,11 +4,14 @@
 <section class="content">
   <div id="wall"></div>
 
-  <div id='ytapiplayer'></div>
-
-  <div id="videos">
-    test
-  </div>
+  {% for page in site.pages %}
+    {% if page.title == "Tour Dates" %}
+      {% for page in page.pages %}
+        <h1>{{page.title}}</h1>
+        {{ page.posts | json }}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
 
   <div id="example1"></div>
 
