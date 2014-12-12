@@ -13,6 +13,7 @@
           {
             "title":  {{post.title | json}},
             "posted": "{{post.date | date: "%D"}}",
+            "date" : "{{post.date | date: "%B %-d" }}",
             "city": "{{post.meta['city']}}",
             "url": "{{post.url}}"
           }{% unless forloop.last %},{% endunless %}
@@ -118,7 +119,7 @@
   // sorts the array by date
 
   var custom_sort = function(a, b) {
-    return new Date(a.date).getTime() - new Date(b.date).getTime();
+    return new Date(a.posted).getTime() - new Date(b.posted).getTime();
   }
 
   var tourDates = {{ json | strip_newlines | replace:'  ','' }},
@@ -138,7 +139,7 @@
     for (var j = 0; j < dates; j++ ) {
       k++;
       // add items to array
-      arr.push({"id": k, "artist": artistName, "date": artistEvents[j].posted, "venue": artistEvents[j].title, "city": artistEvents[j].city, "url": artistEvents[j].url });
+      arr.push({"id": k, "artist": artistName, "posted": artistEvents[j].posted, "date": artistEvents[j].date, "venue": artistEvents[j].title, "city": artistEvents[j].city, "url": artistEvents[j].url });
     }
   }
 
