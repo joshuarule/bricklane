@@ -4,6 +4,14 @@ var apiKey = 'AIzaSyCE189cfev_E-nJQze9Cpu6lmGI2pkwb38',
   embedUrl = 'http://www.youtube.com/embed/{videoId}',
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+  function convertToSlug(Text){
+    return Text
+        .toLowerCase()
+        .replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-')
+        ;
+}
+
 Date.prototype.format=function(){
   return this.getDate() + "-" + months[this.getMonth()] + "-" + this.getFullYear();
 }
@@ -40,6 +48,7 @@ function load() {
                 $container.append(videoTemplate.replace(/{videoSrc}/g, embedUrl.replace('{videoId}', item.id))
                   .replace(/{title}/g,item.snippet.title)
                   .replace(/{channelTitle}/g, item.snippet.channelTitle)
+                  .replace(/{artist}/g, convertToSlug(item.snippet.channelTitle))
                   .replace(/{publishedAt}/g, (new Date(item.snippet.publishedAt)).format())
                   .replace(/{viewCount}/g, item.statistics.viewCount));
               }

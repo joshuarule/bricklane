@@ -91,19 +91,22 @@ $(document).ready(function(){
   }
 
   // view more check
-  $('.view-more').each(function() {
+  $('.view-more .left').each(function() {
     // items to show initially, update alongside variable in scss/modules/_view-more.scss
-    var viewMore = 2,
+    var viewMore = 1,
         count = $('> *', this).length;
     if (count > viewMore) {
-      $(this).append('<li class="view-more-item"><p><a class="item-title view-more-link">View more</a></p></li>');
+      $(this).closest('.view-more').after('<div class="view-more-item"><p><a class="item-title view-more-link">View more</a></p></div>');
     }
   });
   // view more link
-  $('.view-more-link').on('click', function() {
-    var container = $(this).closest('.view-more');
+  $('.view-more-item').on('click', function() {
+    var container = $(this).prev('.split-2');
+    console.log(container);
+    $(container).addClass('is-open');
     $(this).remove();
-    $('> *', container).show();
+    
+    // $('> *', container).show();
   });
   // item thumbs
   $('.item-thumbs a').on('click', function() {

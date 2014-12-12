@@ -1,19 +1,19 @@
-.view-more {
-  > * {
-    display: none;
+// .view-more {
+//   > * {
+//     display: none;
 
-    // items to show initially, update alongside variable in js/main.js
-    $view-more: 2;
-    $count: 0;
-    @while $count < $view-more {
-      $count: $count + 1;
+//     // items to show initially, update alongside variable in js/main.js
+//     $view-more: 2;
+//     $count: 0;
+//     @while $count < $view-more {
+//       $count: $count + 1;
       
-      &:nth-child(#{$count}) {
-        display: block;
-      }
-    }
-  }
-}
+//       &:nth-child(#{$count}) {
+//         display: block;
+//       }
+//     }
+//   }
+// }
 
 .view-more-item {
   display: block !important;
@@ -22,3 +22,16 @@
 .view-more-link {
   cursor: pointer;
 }
+
+.view-more {
+  $rows: 1;
+  $cutoff = $rows * 3;
+
+  height: vr(cutoff);
+  overflow: hidden;
+}
+
+.is-open {
+  height: auto;
+}
+
