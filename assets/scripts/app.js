@@ -116,6 +116,13 @@ $(document).ready(function(){
   $('.drop-down-toggle').on('click', function() {
     $(this).closest('.drop-down').toggleClass('drop-down-active');
   });
+  // drop-down close if clicked outside
+  $(document).on('click', function(e) {
+    var container = $('.drop-down');
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      container.removeClass('drop-down-active');
+    }
+  });
 
   // Pull in Brick x Brick List from Twitter
   if($('body').is('.home')) {
