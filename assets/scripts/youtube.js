@@ -47,6 +47,7 @@ function load() {
                 item = response.items[item];
                 $container.append(videoTemplate.replace(/{videoSrc}/g, embedUrl.replace('{videoId}', item.id))
                   .replace(/{title}/g,item.snippet.title)
+                  .replace(/{videoUrl}/g, item.id)
                   .replace(/{channelTitle}/g, item.snippet.channelTitle)
                   .replace(/{artist}/g, convertToSlug(item.snippet.channelTitle))
                   .replace(/{publishedAt}/g, (new Date(item.snippet.publishedAt)).format())

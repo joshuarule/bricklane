@@ -1,6 +1,7 @@
 .hero {
   position: relative;  
   margin-bottom: vr(2);
+  min-height: vr(24);
 
   @include mq($med) {
     margin-top: -(rem(168));
@@ -50,7 +51,7 @@
   }
 }
 
-.hero-subtitle {
+.hero-body {
 
   @include mq($med) {
     @include push(4);
@@ -59,5 +60,13 @@
     top: 50%;
     color: $white;
     font-size: rem(14);
+  }
+
+  // remove text shadow because of image
+
+  a {
+    &:hover {
+      text-shadow: none;
+    }
   }
 }

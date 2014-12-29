@@ -1,7 +1,42 @@
-.drop-down {
+.select {
+  display: inline-block;
+}
+
+.select select {
+  display: inline-block;
+  outline: none;
+  border: none;
+  -webkit-appearance:none;
+  padding-right: rem(20);
+
+  option {
+    margin: 0;
+    padding: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.drop-down,
+.select {
   position: relative;
   z-index: 1;
   margin-bottom: vr(1);
+}
+
+.select:before {
+  position: absolute;
+  right: 0;
+  top: rem(3);
+  width:  0; 
+  height: 0; 
+  border-left:  rem(5) solid transparent;
+  border-right: rem(5) solid transparent;
+  border-top:   rem(5) solid $pink;
+  content: '';
+  z-index: -1;
 }
 
 .drop-down-toggle {

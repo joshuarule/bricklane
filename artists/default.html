@@ -3,8 +3,7 @@
 <section class="hero">
 	<div class="hero-mobile">  
 		<div class="hero-image">
-			{{assets.first}}
-		  {% for asset in assets limit: 1 %}
+		  {% for asset in assets | first %}
 		  	<!-- <img src="http://placekitten.com/g/1000/360" alt=""> -->
 		  	<img src="{{asset.url}}" alt="{{title}} - profile photo">
 		  {% endfor %}
@@ -29,34 +28,7 @@
 	<h2 class="section-header">Releases</h2>
 	<div class="section-content">
 
-		{% comment %}
-			Finds if an artist has releases and sets hasReleases
-		{% endcomment %}
-
-		{% assign hasReleases = false %}
-		{% for artist in site.pages.releases.pages %}
-		  {% if hasReleases == false and artist.slug == {{slug}} and artist.posts %}
-		    {% assign hasReleases = true %}
-		  {% endif %}
-		{% endfor %}
-
-		{% comment %}
-			if hasRelease is true then loop through releases
-		{% endcomment %}
-
-		{% if hasReleases %}
-		  {% for artist in site.pages.releases.pages %}
-				{% if artist.slug == {{slug}} && artist.posts %}
-						<ul class="split-2-4">
-						  {% for release in artist.posts %}
-						    {% include 'includes/item' %}
-						  {% endfor %}
-						</ul>
-				{% endif %}
-			{% endfor %}
-		{% else %}
-			<p>no releases at this time</p>
-		{% endif %}
+		<ul class="albums split-2-4"></ul>
 
 	</div>
 </section>
@@ -116,7 +88,6 @@
 			if hasEvents is true then loop through dates
 		{% endcomment %}
 
-<!--
 		{% if hasArticles %}
 			<ul>
 				{% for artists in site.pages.press.pages %}
@@ -133,26 +104,6 @@
 		{% else %}
 			<p>no press articles at this time</p>
 		{% endif %}
--->
-
-		<ul>
-		    <li>
-				<span class="item-title">post.title</span>
-				<p>post.body Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor odio dolor, ac bibendum magna porta non. Etiam sodales est sed ipsum volutpat porttitor. Duis dui leo, aliquet sit amet semper vitae, ullamcorper eget eros. Fusce lobortis lacinia sapien vel malesuada. Aliquam mattis, diam at placerat imperdiet, diam diam vestibulum elit, a blandit dui mi nec diam. Nam suscipit, lacus et dictum faucibus, mauris augue tempus augue, et tempor erat dui sed erat. Sed congue non libero id cursus. Curabitur condimentum nunc erat, et accumsan risus euismod quis. Proin libero leo, vestibulum nec sem commodo, tristique sollicitudin lacus. Proin sed auctor mauris, at fringilla mauris.</p>
-			</li>
-			<li>
-				<span class="item-title">post.title</span>
-				<p>post.body Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor odio dolor, ac bibendum magna porta non. Etiam sodales est sed ipsum volutpat porttitor. Duis dui leo, aliquet sit amet semper vitae, ullamcorper eget eros. Fusce lobortis lacinia sapien vel malesuada. Aliquam mattis, diam at placerat imperdiet, diam diam vestibulum elit, a blandit dui mi nec diam. Nam suscipit, lacus et dictum faucibus, mauris augue tempus augue, et tempor erat dui sed erat. Sed congue non libero id cursus. Curabitur condimentum nunc erat, et accumsan risus euismod quis. Proin libero leo, vestibulum nec sem commodo, tristique sollicitudin lacus. Proin sed auctor mauris, at fringilla mauris.</p>
-			</li>
-			<li>
-				<span class="item-title">post.title</span>
-				<p>post.body Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor odio dolor, ac bibendum magna porta non. Etiam sodales est sed ipsum volutpat porttitor. Duis dui leo, aliquet sit amet semper vitae, ullamcorper eget eros. Fusce lobortis lacinia sapien vel malesuada. Aliquam mattis, diam at placerat imperdiet, diam diam vestibulum elit, a blandit dui mi nec diam. Nam suscipit, lacus et dictum faucibus, mauris augue tempus augue, et tempor erat dui sed erat. Sed congue non libero id cursus. Curabitur condimentum nunc erat, et accumsan risus euismod quis. Proin libero leo, vestibulum nec sem commodo, tristique sollicitudin lacus. Proin sed auctor mauris, at fringilla mauris.</p>
-			</li>
-			<li>
-				<span class="item-title">post.title</span>
-				<p>post.body Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor odio dolor, ac bibendum magna porta non. Etiam sodales est sed ipsum volutpat porttitor. Duis dui leo, aliquet sit amet semper vitae, ullamcorper eget eros. Fusce lobortis lacinia sapien vel malesuada. Aliquam mattis, diam at placerat imperdiet, diam diam vestibulum elit, a blandit dui mi nec diam. Nam suscipit, lacus et dictum faucibus, mauris augue tempus augue, et tempor erat dui sed erat. Sed congue non libero id cursus. Curabitur condimentum nunc erat, et accumsan risus euismod quis. Proin libero leo, vestibulum nec sem commodo, tristique sollicitudin lacus. Proin sed auctor mauris, at fringilla mauris.</p>
-			</li>
-		</ul>
 
 	</div>
 </section>
@@ -203,6 +154,37 @@
 		<a href="#">watch more on youtube</a>
 	</div>
 </section>
+
+<script type="application/javascript">
+  function yourFunction(data) {
+    console.log(data);
+
+    var storeUrl = "http://bricklanerecords.limitedrun.com";
+    var productName, productImg, productUrl;
+    for (var i = 0; i < data.products.length; i ++) {
+
+    	// check to see if they are this artists albums
+    	console.log("{{title}}");
+
+    	if (data.products[i].artist == "{{title}}") {
+    		productName = data.products[i].name;
+	      productUrl = data.products[i].url;
+	      productArtist = data.products[i].artist;
+	      productImg = data.products[i].images[0];
+	      $(".albums").append(
+	        '<li>' + 
+	          '<div class="item-image"><a href="' + storeUrl + productUrl + '"><img src="' + productImg + '"></a></div>' +
+	          '<div class="item-artist">' + productArtist + '</div>' +
+	          '<div class="item-album">' + productName + '</div>' +
+	          // '<div class="item-type">' + productName + '</div>' +
+	          '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">Buy</a></p>' +
+	        "</li>");
+    	}
+    }
+  }
+</script>
+ 
+<script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/products.json?q=yourFunction"></script>
 
 {% endcapture %}
 

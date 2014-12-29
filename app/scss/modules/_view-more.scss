@@ -25,9 +25,9 @@
 
 .view-more {
   $rows: 1;
-  $cutoff = $rows * 3;
+  $cutoff : $rows * 3;
 
-  height: vr(cutoff);
+  height: vr($rows * 3);
   overflow: hidden;
 }
 

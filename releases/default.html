@@ -10,12 +10,29 @@
 			<div>
 				<p><span class="item-title">Chimurenga Renaissance</span><br>riZe vadZimu riZe</p>
 				<p>Released February 11th, 2014<br>USB, Digital</p>
-				<p><a class="button" href="#">Buy</a></p>
-				<p><a class="item-title" href="#">Share</a></p>
+				<div id="variations">
+					<div class="select">
+	          <select id="cart_variation_id">
+	            <option value="571815">LP - $60.00</option>
+	            <option value="590583">CD - $25.00</option>
+	          </select>
+          </div>
+          <br>
+          <button class="button" onclick="javascript:Store.cart.add(document.getElementById('cart_variation_id').options[document.getElementById('cart_variation_id').selectedIndex].value);return false;">Buy</button>
+        </div>
+				<!-- <p><a class="button" href="#">Buy</a></p> -->
+				<!-- <p><a class="button" href="#">Buy</a></p> -->
 			</div>
 		</div>
 	</div>
 </div>
+
+<!-- <audio id="player" src="/assets/audio/start-again.mp3"></audio>
+<div>
+    <button onclick="document.getElementById('player').play()">Play</button>
+    <button onclick="document.getElementById('player').pause()">Pause</button>
+    <button onclick="document.getElementById('player').muted=!document.getElementById('player').muted">Mute/ Unmute</button>
+</div> -->
 
 <div class="section">
 	<h2 class="section-header">Track list</h2>

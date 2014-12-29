@@ -56,6 +56,30 @@ a {
   }
 }
 
+button {
+  outline: none;
+  border:  none;
+  -webkit-appearance: none;
+  padding-top:    0 !important;
+  padding-bottom: 0 !important;
+  border-radius: 0;
+  height: rem(35);
+  line-height: rem(37);
+  font-family: $font-sans;
+  font-size: $font-size + 0px;
+  #width:0px;
+  overflow: visible;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
 select {
   border: 1px solid $pink;
   border-radius: 0;

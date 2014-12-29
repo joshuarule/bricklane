@@ -4,14 +4,14 @@
 <section class="content">
   <div id="wall"></div>
 
-  {% for page in site.pages %}
+  {% comment %}{% for page in site.pages %}
     {% if page.title == "Tour Dates" %}
       {% for page in page.pages %}
         <h1>{{page.title}}</h1>
         {{ page.posts | json }}
       {% endfor %}
     {% endif %}
-  {% endfor %}
+  {% endfor %}{% endcomment %}
 
   <div id="example1"></div>
 
@@ -61,31 +61,8 @@
     <ul class="albums"></ul>
   </div>
 
-  <!-- <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-1">Box 1</div>
-  <div class="box-2">Box 2</div>
-  <div class="box-2">Box 2</div>
-  <div class="cf"></div>
-
-  <h1>testing this h1</h1>
-  <h2>testing this h2</h2>
-  <h3>testing this h3</h3>
-  <h4>testing this h4</h4>
-  <h5>testing this h5</h5>
-  <h6>testing this h6</h6> -->
-
 </section><!-- /content -->
-{% comment %}
+
 <script type="application/javascript">
   function yourFunction(data) {
     console.log(data);
@@ -100,37 +77,37 @@
         "<li>" + 
           "<img src=" + productImg + ">" +
           "<h3>" + productName + "</h3>" +
-          "<a href=" + productUrl + ">Buy</a>" +
+          "<a href=" + storeUrl + productUrl + ">Buy</a>" +
         "</li>");
     }
   }
 </script>
  
 <script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/products.json?q=yourFunction"></script>
-  {% endcomment %}
+  
 
 
 <script type="application/javascript">
-  function yourFunction(data) {
-    console.log(data);
+  // function yourFunction(data) {
+  //   console.log(data);
 
-    // var storeUrl = "http://bricklanerecords.limitedrun.com";
-    // var productName, productImg, productUrl;
-    // for (var i = 0; i < data.products.length; i ++) {
-    //   productName = data.products[i].name;
-    //   productUrl = data.products[i].url;
-    //   productImg = data.products[i].images[0];
-    //   $(".albums").append(
-    //     "<li>" + 
-    //       "<img src=" + productImg + ">" +
-    //       "<h3>" + productName + "</h3>" +
-    //       "<a href=" + productUrl + ">Buy</a>" +
-    //     "</li>");
-    // }
+  //   var storeUrl = "http://bricklanerecords.limitedrun.com";
+  //   var productName, productImg, productUrl;
+  //   for (var i = 0; i < data.products.length; i ++) {
+  //     productName = data.products[i].name;
+  //     productUrl = data.products[i].url;
+  //     productImg = data.products[i].images[0];
+  //     $(".albums").append(
+  //       "<li>" + 
+  //         "<img src=" + productImg + ">" +
+  //         "<h3>" + productName + "</h3>" +
+  //         "<a href=" + productUrl + ">Buy</a>" +
+  //       "</li>");
+  //   }
   }
 </script>
  
-<script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/categories.json?q=yourFunction"></script>
+{% comment %}<script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/categories.json?q=yourFunction"></script>{% endcomment %}
   
 
 

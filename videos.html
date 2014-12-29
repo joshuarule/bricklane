@@ -1,6 +1,6 @@
 {% capture content %}
 
-<div class="section section-compact">
+<!-- <div class="section section-compact">
 	<div class="section-content">
 		<div class="drop-down">
 			<a class="drop-down-toggle">Date added (newest to oldest)</a>
@@ -13,9 +13,31 @@
 			</ul>
 		</div>
 	</div>
+</div> -->
+
+<ul id="divPlaylistContainer"></ul>
+
+
+<div id="tmplVideoItem" style="display:none;">
+	<li class="section">
+		<h2 class="section-header">{publishedAt}</h2>
+		<div class="section-content">
+		<div class="split-1-2">
+			<div>
+				<div class="video-responsive">
+				  <iframe src="{videoSrc}?&showinfo=0"  width="560" height="315" frameborder="0" allowfullscreen></iframe>
+			  </div>
+		  </div>
+		  <div>
+			  <a href="http://www.youtube.com/watch?v={videoUrl}" target="_blank">{title}</a>
+			  <p>By <a href="artists/{artist}">{channelTitle}</a> - {publishedAt} - {viewCount} views</p>
+		  </div>
+	  </div>
+	</li>
 </div>
 
-{% for post in posts %}	
+
+<!-- {% for post in posts %}	
 	<div class="section">
 		<h1 class="section-header">{{post.date | date: "%B %-d" }}, {{post.date | date: "%Y" }}</h1>
 		<div class="section-content">
@@ -33,7 +55,7 @@
 			</div>
 		</div>
 	</div>
-{% endfor %}
+{% endfor %} -->
 
 {% endcapture %}
 

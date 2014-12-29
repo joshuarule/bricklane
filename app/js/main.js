@@ -66,6 +66,19 @@ var twitterFeed = {
   "showInteraction": false
 };
 
+var twitterPage = {
+  "id": '515595862995525633',
+  "domId": '',
+  "maxTweets": 20,
+  "enableLinks": true,
+  "showUser": true,
+  "showTime": true,
+  "dateFunction": '',
+  "showRetweet": false,
+  "customCallback": handleTweets,
+  "showInteraction": false
+};
+
 function handleTweets(tweets){
   console.log
     var x = tweets.length;
@@ -130,6 +143,10 @@ $(document).ready(function(){
   // Pull in Brick x Brick List from Twitter
   if($('body').is('.home')) {
     twitterFetcher.fetch(twitterFeed);
+  }
+
+  if($('body').is('.tweets')) {
+    twitterFetcher.fetch(twitterPage);
   }
   // 
   // twitterFetcher.fetch(twitterFeed);

@@ -1,0 +1,16 @@
+{% for post in posts | first %}
+  <section class="hero">
+    <div class="hero-mobile">  
+      <div class="hero-image">
+        {% for asset in post.assets | first %}
+          <img src="{{asset.url}}" alt="{{post.title}} - hero image">
+        {% endfor %}
+      </div>      
+      <h1 class="hero-title">
+        {{post.title}}<br>
+        {{% if post.meta['subTitle'] %}}<span>{{post.meta['subTitle']}}</span>{{% endif %}}
+      </h1>
+    </div>
+    <div class="hero-body">{{ post.body }}</div>
+  </section>
+{% endfor %}
