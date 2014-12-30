@@ -36,11 +36,7 @@
 <section class="section">	
 	<h2 class="section-header">New Releases</h2>
 	<div class="section-content">
-		<ul class="split-2">
-			{% include 'includes/item' %}
-			{% include 'includes/item' %}
-			{% include 'includes/item' %}
-			{% include 'includes/item' %}
+		<ul class="split-2 albums">
 		</ul>
 	</div>
 </section>
@@ -157,6 +153,33 @@
                 '</a></p></li>');
   }
 </script>
+
+<script type="application/javascript">
+  function yourFunction(data) {
+
+    var storeUrl = "http://bricklanerecords.limitedrun.com";
+    var productName, productImg, productUrl;
+    for (var i = 0; i < 4; i ++) {
+
+      // check to see if they are this artists albums
+
+        productName = data.products[i].name;
+        productUrl = data.products[i].url;
+        productArtist = data.products[i].artist;
+        productImg = data.products[i].images[0];
+        $(".albums").append(
+          '<li>' + 
+            '<div class="item-image"><a href="' + storeUrl + productUrl + '"><img src="' + productImg + '"></a></div>' +
+            '<div class="item-artist">' + productArtist + '</div>' +
+            '<div class="item-album">' + productName + '</div>' +
+            // '<div class="item-type">' + productName + '</div>' +
+            '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">Buy</a></p>' +
+          "</li>");
+    }
+  }
+</script>
+ 
+<script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/featured.json?q=yourFunction"></script>
 
 {% endcapture %}
 

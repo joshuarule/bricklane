@@ -1,5 +1,12 @@
 .item-image {
   display: block;
+
+  a {
+    display: block;
+  }
+}
+
+.item-mainImg {
   margin-bottom: vr(1);
 }
 
@@ -32,6 +39,7 @@
 
 .item-thumbs {
   @extend %cf;
+  margin-bottom: vr(1);
 
   > * {
     @include span(3);
@@ -48,6 +56,10 @@
 
     &:nth-child(4n+1) {
       clear: both;
+    }
+
+    &.active {
+      border-color: red;
     }
   }
 

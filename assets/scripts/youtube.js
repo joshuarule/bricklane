@@ -4,12 +4,12 @@ var apiKey = 'AIzaSyCE189cfev_E-nJQze9Cpu6lmGI2pkwb38',
   embedUrl = 'http://www.youtube.com/embed/{videoId}',
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-  function convertToSlug(Text){
-    return Text
-        .toLowerCase()
-        .replace(/[^\w ]+/g,'')
-        .replace(/ +/g,'-')
-        ;
+function convertToSlug(Text){
+  return Text
+  .toLowerCase()
+  .replace(/[^\w ]+/g,'')
+  .replace(/ +/g,'-')
+  ;
 }
 
 Date.prototype.format=function(){
@@ -21,40 +21,44 @@ function load() {
   gapi.client.load('youtube', 'v3', function() {
     videoTemplate = $('#tmplVideoItem').html();
     $container = $('#divPlaylistContainer');
-    var playlistRequest = {
-    playlistId: 'PLd9HIwJD5brDyO3_kNz_AOtBoQu4VSSkf',
-    part: 'snippet',
-    maxResults: 4
-  };
+      var playlistRequest = {
+        playlistId: 'PLd9HIwJD5brDyO3_kNz_AOtBoQu4VSSkf',
+        part: 'snippet',
+        maxResults: 4
+      };
+
+      if($('body').is('.videos')) {
+        playlistRequest.maxResults = 20;
+      };
   
-  var playlistQuery = gapi.client.youtube.playlistItems.list(playlistRequest);
-  playlistQuery.execute(function(response) {
-    $container.html('');
-    var videoIds =[];
-        for(var item in response.items) {
-          videoIds.push(response.items[item].snippet.resourceId.videoId);
+    var playlistQuery = gapi.client.youtube.playlistItems.list(playlistRequest);
+    playlistQuery.execute(function(response) {
+      $container.html('');
+      var videoIds =[];
+      for(var item in response.items) {
+        videoIds.push(response.items[item].snippet.resourceId.videoId);
+      }
+
+      if(videoIds.length > 0){
+        var videoDetailsRequest = {
+          part:'snippet,statistics',
+          id:videoIds.join(',')
         }
 
-        if(videoIds.length > 0){
-            var videoDetailsRequest = {
-              part:'snippet,statistics',
-              id:videoIds.join(',')
-            }
-
-            var videosQuery = gapi.client.youtube.videos.list(videoDetailsRequest);
-            videosQuery.execute(function(response) {
-              for(item in response.items) {
-                item = response.items[item];
-                $container.append(videoTemplate.replace(/{videoSrc}/g, embedUrl.replace('{videoId}', item.id))
-                  .replace(/{title}/g,item.snippet.title)
-                  .replace(/{videoUrl}/g, item.id)
-                  .replace(/{channelTitle}/g, item.snippet.channelTitle)
-                  .replace(/{artist}/g, convertToSlug(item.snippet.channelTitle))
-                  .replace(/{publishedAt}/g, (new Date(item.snippet.publishedAt)).format())
-                  .replace(/{viewCount}/g, item.statistics.viewCount));
-              }
-            });
-        }
-      });
+        var videosQuery = gapi.client.youtube.videos.list(videoDetailsRequest);
+        videosQuery.execute(function(response) {
+          for(item in response.items) {
+            item = response.items[item];
+            $container.append(videoTemplate.replace(/{videoSrc}/g, embedUrl.replace('{videoId}', item.id))
+              .replace(/{title}/g,item.snippet.title)
+              .replace(/{videoUrl}/g, item.id)
+              .replace(/{channelTitle}/g, item.snippet.channelTitle)
+              .replace(/{artist}/g, convertToSlug(item.snippet.channelTitle))
+              .replace(/{publishedAt}/g, (new Date(item.snippet.publishedAt)).format())
+              .replace(/{viewCount}/g, item.statistics.viewCount));
+          }
+        });
+      }
+    });
   });
 }

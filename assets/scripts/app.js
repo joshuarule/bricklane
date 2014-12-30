@@ -1,28 +1,26 @@
-// populates select options by pulling list names
-var data;
+// // populates select options by pulling list names
+// var data;
 
-// Limited Run Api call
+// // Limited Run Api call
 
-var populateProducts = function() {
-  $.getJSON('http://anyorigin.com/dev/get?url=http%3A//bricklanerecords.limitedrun.com/e1/categories/iska-dhaaf/products.json&callback=?', function(data){
-    data = data.contents;
-    var storeUrl = "http://bricklanerecords.limitedrun.com";
-    var productName, productImg, productUrl;
-    for (var i = 0; i < data.products.length; i ++) {
-      productName = data.products[i].name;
-      productUrl = storeUrl + data.products[i].url;
-      productImg = data.products[i].images[0].v300;
-      $(".albums").append(
-        "<li>" + 
-          "<img src=" + productImg + ">" +
-          "<h3>" + productName + "</h3>" +
-          "<a href=" + productUrl + ">Buy</a>" +
-        "</li>");
-    }
-  });
-};
-
-
+// var populateProducts = function() {
+//   $.getJSON('http://anyorigin.com/dev/get?url=http%3A//bricklanerecords.limitedrun.com/e1/categories/iska-dhaaf/products.json&callback=?', function(data){
+//     data = data.contents;
+//     var storeUrl = "http://bricklanerecords.limitedrun.com";
+//     var productName, productImg, productUrl;
+//     for (var i = 0; i < data.products.length; i ++) {
+//       productName = data.products[i].name;
+//       productUrl = storeUrl + data.products[i].url;
+//       productImg = data.products[i].images[0].v300;
+//       $(".albums").append(
+//         "<li>" + 
+//           "<img src=" + productImg + ">" +
+//           "<h3>" + productName + "</h3>" +
+//           "<a href=" + productUrl + ">Buy</a>" +
+//         "</li>");
+//     }
+//   });
+// };
 
 // window.fbAsyncInit = function() {
 //   FB.init({
@@ -112,6 +110,7 @@ $(document).ready(function(){
       $(this).closest('.view-more').after('<div class="view-more-item"><p><a class="item-title view-more-link">View more</a></p></div>');
     }
   });
+
   // view more link
   $('.view-more-item').on('click', function() {
     var container = $(this).prev('.split-2');
@@ -148,8 +147,7 @@ $(document).ready(function(){
   if($('body').is('.tweets')) {
     twitterFetcher.fetch(twitterPage);
   }
-  // 
-  // twitterFetcher.fetch(twitterFeed);
+
 });
 
 /*********************************************************************
