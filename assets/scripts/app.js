@@ -148,6 +148,14 @@ $(document).ready(function(){
     twitterFetcher.fetch(twitterPage);
   }
 
+  // redirects
+
+  $('a[href="/releases"]').click(function(){
+    console.log("click");
+     window.location.href='http://bricklanerecords.limitedrun.com/releases';
+     return false;
+  })
+
 });
 
 /*********************************************************************
