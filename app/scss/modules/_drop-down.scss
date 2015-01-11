@@ -39,6 +39,12 @@
   z-index: -1;
 }
 
+// removes dropdown on arrow with products that only have one option
+
+.select.no-options:before {
+  display: none;
+}
+
 .drop-down-toggle {
   display: inline-block;
   position: relative;

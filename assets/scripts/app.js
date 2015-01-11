@@ -156,6 +156,12 @@ $(document).ready(function(){
      return false;
   })
 
+  $('a[href="/shop"]').click(function(){
+    console.log("click");
+     window.location.href='http://bricklanerecords.limitedrun.com/';
+     return false;
+  })
+
 });
 
 /*********************************************************************
