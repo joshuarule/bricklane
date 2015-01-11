@@ -1,13 +1,16 @@
 .track-list {
+  list-style: decimal;
+  padding-left: rem(40);
 
   li {
+    position: relative;
     margin-bottom: vr(1);
   }  
 }
 
 .track-play {
-  float: left;
-  margin-right: vr(0.5);
+  position: absolute;
+  left: rem(-40);
 
   &:before {
     display: inline-block;
@@ -21,6 +24,10 @@
 
   span {
     display: none;
+  }
+
+  &:hover {
+    background: none;
   }
 }
 
