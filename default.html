@@ -14,7 +14,7 @@
             "title":  {{post.title | json}},
             "posted": "{{post.date | date: "%D"}}",
             "date" : "{{post.date | date: "%B %-d" }}",
-            "city": "{{post.meta['city']}}",
+            "city": "{{post.meta['cityStateZip']}}",
             "url": "{{post.url}}"
           }{% unless forloop.last %},{% endunless %}
         {% endfor %}
@@ -33,7 +33,7 @@
   {% include 'includes/hero' %}
 {% endif %}
 
-<section class="section">	
+<section class="section push-btm-list">	
 	<h2 class="section-header">New Releases</h2>
 	<div class="section-content">
 		<ul class="split-2 albums">
@@ -41,11 +41,19 @@
 	</div>
 </section>
 
+<!-- <section class="section push-btm-list"> 
+  <h2 class="section-header">Merch</h2>
+  <div class="section-content">
+    <ul class="split-2 merch">
+    </ul>
+  </div>
+</section> -->
+
 <section class="section">	
-	<h2 class="section-header"><a href="/tweets">Tweets</a></h2>
+	<h2 class="section-header">Tweets</h2>
 	<div class="section-content">		
-		<ul id="tweets" class="split-2">
-		</ul>
+		<ul id="divTweetsContainer" class="split-2"></ul>
+    <p><a href="/tweets" class="item-title">View more</a></p>
 	</div>
 </section>
 
@@ -53,23 +61,9 @@
 	<h2 class="section-header">News</h2>
 	<div class="section-content">		
 		<ul class="split-2">			
-			<li>
-				<img class="item-image" src="http://placekitten.com/g/300/200" alt="">
-				<div class="article-date">
-					June 12
-				</div>
-				<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				<p><a href="#">Like</a> | <a href="#">23 people</a> like this.</p>
-			</li>		
-			<li>
-				<img class="item-image" src="http://placekitten.com/g/300/200" alt="">
-				<div class="article-date">
-					June 12
-				</div>
-				<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				<p><a href="#">Like</a> | <a href="#">23 people</a> like this.</p>
-			</li>
+			<div id="divFeedContainer"></div>
 		</ul>
+    <p><a href="/news" class="item-title">View more</a></p>
 	</div>
 </section>
 
@@ -86,9 +80,7 @@
 <section class="section"> 
 	<h2 class="section-header">Videos</h2>
 	<div class="section-content">
-		<ul id="divPlaylistContainer" class="split-2">
-		
-		</div>
+		<ul id="divPlaylistContainer" class="split-2"></div>
 
 		<div id="tmplVideoItem" style="display:none;">
 			<li>
@@ -97,7 +89,7 @@
 			  </div>
 			  <a href="http://www.youtube.com/watch?v={videoUrl}" target="_blank">{title}</a>
 			  <p>By <a href="artists/{artist}">{channelTitle}</a> - {publishedAt} - {viewCount} views</p>
-			</lid>
+			</li>
 		</div>
 	</div>
 </section>
@@ -142,7 +134,7 @@
   var list = $("#events-l");
   var arrLength = arr.length;
 
-  for(var l = 0; l < 8 && arrLength; l++) {
+  for(var l = 0; l < 5 && arrLength; l++) {
   	if (l > 3 ) {
   		list = $("#events-r");
   	}
@@ -152,13 +144,12 @@
                 '<span class="event-city">' + arr[l].city + '</span>' +
                 '</a></p></li>');
   }
-</script>
 
-<script type="application/javascript">
-  function yourFunction(data) {
+  // Store Items
 
+  function storeItems(data) {
     var storeUrl = "http://bricklanerecords.limitedrun.com";
-    var productName, productImg, productUrl;
+    var productName, productImg, productUrl, productArtist;
     for (var i = 0; i < 4; i ++) {
 
       // check to see if they are this artists albums
@@ -172,14 +163,45 @@
             '<div class="item-image"><a href="' + storeUrl + productUrl + '"><img src="' + productImg + '"></a></div>' +
             '<div class="item-artist">' + productArtist + '</div>' +
             '<div class="item-album">' + productName + '</div>' +
-            // '<div class="item-type">' + productName + '</div>' +
             '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">Buy</a></p>' +
           "</li>");
     }
   }
+
+  // Twiter Call
+
+  $(document).ready(function () {
+    var twitter = new TwitterHelper(BLRConfig.Twitter);
+      twitter.Initialize({
+          container: "divTweetsContainer",
+          nextlink: "#lnkNext",
+          prevlink: "#lnkPrev",
+          count: 4,
+          enableNavigation: true
+      });
+
+      twitter.getBrickLaneTweets();  /// Home page call
+      //twitter.getTimeline(BLRConfig.Artists["chimurenga-renaissance"]);  /// Home page call
+
+    // Facebook Call
+    
+    var currentArtist = new facebookHelper(BLRConfig.blrNews);
+    currentArtist.Initialize({ 
+      container: "#divFeedContainer", 
+      postCount: 2 
+    });
+
+  });
+
+  // Youtube Videos Call
+
+  var getVideos = function () {
+    load(BLRConfig.blrVideos, "divPlaylistContainer");
+  }
+
 </script>
  
-<script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/featured.json?q=yourFunction"></script>
+<script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/featured.json?q=storeItems"></script>
 
 {% endcapture %}
 

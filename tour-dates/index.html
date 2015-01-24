@@ -5,7 +5,7 @@
 		<h1 class="section-header">{{artist.title}}</h1>
 		<div class="section-content">
 			<div class="split-2 view-more">
-				{% if artist.posts.length > 0 %}
+				{% if artist.posts.length > 1 %}
 					<ul class="left">
 						{% for post in artist.posts reversed %}
 							{% assign half = forloop.length | divided_by: 2 %}
@@ -20,6 +20,12 @@
 							{% if forloop.index > half %}
 								{% include 'includes/event' %}
 							{% endif %}
+						{% endfor %}
+					</ul>
+				{% else if artist.posts.length == 1 %}
+					<ul class="left">
+						{% for post in artist.posts %}
+							{% include 'includes/event' %}
 						{% endfor %}
 					</ul>
 				{% else %}

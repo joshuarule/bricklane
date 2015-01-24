@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>{{site.title}} | {{title}}</title>
+    <link rel="alternate" type="application/rss+xml" href="{{site.feed_url}}" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/app.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- <script src="/assets/scripts/youtube.js"></script> -->
+    <script src="https://apis.google.com/js/client.js?onload=load"></script>  
+
+    
+  </head>
+
+  <body class="{{title | slugify}}">
+
+    {% include "includes/svgstore" %}
+
+    {% include "includes/header" %}
+    
+    <div class="container">
+
+      {{ content }}
+
+    </div>
+
+    {% include "includes/footer"  %}
+
+    <script src="/assets/scripts/app.js"></script>
+    <script type="text/javascript">
+        var urlFragments = document.location.href.split("/");
+        var artist = BLRConfig.Artists[urlFragments[urlFragments.length - 1]];
+        if (artist.enabled) {
+            var currentArtist = new facebookHelper(artist);
+            $(document).ready(function () {
+                currentArtist.Initialize({ 
+                    container: "#divFeedContainer",
+                    postCount: 5
+                });
+            });
+        }
+
+        var getVideos = function () {
+            if (artist.enabled) {
+                load(artist.youtubePlaylistId, "divPlaylistContainer");
+            }
+        }
+
+        var twitter = new TwitterHelper(BLRConfig.Twitter);
+          twitter.Initialize({
+              container: "divTweetsContainer",
+              nextlink: "#lnkNext",
+              prevlink: "#lnkPrev",
+              count: 4,
+              enableNavigation: true
+          });
+
+          twitter.getTimeline(BLRConfig.Artists[artist]);
+    </script>
+    <div id="tmplVideoItem" style="display:none;">
+        <li>
+            <div class="video-responsive">
+              <iframe src="{videoSrc}?&showinfo=0"  width="560" height="315" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="http://www.youtube.com/watch?v={videoUrl}" target="_blank">{title}</a>
+          <p>{publishedAt} - {viewCount} views</p>
+        </li>
+    </div>
+    <script src="https://apis.google.com/js/client.js?onload=getVideos"></script>
+
+  </body>
+
+</html>

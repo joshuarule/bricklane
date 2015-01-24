@@ -41,6 +41,10 @@
 
 // removes dropdown on arrow with products that only have one option
 
+.select.no-options select:hover {
+  cursor: text;
+}
+
 .select.no-options:before {
   display: none;
 }

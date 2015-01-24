@@ -1,45 +1,25 @@
 {% capture content %}
 
-<div class="section">
-	<h2 class="section-header">September 17, 2014</h2>
-	<div class="section-content">
-		<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-		<div class="video-responsive">
-			<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>
-		</div>
-		<a href="#">Music Video Premiere: Benjamin Verdoes "So Bari"</a>
-		<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit...</p>
-		<a href="#">Like</a> | <a href="#">23 people</a> like this
-	</div>
-</div>
+<div id="divFeedContainer"></div>
+<a id="lnkPrev" href="javascript:void(0);">Previous</a><a id="lnkNext" href="javascript:void(0);">Next</a>
 
-<div class="section">
-	<h2 class="section-header">September 17, 2014</h2>
-	<div class="section-content">
-		<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-		<div class="float-left">
-			<div class="video-responsive">
-				<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>
-			</div>
-		</div>		
-		<p><a href="#">Music Video Premiere: Benjamin Verdoes "So Bari"</a> Cum sociis natoque penatibus et magnis dis parturient montes...</p>
-		<div class="cf"></div>
-		<a href="#">Like</a> | <a href="#">23 people</a> like this
-	</div>
-</div>
+<script>
+	$(document).ready(function () {
 
-<div class="section">
-	<h2 class="section-header">September 17, 2014</h2>
-	<div class="section-content">
-		<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-		<div class="video-responsive">
-			<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>
-		</div>
-		<a href="#">Music Video Premiere: Benjamin Verdoes "So Bari"</a>
-		<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit...</p>
-		<a href="#">Like</a> | <a href="#">23 people</a> like this
-	</div>
-</div>
+		// Facebook Call
+
+		var currentArtist = new facebookHelper(BLRConfig.blrNews);
+		currentArtist.Initialize({ 
+		  container: "#divFeedContainer", 
+		  postCount: 10,
+		  enableNavigation: true, 
+		  nextlink: "#lnkNext", 
+		  prevlink: "#lnkPrev"
+		});
+
+	});	
+</script>
+
 
 {% endcapture %}
 

@@ -4,22 +4,66 @@
 	<h2 class="section-header">{{parent.title}}</h2>
 	<div class="section-content">
 		<div class="split-1-2">
+			{% if assets.size > 0 %}
+				<div>
+					{% for asset in assets | first %}
+			         	<img src="{{asset.url}}" alt="{{title}} - {{date | date: "%B %-d, %Y" }} - flyer">
+			        {% endfor %}
+				</div>
+			{% endif %}
+			
 			<div>
-				<img class="item-image" src="http://placekitten.com/g/300/200" alt="">
-			</div>
-			<div>
-				<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+				{{body}}
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="section">
-	<h2 class="section-header">January 24, 2014</h2>
+	<h2 class="section-header">{{date | date: "%B %-d, %Y" }}</h2>
 	<div class="section-content">
-		<p><a href="#">Liberty Bar</a></p>
-		<p>Doors at 8:00 PM<br>Show at 9:00 PM<br>21+ w/ ID<br>$12</p>
-		<p><a href="#">517 15th Ave E<br>Seattle, WA 98112</a><br>(206) 323-9898</p>
+		{% if meta['venueLink'] %}
+			<p><a href="{{meta['venueLink']}}" target="_blank">{{title}}</a></p>
+		{% else %}
+			<p>{{title}}</p>
+		{% endif %}
+		{% if meta['doors'] or meta['show'] or meta['restrictions'] or meta['price'] %}
+			<p>
+				{% if meta['doors'] %}
+					Doors at {{meta['doors']}}<br>
+				{% endif %}
+				{% if {{meta['show']}} %}
+					Show at {{meta['show']}}<br>
+				{% endif %}
+				{% if {{meta['restrictions']}} %}
+					{{meta['restrictions']}}<br>
+				{% endif %}
+				{% if {{meta['price']}} %}
+					${{meta['price']}}
+				{% endif %}
+			</p>
+		{% endif %}
+		{% if meta['street'] or meta['cityStateZip'] or meta['phone'] %}
+			<p>
+				{% if meta['mapLink'] %}
+					<a href="{{meta['mapLink']}}" target="_blank">
+						{% if meta['street'] %}
+							{{meta['street']}}<br>
+						{% endif %}
+						{% if meta['cityStateZip'] %}
+							{{meta['cityStateZip']}}
+						{% endif %}
+					</a>
+				{% else %}
+					{% if meta['street'] %}
+						{{meta['street']}}<br>
+					{% endif %}
+					{% if meta['cityStateZip'] %}
+						{{meta['cityStateZip']}}
+					{% endif %}
+				{% endif %}
+			</p>
+		{% endif %}
 	</div>
 </div>
 

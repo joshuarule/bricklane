@@ -20,7 +20,7 @@
 
 <div id="tmplVideoItem" style="display:none;">
 	<li class="section">
-		<h2 class="section-header">{publishedAt}</h2>
+		<h2 class="section-header">{channelTitle}</h2>
 		<div class="section-content">
 		<div class="split-1-2">
 			<div>
@@ -56,6 +56,14 @@
 		</div>
 	</div>
 {% endfor %} -->
+
+<script>
+	var getVideos = function () {
+	    load(BLRConfig.blrVideos, "divPlaylistContainer");
+	  }
+</script>
+
+
 
 {% endcapture %}
 

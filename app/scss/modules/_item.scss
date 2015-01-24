@@ -1,5 +1,10 @@
+.albums > li {
+  margin-bottom: $list-spacing-unit;
+}
+
 .item-image {
   display: block;
+  margin-bottom: vr(1);
 
   a {
     display: block;
@@ -8,6 +13,10 @@
 
 .item-mainImg {
   margin-bottom: vr(1);
+
+  a:hover {
+    cursor: zoom-in;
+  }
 }
 
 .item-image-shop {
@@ -16,12 +25,12 @@
 
 .item-artist {
   font-weight: bold;
-  display: inline-block;
+  // display: inline-block;
   margin-right: vr(1);
 }
 
 .item-album {
-  display: inline-block;
+  // display: inline-block;
   margin-right: vr(1);
 }
 
