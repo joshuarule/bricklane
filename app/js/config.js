@@ -7,7 +7,7 @@
             enabled: true,
         },
         "iska-dhaaf": {
-            screenName: "@iska_dhaaf",
+            screenName: "iska_dhaaf",
             facebookPage: "https://www.facebook.com/iska.dhaaf",
             youtubePlaylistId: "PLtTt69RCh-J22JMN1bovvZp6hDaY0wOOD",
             enabled: true,
@@ -40,6 +40,15 @@
                     return artist;
                 }
             }
+        },
+        getArtist:function(urlLocation) {
+            if(urlLocation[urlLocation.length-1]=='/')
+            {
+         urlLocation=    urlLocation.slice(0,-1);   
+            }
+            var urlFragments = urlLocation.split("/");
+            return BLRConfig.Artists[urlFragments[urlFragments.length - 1]];
+
         }
     },
     'blrVideos': "PLd9HIwJD5brDyO3_kNz_AOtBoQu4VSSkf",

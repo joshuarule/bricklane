@@ -7,7 +7,7 @@ var BLRConfig = {
             enabled: true,
         },
         "iska-dhaaf": {
-            screenName: "@iska_dhaaf",
+            screenName: "iska_dhaaf",
             facebookPage: "https://www.facebook.com/iska.dhaaf",
             youtubePlaylistId: "PLtTt69RCh-J22JMN1bovvZp6hDaY0wOOD",
             enabled: true,
@@ -40,6 +40,15 @@ var BLRConfig = {
                     return artist;
                 }
             }
+        },
+        getArtist:function(urlLocation) {
+            if(urlLocation[urlLocation.length-1]=='/')
+            {
+         urlLocation=    urlLocation.slice(0,-1);   
+            }
+            var urlFragments = urlLocation.split("/");
+            return BLRConfig.Artists[urlFragments[urlFragments.length - 1]];
+
         }
     },
     'blrVideos': "PLd9HIwJD5brDyO3_kNz_AOtBoQu4VSSkf",
@@ -57,14 +66,14 @@ var BLRConfig = {
 }
 var facebookHelper = function (artists) {
     this._artists = artists instanceof Array ? artists : [artists];
-    this.articleTempalte = "<article class=\"section\">{content}</section";
+    this.articleTemplate = "<article class=\"section\">{content}</article>";
     this.dateTemplate = "<h2 class=\"section-header\">{formattedDate}</h2>";
-    this.contentSectionTemplate = "<div class=\"section-content\">{message}{media}{like}</div>";
+    this.contentSectionTemplate = "{formattedDate}<div class=\"section-content\">{media}{message}</div>";
     this.linkTemplate = "<a href=\"{href}\" title=\"{linkText}\">{linkText}</a>";
     this.descriptionTemplate = "<p>{description}</p>";
     this.likeTemplate = "<iframe src=\"{likeUrl}\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; height:21px;\" allowTransparency=\"true\"></iframe>";
-    this.imgTemplate = "<img src=\"{url}\" title=\"{description}\"/>";
-    this.videoTemplate = "<iframe width=\"420\" height=\"345\" src=\"http://www.youtube.com/embed/{videoId}\"></iframe>";
+    this.imgTemplate = "<div class=\"fb-media\"><img src=\"{url}\" title=\"{description}\"/></div>";
+    this.videoTemplate = "<div class=\"fb-media video-responsive\"><iframe width=\"420\" height=\"345\" src=\"http://www.youtube.com/embed/{videoId}\"></iframe></div>";
 
     this.$feedContainer = null;
     this.$lnkPrev = null;
@@ -112,6 +121,9 @@ facebookHelper.prototype.Initialize = function (options) {
     this.$feedContainer = $(options.container);
     this.$lnkPrev = $(options.prevlink);
     this.$lnkNext = $(options.nextlink);
+    this.articleTemplate = options.articleTemplate || this.articleTemplate;
+    this.dateTemplate = options.dateTemplate || this.dateTemplate;
+    this.contentSectionTemplate = options.contentSectionTemplate || this.contentSectionTemplate;
 
     if (options.enableNavigation) {
         this.$lnkPrev.on('click', function () {
@@ -238,14 +250,15 @@ facebookHelper.prototype.handleResponse = function (response, isFirst) {
 facebookHelper.prototype.decoratePost = function (post) {
     if (post.type == "status") return;
 
-    var htmlPost = this.articleTempalte;
+    var htmlPost = this.articleTemplate;
     var postDate = new Date(Date.parse(post.created_time));
     var date = this.dateTemplate.replace(/{formattedDate}/g, this.Months[postDate.getMonth()] + " " + postDate.getDate() + ", " + postDate.getFullYear());
     var contentSection = this.contentSectionTemplate.replace(/{message}/g, this.turnUrlsIntoLinks(post.message))
     .replace(/{media}/g, this.getMedia(post))
+    .replace(/{formattedDate}/g, date)
     .replace(/{like}/g, this.likeTemplate.replace(/{likeUrl}/g, this.likeUrl.replace(/{postId}/g, post.id.split("_")[1]).replace(/{artistId}/g, "")));
 
-    return htmlPost.replace(/{content}/g, date + contentSection);
+    return htmlPost.replace(/{content}/g, contentSection);
 }
 
 facebookHelper.prototype.getMedia = function (post) {
@@ -270,26 +283,46 @@ facebookHelper.prototype.getMedia = function (post) {
 }
 var TwitterHelper = function (config) {
     this._config = config;
-    this.baseUrl = "/api/twitter/";
+    // this.baseUrl = "/api/twitter/";
+    this.baseUrl = "http://dev.bricklanerecords.com/api/twitter/";
     this.brickLaneListName = config.HomePage.listName;
     this.tweetTemplate = "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"artists/{artistUrlName}\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>";
     this.previousMaxId = 0;
 }
 
-TwitterHelper.prototype.getBrickLaneTweets = function () {
+TwitterHelper.prototype.getBrickLaneTweets = function (pageNumber) {
     var h = this;
+    pageNumber=pageNumber ? pageNumber:0;
     $.ajax({
-        url: this.baseUrl + "GetList?listName={listName}&$top={count}"
+        url: this.baseUrl + ("GetList?listName={listName}&$top={count}" + 
+        ((pageNumber && pageNumber > 0) ? "&$skip={skip}".replace(/{skip}/g, (pageNumber * this._options.count)) :"" ))
             .replace(/{listName}/g, this.brickLaneListName)
             .replace(/{count}/g, this._options.count)
     }).done(function (response) {
         h.renderTweets(response);
+        if (h._options.enableNavigation) {
+            if (pageNumber > 0) {
+                h.$lnkPrev.show();
+                h.$lnkPrev.attr("data-nav", pageNumber - 1);
+            }
+            else {
+                h.$lnkPrev.hide();
+            }
+
+            if (response.length == h._options.count) {
+                h.$lnkNext.show();
+                h.$lnkNext.attr("data-nav", pageNumber + 1);
+            }
+            else {
+                h.$lnkNext.hide();
+            }
+        }
     });
 }
 
 TwitterHelper.prototype.renderTweets = function (response) {
-    this.$container.html('<ul></ul>');
-    var container = $('ul', this.$container);
+    this.$container.html('');
+    var container = $(this.$container);
     for (var tweet in response) {
         tweet = response[tweet];
         container.append(this.tweetTemplate.replace(/{ScreenName}/g, tweet.ScreenName)
@@ -309,11 +342,11 @@ TwitterHelper.prototype.Initialize = function (options) {
 
     var h = this;
     this.$lnkPrev.click(function () {
-        h.getTimelinePage(h._artist.screenName, parseInt(h.$lnkPrev.attr("data-nav")));
+        h.getBrickLaneTweets(parseInt(h.$lnkPrev.attr("data-nav")));
     });
 
     this.$lnkNext.click(function () {
-        h.getTimelinePage(h._artist.screenName, parseInt(h.$lnkNext.attr("data-nav")));
+        h.getBrickLaneTweets(parseInt(h.$lnkNext.attr("data-nav")));
     });
 }
 
@@ -329,7 +362,7 @@ TwitterHelper.prototype.getTimelinePage = function (screenName, pageNumber) {
     $.ajax({
         url: this.baseUrl + "GetTimeline?screenName={screenName}"
             .replace(/{screenName}/g, screenName) +
-            (this._options.enableNavigation ? ("&$top=" + this._options.count + "&$skip=" + ((pageNumber - 1) * this._options.count)) : "")
+            (this._options.enableNavigation ? ("&$top=" + this._options.count + "&$skip=" + ((pageNumber - 1) * this._options.count)) : "&$top=" + this._options.count)
 
     }).done(function (response) {
         h.renderTweets(response);
@@ -386,7 +419,7 @@ Date.prototype.timeSinceNow = function () {
     return Math.floor(seconds) + " seconds ago";
 }
 
-function load(playlistId, container) {
+function load(playlistId, container, count) {
     gapi.client.setApiKey(apiKey);
     gapi.client.load('youtube', 'v3', function () {
         videoTemplate = $('#tmplVideoItem').html();
@@ -394,7 +427,7 @@ function load(playlistId, container) {
         var playlistRequest = {
             playlistId: playlistId,
             part: 'snippet',
-            maxResults: 50
+            maxResults: count || 50
         };
 
         var playlistQuery = gapi.client.youtube.playlistItems.list(playlistRequest);
@@ -491,13 +524,13 @@ $(document).ready(function(){
 
   $('a[href="/releases"]').click(function(){
     console.log("click");
-     window.location.href='http://bricklanerecords.limitedrun.com/releases';
+     window.location.href='http://store.bricklanerecords.com/releases';
      return false;
   })
 
   $('a[href="/shop"]').click(function(){
     console.log("click");
-     window.location.href='http://bricklanerecords.limitedrun.com/';
+     window.location.href='http://store.bricklanerecords.com/';
      return false;
   })
 

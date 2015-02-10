@@ -1,25 +1,45 @@
 ﻿var TwitterHelper = function (config) {
     this._config = config;
-    this.baseUrl = "/api/twitter/";
+    // this.baseUrl = "/api/twitter/";
+    this.baseUrl = "http://dev.bricklanerecords.com/api/twitter/";
     this.brickLaneListName = config.HomePage.listName;
     this.tweetTemplate = "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"artists/{artistUrlName}\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>";
     this.previousMaxId = 0;
 }
 
-TwitterHelper.prototype.getBrickLaneTweets = function () {
+TwitterHelper.prototype.getBrickLaneTweets = function (pageNumber) {
     var h = this;
+    pageNumber=pageNumber ? pageNumber:0;
     $.ajax({
-        url: this.baseUrl + "GetList?listName={listName}&$top={count}"
+        url: this.baseUrl + ("GetList?listName={listName}&$top={count}" + 
+        ((pageNumber && pageNumber > 0) ? "&$skip={skip}".replace(/{skip}/g, (pageNumber * this._options.count)) :"" ))
             .replace(/{listName}/g, this.brickLaneListName)
             .replace(/{count}/g, this._options.count)
     }).done(function (response) {
         h.renderTweets(response);
+        if (h._options.enableNavigation) {
+            if (pageNumber > 0) {
+                h.$lnkPrev.show();
+                h.$lnkPrev.attr("data-nav", pageNumber - 1);
+            }
+            else {
+                h.$lnkPrev.hide();
+            }
+
+            if (response.length == h._options.count) {
+                h.$lnkNext.show();
+                h.$lnkNext.attr("data-nav", pageNumber + 1);
+            }
+            else {
+                h.$lnkNext.hide();
+            }
+        }
     });
 }
 
 TwitterHelper.prototype.renderTweets = function (response) {
-    this.$container.html('<ul></ul>');
-    var container = $('ul', this.$container);
+    this.$container.html('');
+    var container = $(this.$container);
     for (var tweet in response) {
         tweet = response[tweet];
         container.append(this.tweetTemplate.replace(/{ScreenName}/g, tweet.ScreenName)
@@ -39,11 +59,11 @@ TwitterHelper.prototype.Initialize = function (options) {
 
     var h = this;
     this.$lnkPrev.click(function () {
-        h.getTimelinePage(h._artist.screenName, parseInt(h.$lnkPrev.attr("data-nav")));
+        h.getBrickLaneTweets(parseInt(h.$lnkPrev.attr("data-nav")));
     });
 
     this.$lnkNext.click(function () {
-        h.getTimelinePage(h._artist.screenName, parseInt(h.$lnkNext.attr("data-nav")));
+        h.getBrickLaneTweets(parseInt(h.$lnkNext.attr("data-nav")));
     });
 }
 
@@ -59,7 +79,7 @@ TwitterHelper.prototype.getTimelinePage = function (screenName, pageNumber) {
     $.ajax({
         url: this.baseUrl + "GetTimeline?screenName={screenName}"
             .replace(/{screenName}/g, screenName) +
-            (this._options.enableNavigation ? ("&$top=" + this._options.count + "&$skip=" + ((pageNumber - 1) * this._options.count)) : "")
+            (this._options.enableNavigation ? ("&$top=" + this._options.count + "&$skip=" + ((pageNumber - 1) * this._options.count)) : "&$top=" + this._options.count)
 
     }).done(function (response) {
         h.renderTweets(response);

@@ -59,13 +59,13 @@ $(document).ready(function(){
 
   $('a[href="/releases"]').click(function(){
     console.log("click");
-     window.location.href='http://bricklanerecords.limitedrun.com/releases';
+     window.location.href='http://store.bricklanerecords.com/releases';
      return false;
   })
 
   $('a[href="/shop"]').click(function(){
     console.log("click");
-     window.location.href='http://bricklanerecords.limitedrun.com/';
+     window.location.href='http://store.bricklanerecords.com/';
      return false;
   })
 

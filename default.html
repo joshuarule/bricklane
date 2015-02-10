@@ -27,12 +27,6 @@
 }
 {% endcapture %}
 
-<!-- Hero -->
-
-{% if title == "Home" and posts %}
-  {% include 'includes/hero' %}
-{% endif %}
-
 <section class="section push-btm-list">	
 	<h2 class="section-header">New Releases</h2>
 	<div class="section-content">
@@ -60,9 +54,7 @@
 <section class="section">	
 	<h2 class="section-header">News</h2>
 	<div class="section-content">		
-		<ul class="split-2">			
-			<div id="divFeedContainer"></div>
-		</ul>
+			<ul id="divFeedContainer" class="split-2"></ul>
     <p><a href="/news" class="item-title">View more</a></p>
 	</div>
 </section>
@@ -176,7 +168,7 @@
           container: "divTweetsContainer",
           nextlink: "#lnkNext",
           prevlink: "#lnkPrev",
-          count: 4,
+          count: 12,
           enableNavigation: true
       });
 
@@ -188,7 +180,12 @@
     var currentArtist = new facebookHelper(BLRConfig.blrNews);
     currentArtist.Initialize({ 
       container: "#divFeedContainer", 
-      postCount: 2 
+      postCount: 2,
+      dateTemplate: "<span class=\"bold\">{formattedDate}</span><br>",
+      // contentSectionTemplate: "<div>{message}{media}{formattedDate}{like}</div>",
+      contentSectionTemplate: "<div>{media}{formattedDate}{message}</div>",
+      articleTemplate: "<article>{content}</article>"
+
     });
 
   });
@@ -196,7 +193,7 @@
   // Youtube Videos Call
 
   var getVideos = function () {
-    load(BLRConfig.blrVideos, "divPlaylistContainer");
+    load(BLRConfig.blrVideos, "divPlaylistContainer", 4);
   }
 
 </script>

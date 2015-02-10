@@ -31,7 +31,7 @@ Date.prototype.timeSinceNow = function () {
     return Math.floor(seconds) + " seconds ago";
 }
 
-function load(playlistId, container) {
+function load(playlistId, container, count) {
     gapi.client.setApiKey(apiKey);
     gapi.client.load('youtube', 'v3', function () {
         videoTemplate = $('#tmplVideoItem').html();
@@ -39,7 +39,7 @@ function load(playlistId, container) {
         var playlistRequest = {
             playlistId: playlistId,
             part: 'snippet',
-            maxResults: 50
+            maxResults: count || 50
         };
 
         var playlistQuery = gapi.client.youtube.playlistItems.list(playlistRequest);
