@@ -3,25 +3,34 @@
         "chimurenga-renaissance": {
             screenName: "chimurenga1980",
             facebookPage: "https://www.facebook.com/chimurengarenaissance",
-            youtubePlaylistId: "PLEMV1gfIOfPy8I9MPtssn7mJvxE0UhWD3",
+            twitterListName:"chimurenga-members",
+            youtubePlaylistId: "PLd9HIwJD5brArNj-1gVlCanBag29uXXia",
             enabled: true,
         },
         "iska-dhaaf": {
             screenName: "iska_dhaaf",
-            facebookPage: "https://www.facebook.com/iska.dhaaf",
-            youtubePlaylistId: "PLtTt69RCh-J22JMN1bovvZp6hDaY0wOOD",
+            twitterListName:"iska-dhaaf-members",
+            facebookPage: "https://www.facebook.com/iskadhaafmusic",
+            youtubePlaylistId: "PLd9HIwJD5brBJoy8JLxaM8QD06sN4IHPa",
             enabled: true,
         },
         "benjamin-verdoes": {
             screenName: "BenjaminVerdoes",
-            facebookPage: "https://www.facebook.com/benjamin.verdoes",
-            youtubePlaylistId: "PL9Ypvtj7lWHgsbhCnC_xFf4EsJApwY7h4",
+            facebookPage: "https://www.facebook.com/BenjaminVerdoesMusic",
+            youtubePlaylistId: "PLd9HIwJD5brClfVr0mk6BlW3HtDauAnC5",
             enabled: true
         },
         "you-are-plural": {
             screenName: "youareplural",
+            twitterListName:"you-are-plural-members",
             facebookPage: "https://www.facebook.com/youareplural",
-            youtubePlaylistId: "PL9Ypvtj7lWHgsbhCnC_xFf4EsJApwY7h4",
+            youtubePlaylistId: "PLd9HIwJD5brAOAZPpAu9Rxnd5T9MAk717",
+            enabled: true
+        },
+        "ephriam-nagler": {
+            screenName: "ephriamnagler",
+            facebookPage: "https://www.facebook.com/youareplural",
+            youtubePlaylistId: "PLd9HIwJD5brCViunRPyPTRRaRYvcpyKDD",
             enabled: true
         },
         toArray: function () {

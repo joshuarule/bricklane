@@ -26,11 +26,4 @@
   @include mq($med) {
     display: inline;
   }
-
-  &:before {
-
-    @include mq($med) {
-      content: ' - ';
-    }
-  }
 }

@@ -2,14 +2,19 @@
 
 <section class="hero">
 	<div class="hero-mobile">  
-		<div class="hero-image">
-		  {% for asset in assets | first %}
-		  	<!-- <img src="http://placekitten.com/g/1000/360" alt=""> -->
-		  	<img src="{{asset.url}}" alt="{{title}} - profile photo">
-		  {% endfor %}
-		</div>			
+		<div class="hero-image" style="background-image: url('{{assets[0]}}')"></div>  		
 		<h1 class="hero-title"><span>{{title}}</span></h1>
 	</div>
+</section>
+
+<section class="section">
+	<div class="section-content">
+	{% for asset in assets | offset: 1 %}
+		<a href="{{asset.url}}" data-featherlight="image" class="img-thumb"> 
+			<figure style="background-image: url('{{asset.url}}')" alt="{{title}} - profile photo"/></figure>
+		</a>
+	{% endfor %}
+	</div>	
 </section>
 
 <section class="section">	
@@ -19,40 +24,40 @@
 	</div>		
 </section>
 
-<section class="section">
+
+<section id="releases" class="section">
 
 	{% comment %}
 		Releases
 	{% endcomment %}
 
+	
 	<h2 class="section-header">Releases</h2>
 	<div class="section-content">
-
 		<ul class="albums split-2-4"></ul>
 
 	</div>
 </section>
 
-<section class="section">	
-	<h2 class="section-header">Tour Dates</h2>
-	<div class="section-content">
+{% comment %}
+	Finds if an artist has tour dates and sets hasEvents
+{% endcomment %}
 
-		{% comment %}
-			Finds if an artist has tour dates and sets hasEvents
-		{% endcomment %}
+{% assign hasEvents = false %}
+{% for artist in site.pages.tour-dates.pages %}
+  {% if hasEvents == false and artist.slug == {{slug}} and artist.posts.size > 0 %}
+    {% assign hasEvents = true %}
+  {% endif %}
+{% endfor %}
 
-		{% assign hasEvents = false %}
-		{% for artist in site.pages.tour-dates.pages %}
-		  {% if hasEvents == false and artist.slug == {{slug}} and artist.posts.size > 0 %}
-		    {% assign hasEvents = true %}
-		  {% endif %}
-		{% endfor %}
+{% comment %}
+	if hasEvents is true then loop through dates
+{% endcomment %}
 
-		{% comment %}
-			if hasEvents is true then loop through dates
-		{% endcomment %}
-
-		{% if hasEvents %}
+{% if hasEvents %}
+	<section class="section">	
+		<h2 class="section-header">Tour Dates</h2>
+		<div class="section-content">
 			<ul class="split-2">
 				{% for artist in site.pages.tour-dates.pages %}
 					{% if artist.slug == {{slug}} %}
@@ -62,33 +67,29 @@
 					{% endif %}
 				{% endfor %}
 			</ul>
-		{% else %}
-			<p>no tour dates at this time</p>
-		{% endif %}
+		</div>
+	</section>
+{% endif %}
 
-	</div>
-</section>
+{% comment %}
+	Finds if an artist has tour dates and sets hasEvents
+{% endcomment %}
 
-<section class="section">	
-	<h2 class="section-header">Press</h2>
-	<div class="section-content">
+{% assign hasArticles = false %}
+{% for artist in site.pages.press.pages %}
+   {% if hasArticles == false and artist.slug == {{slug}} and artist.posts.size > 0 %}
+   		{% assign hasArticles = true %}
+   {% endif %}
+{% endfor %}
 
-		{% comment %}
-			Finds if an artist has tour dates and sets hasEvents
-		{% endcomment %}
+{% comment %}
+	if hasArticles is true then loop through dates
+{% endcomment %}
 
-		{% assign hasArticles = false %}
-		{% for artist in site.pages.press.pages %}
-		   {% if hasArticles == false and artist.slug == {{slug}} and artist.posts.size > 0 %}
-		   		{% assign hasArticles = true %}
-		   {% endif %}
-		{% endfor %}
-
-		{% comment %}
-			if hasArticles is true then loop through dates
-		{% endcomment %}
-
-		{% if hasArticles %}
+{% if hasArticles %}
+	<section class="section">	
+		<h2 class="section-header">Press</h2>
+		<div class="section-content">
 			<ul>
 				{% for artist in site.pages.press.pages %}
 					{% if artist.slug == {{slug}} %}
@@ -101,17 +102,14 @@
 					{% endif %}
 				{% endfor %}
 			</ul>
-		{% else %}
-			<p>no press articles at this time</p>
-		{% endif %}
-
-	</div>
-</section>
+		</div>
+	</section>
+{% endif %}
 
 <section class="section">	
 	<h2 class="section-header">News</h2>
 	<div class="section-content">		
-		<ul id="divFeedContainer" class="split-2"></ul>
+		<ul id="divFeedContainer" class="split-2 fb-home"></ul>
     	<p><a href="/news/{{slug}}" class="item-title">View more</a></p>
 	</div>
 </section>
@@ -136,16 +134,19 @@
 	</div>
 </section>
 
+
+
 <script type="application/javascript">
   function yourFunction(data) {
 
     var storeUrl = "http://bricklanerecords.limitedrun.com";
-    var productName, productImg, productUrl;
+    var productName, productImg, productUrl, productCount = 0;
     for (var i = 0; i < data.products.length; i ++) {
 
     	// check to see if they are this artists albums
 
     	if (data.products[i].artist == "{{title}}") {
+    		productCount = productCount + 1;
     		productName = data.products[i].name;
 	      productUrl = data.products[i].url;
 	      productArtist = data.products[i].artist;
@@ -159,6 +160,10 @@
 	          '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">Buy</a></p>' +
 	        "</li>");
     	}
+    }
+    
+    if (productCount == 0) {
+    	$("#releases").hide();
     }
   }
 </script>

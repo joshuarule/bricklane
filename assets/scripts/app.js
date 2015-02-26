@@ -3,25 +3,34 @@ var BLRConfig = {
         "chimurenga-renaissance": {
             screenName: "chimurenga1980",
             facebookPage: "https://www.facebook.com/chimurengarenaissance",
-            youtubePlaylistId: "PLEMV1gfIOfPy8I9MPtssn7mJvxE0UhWD3",
+            twitterListName:"chimurenga-members",
+            youtubePlaylistId: "PLd9HIwJD5brArNj-1gVlCanBag29uXXia",
             enabled: true,
         },
         "iska-dhaaf": {
             screenName: "iska_dhaaf",
-            facebookPage: "https://www.facebook.com/iska.dhaaf",
-            youtubePlaylistId: "PLtTt69RCh-J22JMN1bovvZp6hDaY0wOOD",
+            twitterListName:"iska-dhaaf-members",
+            facebookPage: "https://www.facebook.com/iskadhaafmusic",
+            youtubePlaylistId: "PLd9HIwJD5brBJoy8JLxaM8QD06sN4IHPa",
             enabled: true,
         },
         "benjamin-verdoes": {
             screenName: "BenjaminVerdoes",
-            facebookPage: "https://www.facebook.com/benjamin.verdoes",
-            youtubePlaylistId: "PL9Ypvtj7lWHgsbhCnC_xFf4EsJApwY7h4",
+            facebookPage: "https://www.facebook.com/BenjaminVerdoesMusic",
+            youtubePlaylistId: "PLd9HIwJD5brClfVr0mk6BlW3HtDauAnC5",
             enabled: true
         },
         "you-are-plural": {
             screenName: "youareplural",
+            twitterListName:"you-are-plural-members",
             facebookPage: "https://www.facebook.com/youareplural",
-            youtubePlaylistId: "PL9Ypvtj7lWHgsbhCnC_xFf4EsJApwY7h4",
+            youtubePlaylistId: "PLd9HIwJD5brAOAZPpAu9Rxnd5T9MAk717",
+            enabled: true
+        },
+        "ephriam-nagler": {
+            screenName: "ephriamnagler",
+            facebookPage: "https://www.facebook.com/youareplural",
+            youtubePlaylistId: "PLd9HIwJD5brCViunRPyPTRRaRYvcpyKDD",
             enabled: true
         },
         toArray: function () {
@@ -72,7 +81,8 @@ var facebookHelper = function (artists) {
     this.linkTemplate = "<a href=\"{href}\" title=\"{linkText}\">{linkText}</a>";
     this.descriptionTemplate = "<p>{description}</p>";
     this.likeTemplate = "<iframe src=\"{likeUrl}\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; height:21px;\" allowTransparency=\"true\"></iframe>";
-    this.imgTemplate = "<div class=\"fb-media\"><img src=\"{url}\" title=\"{description}\"/></div>";
+    this.imgTemplate = "<div class=\"fb-media\"><a href=\"{url}\" data-featherlight=\"image\"> <figure style=\"background-image: url('{url}')\"/></figure></a></div>";
+    // this.imgTemplate = "<div class=\"fb-media\"><img src=\"{url}\" title=\"{description}\"/></div>";
     this.videoTemplate = "<div class=\"fb-media video-responsive\"><iframe width=\"420\" height=\"345\" src=\"http://www.youtube.com/embed/{videoId}\"></iframe></div>";
 
     this.$feedContainer = null;
@@ -262,7 +272,7 @@ facebookHelper.prototype.decoratePost = function (post) {
 }
 
 facebookHelper.prototype.getMedia = function (post) {
-    var imageUrl = post.type == "link" ? (post.picture ? decodeURIComponent(post.picture.match(/(url=)(.+)$/)[2]) : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
+    var imageUrl = post.type == "link" ? (post.picture ? this.cleanImageUrl(post.picture.match(/(url=)(.+)$/)[2]) : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
         .replace("{objectId}", post.object_id)
         .replace("{token}", this.accessToken));
     if (post.type == "link" || post.type == "photo") {
@@ -280,6 +290,11 @@ facebookHelper.prototype.getMedia = function (post) {
         + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
         + this.descriptionTemplate.replace(/{description}/g, post.description);
     }
+}
+
+facebookHelper.prototype.cleanImageUrl = function (url) {
+   var imageUrl = decodeURIComponent(url);
+   return (imageUrl.indexOf('&') != -1 ? imageUrl.split('&')[0] : imageUrl);
 }
 var TwitterHelper = function (config) {
     this._config = config;
@@ -386,6 +401,31 @@ TwitterHelper.prototype.getTimelinePage = function (screenName, pageNumber) {
         }
     });
 }
+
+TwitterHelper.prototype.getArtistList = function (artist) {
+   this.getList(artist.twitterListName);
+}
+
+TwitterHelper.prototype.getList = function (listName) {
+   var h = this;
+   $.ajax({
+       url: this.baseUrl + "GetList?listName={listName}&$top={count}"
+           .replace(/{listName}/g, listName)
+           .replace(/{count}/g, this._options.count)
+   }).done(function (response) {
+       h.renderTweets(response);
+   });
+}
+function slugify(text)
+{
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
+
 var apiKey = 'AIzaSyCE189cfev_E-nJQze9Cpu6lmGI2pkwb38',
   videoTemplate = null,
   $container = null,
@@ -450,6 +490,8 @@ function load(playlistId, container, count) {
                         item = response.items[item];
                         $container.append(videoTemplate.replace(/{videoSrc}/g, embedUrl.replace('{videoId}', item.id))
                           .replace(/{title}/g, item.snippet.title)
+                          .replace(/{videoUrl}/g, item.id)
+                          .replace(/{artist}/g, slugify(item.snippet.channelTitle))
                           .replace(/{channelTitle}/g, item.snippet.channelTitle)
                           .replace(/{publishedAt}/g, (new Date(item.snippet.publishedAt)).timeSinceNow())
                           .replace(/{viewCount}/g, item.statistics.viewCount));

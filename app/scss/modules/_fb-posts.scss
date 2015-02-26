@@ -1,3 +1,27 @@
-.fb-media {
+.fb-home .fb-media {
     margin-bottom: vr(1);
+
+    > a figure {
+
+        background-size: cover;
+        background-position: center center;
+        padding-bottom: 60%;
+        width: 100%;
+    }
+}
+
+// add spacing for new articles on home page
+
+.fb-home {
+    article {
+        margin-bottom: vr(1);
+    }
+}
+
+.news .fb-media figure {
+    height: 400px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: vr(1);
+
 }

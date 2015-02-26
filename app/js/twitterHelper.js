@@ -103,3 +103,18 @@ TwitterHelper.prototype.getTimelinePage = function (screenName, pageNumber) {
         }
     });
 }
+
+TwitterHelper.prototype.getArtistList = function (artist) {
+   this.getList(artist.twitterListName);
+}
+
+TwitterHelper.prototype.getList = function (listName) {
+   var h = this;
+   $.ajax({
+       url: this.baseUrl + "GetList?listName={listName}&$top={count}"
+           .replace(/{listName}/g, listName)
+           .replace(/{count}/g, this._options.count)
+   }).done(function (response) {
+       h.renderTweets(response);
+   });
+}

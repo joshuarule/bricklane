@@ -2,7 +2,14 @@
 
 .tweet {
   img {
-    display: inline;
-    // width: auto;
+    display: none;
+    // width: 100%;
+    // margin-top: vr(1);
+    // margin-bottom: vr(2);
+    // max-height: 100px;
+  }
+
+  a {
+    word-wrap: break-word;
   }
 }

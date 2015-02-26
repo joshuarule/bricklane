@@ -23,6 +23,10 @@
   border: 2px solid $gray-light;
 }
 
+.item-info {
+  min-height: vr(4);
+}
+
 .item-artist {
   font-weight: bold;
   // display: inline-block;

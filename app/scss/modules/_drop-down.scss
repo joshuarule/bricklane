@@ -88,11 +88,15 @@
   top: 100%;
   margin-top: rem(8);
   background: $pink;
-  padding: vr(0.75) 0;
+  // padding: vr(0.75) 0;
   max-width: 100%;
 
   .drop-down-active & {
     display: block;
+  }
+
+  li {
+    min-width: rem(180);
   }
 
   a {

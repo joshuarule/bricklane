@@ -1,0 +1,11 @@
+.img-thumb {
+
+    figure {
+        background-size: cover;
+        background-position: center;
+        @include span(1);
+        padding-bottom: 50%;
+        
+        padding-bottom: 6%;
+    }
+}

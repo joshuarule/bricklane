@@ -6,7 +6,8 @@ var facebookHelper = function (artists) {
     this.linkTemplate = "<a href=\"{href}\" title=\"{linkText}\">{linkText}</a>";
     this.descriptionTemplate = "<p>{description}</p>";
     this.likeTemplate = "<iframe src=\"{likeUrl}\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; height:21px;\" allowTransparency=\"true\"></iframe>";
-    this.imgTemplate = "<div class=\"fb-media\"><img src=\"{url}\" title=\"{description}\"/></div>";
+    this.imgTemplate = "<div class=\"fb-media\"><a href=\"{url}\" data-featherlight=\"image\"> <figure style=\"background-image: url('{url}')\"/></figure></a></div>";
+    // this.imgTemplate = "<div class=\"fb-media\"><img src=\"{url}\" title=\"{description}\"/></div>";
     this.videoTemplate = "<div class=\"fb-media video-responsive\"><iframe width=\"420\" height=\"345\" src=\"http://www.youtube.com/embed/{videoId}\"></iframe></div>";
 
     this.$feedContainer = null;
@@ -196,7 +197,7 @@ facebookHelper.prototype.decoratePost = function (post) {
 }
 
 facebookHelper.prototype.getMedia = function (post) {
-    var imageUrl = post.type == "link" ? (post.picture ? decodeURIComponent(post.picture.match(/(url=)(.+)$/)[2]) : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
+    var imageUrl = post.type == "link" ? (post.picture ? this.cleanImageUrl(post.picture.match(/(url=)(.+)$/)[2]) : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
         .replace("{objectId}", post.object_id)
         .replace("{token}", this.accessToken));
     if (post.type == "link" || post.type == "photo") {
@@ -214,4 +215,9 @@ facebookHelper.prototype.getMedia = function (post) {
         + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
         + this.descriptionTemplate.replace(/{description}/g, post.description);
     }
+}
+
+facebookHelper.prototype.cleanImageUrl = function (url) {
+   var imageUrl = decodeURIComponent(url);
+   return (imageUrl.indexOf('&') != -1 ? imageUrl.split('&')[0] : imageUrl);
 }

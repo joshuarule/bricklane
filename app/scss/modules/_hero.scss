@@ -1,7 +1,7 @@
 .hero {
   position: relative;  
   margin-bottom: vr(2);
-  min-height: vr(24);
+  // min-height: vr(24);
 
   @include mq($med) {
     margin-top: -(rem(168));
@@ -17,6 +17,10 @@
   @include flush;
   position: relative;
   margin-bottom: vr(1);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 38%;
   
   &:before {
     position: absolute;

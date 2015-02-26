@@ -1,3 +1,13 @@
+function slugify(text)
+{
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
+
 var apiKey = 'AIzaSyCE189cfev_E-nJQze9Cpu6lmGI2pkwb38',
   videoTemplate = null,
   $container = null,
@@ -62,6 +72,8 @@ function load(playlistId, container, count) {
                         item = response.items[item];
                         $container.append(videoTemplate.replace(/{videoSrc}/g, embedUrl.replace('{videoId}', item.id))
                           .replace(/{title}/g, item.snippet.title)
+                          .replace(/{videoUrl}/g, item.id)
+                          .replace(/{artist}/g, slugify(item.snippet.channelTitle))
                           .replace(/{channelTitle}/g, item.snippet.channelTitle)
                           .replace(/{publishedAt}/g, (new Date(item.snippet.publishedAt)).timeSinceNow())
                           .replace(/{viewCount}/g, item.statistics.viewCount));
