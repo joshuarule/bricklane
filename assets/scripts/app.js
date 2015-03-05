@@ -1,14 +1,14 @@
 var BLRConfig = {
     Artists: {
         "chimurenga-renaissance": {
-            screenName: "chimurenga1980",
+            screenNames: ["chimurenga1980", "Maraire", "husseinkalonji"],
             facebookPage: "https://www.facebook.com/chimurengarenaissance",
             twitterListName:"chimurenga-members",
             youtubePlaylistId: "PLd9HIwJD5brArNj-1gVlCanBag29uXXia",
             enabled: true,
         },
         "iska-dhaaf": {
-            screenName: "iska_dhaaf",
+            screenNames: ["iska_dhaaf", "BuffaloMadonna "],
             twitterListName:"iska-dhaaf-members",
             facebookPage: "https://www.facebook.com/iskadhaafmusic",
             youtubePlaylistId: "PLd9HIwJD5brBJoy8JLxaM8QD06sN4IHPa",
@@ -21,17 +21,20 @@ var BLRConfig = {
             enabled: true
         },
         "you-are-plural": {
-            screenName: "youareplural",
+            screenNames: ["youareplural", "onemorechad"],
             twitterListName:"you-are-plural-members",
             facebookPage: "https://www.facebook.com/youareplural",
             youtubePlaylistId: "PLd9HIwJD5brAOAZPpAu9Rxnd5T9MAk717",
             enabled: true
         },
         "ephriam-nagler": {
-            screenName: "ephriamnagler",
-            facebookPage: "https://www.facebook.com/youareplural",
+            screenName: "EphriamNagler",
+            facebookPage: "https://www.facebook.com/ephriamnagler",
             youtubePlaylistId: "PLd9HIwJD5brCViunRPyPTRRaRYvcpyKDD",
             enabled: true
+        },
+        "bricklanerecs": {
+            screenName: "bricklanerecs"
         },
         toArray: function () {
             var artists = [];
@@ -44,12 +47,17 @@ var BLRConfig = {
             return artists;
         },
         getArtistByScreenName: function (screenName) {
-            for (var artist in this) {
-                if (this[artist].screenName == screenName) {
-                    return artist;
-                }
-            }
-        },
+           for (var artist in this) {
+               if (typeof (this[artist]) !== 'function') {
+                    if (this[artist].screenName == screenName) {
+                       return artist;
+                    }
+                   if (this[artist].screenNames && this[artist].screenNames.indexOf(screenName)!=-1) {
+                       return artist;
+                   }
+               }
+           }
+       },
         getArtist:function(urlLocation) {
             if(urlLocation[urlLocation.length-1]=='/')
             {
@@ -84,6 +92,7 @@ var facebookHelper = function (artists) {
     this.imgTemplate = "<div class=\"fb-media\"><a href=\"{url}\" data-featherlight=\"image\"> <figure style=\"background-image: url('{url}')\"/></figure></a></div>";
     // this.imgTemplate = "<div class=\"fb-media\"><img src=\"{url}\" title=\"{description}\"/></div>";
     this.videoTemplate = "<div class=\"fb-media video-responsive\"><iframe width=\"420\" height=\"345\" src=\"http://www.youtube.com/embed/{videoId}\"></iframe></div>";
+    this.soundCloudTemplate = "<iframe height=\"160\" scrolling=\"no\" frameborder=\"no\" class=\"soundcloud-embed\" src=\"https://w.soundcloud.com/player/?url={soundCloudUrl}&amp;auto_play=false&amp;show_artwork=true&amp;color=ed3b94\"></iframe>";
 
     this.$feedContainer = null;
     this.$lnkPrev = null;
@@ -275,33 +284,55 @@ facebookHelper.prototype.getMedia = function (post) {
     var imageUrl = post.type == "link" ? (post.picture ? this.cleanImageUrl(post.picture.match(/(url=)(.+)$/)[2]) : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
         .replace("{objectId}", post.object_id)
         .replace("{token}", this.accessToken));
-    if (post.type == "link" || post.type == "photo") {
-
+    if (post.type == "link" || post.type == "photo" || post.type == "event") {
+        // console.log('true');
         return imageUrl ? this.imgTemplate.replace(/{url}/g, imageUrl).replace(/{description}/g, post.description) : ""
         + (post.type == "link" ?
             this.linkTemplate.replace(/{linkText}/g, post.name ? post.name : post.story).replace(/{href}/g, post.link) + (post.description ? this.descriptionTemplate.replace(/{description}/g, post.description) : '')
             : ""
             );
     }
-    else if (post.type == "video") {
+    else if (post.type == "video" && post.caption.indexOf("soundcloud.com") == -1) {
         var videoId = post.link.split('/');
         videoId = videoId[videoId.length - 1];
         return this.videoTemplate.replace(/{videoId}/g, videoId)
         + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
         + this.descriptionTemplate.replace(/{description}/g, post.description);
-    }
+    } else {
+        console.log('true');
+       return this.soundCloudTemplate.replace(/{soundCloudUrl}/g, this.getSoundCloudUrl(post.source))
+       + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
+       + this.descriptionTemplate.replace(/{description}/g, post.description);
+   }
 }
 
 facebookHelper.prototype.cleanImageUrl = function (url) {
    var imageUrl = decodeURIComponent(url);
    return (imageUrl.indexOf('&') != -1 ? imageUrl.split('&')[0] : imageUrl);
 }
+
+
+facebookHelper.prototype.getSoundCloudUrl = function (source) {
+   var fragments = source.split('?'),
+   queryParams = fragments[1].split('&');
+   
+   for (var key in queryParams)
+   {
+       key = queryParams[key];
+       if (key.indexOf('url') != -1)
+       {
+           return key.split('=')[1];
+           break;
+       }
+   }
+}
 var TwitterHelper = function (config) {
     this._config = config;
     // this.baseUrl = "/api/twitter/";
     this.baseUrl = "http://dev.bricklanerecords.com/api/twitter/";
     this.brickLaneListName = config.HomePage.listName;
-    this.tweetTemplate = "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"artists/{artistUrlName}\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>";
+    this.tweetTemplateBlr = "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"http://store.bricklanerecords.com\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>";
+    this.tweetTemplate = "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"/artists/{artistUrlName}\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>";
     this.previousMaxId = 0;
 }
 
@@ -340,12 +371,20 @@ TwitterHelper.prototype.renderTweets = function (response) {
     var container = $(this.$container);
     for (var tweet in response) {
         tweet = response[tweet];
+        if (BLRConfig.Artists.getArtistByScreenName(tweet.ScreenName) == 'bricklanerecs') {
+            container.append(this.tweetTemplateBlr.replace(/{ScreenName}/g, tweet.ScreenName)
+            .replace(/{Name}/g, tweet.Name)
+            .replace(/{Text}/g, jEmoji.unifiedToHTML(tweet.Text))
+            .replace(/{TimeSinceNow}/g, tweet.TimeSinceNow)
+            );
+        } else {
         container.append(this.tweetTemplate.replace(/{ScreenName}/g, tweet.ScreenName)
             .replace(/{Name}/g, tweet.Name)
             .replace(/{artistUrlName}/g, BLRConfig.Artists.getArtistByScreenName(tweet.ScreenName))
             .replace(/{Text}/g, jEmoji.unifiedToHTML(tweet.Text))
             .replace(/{TimeSinceNow}/g, tweet.TimeSinceNow)
             );
+        }
     }
 }
 

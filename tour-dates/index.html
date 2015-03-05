@@ -8,19 +8,17 @@
 			<div class="split-2">
 				{% if artist.posts.length > 1 %}
 					<ul class="left">
-						{% for post in artist.posts reversed  | limit: 4 %}
-							{% assign half = forloop.length | divided_by: 2 %}
-							{% if forloop.index <= half %}
+						{% for post in artist.posts reversed %}
+							{% unless forloop.index > 4 %}
 								{% include 'includes/event' %}
-							{% endif %}
+							{% endunless %}
 						{% endfor %}
 					</ul>
 					<ul class="right">
-						{% for post in artist.posts reversed | limit: 4 %}
-							{% assign half = forloop.length | divided_by: 2  %}
-							{% if forloop.index > half %}
+						{% for post in artist.posts reversed %}
+							{% unless forloop.index < 5 or forloop.index > 8 %}
 								{% include 'includes/event' %}
-							{% endif %}
+							{% endunless %}
 						{% endfor %}
 					</ul>
 				{% else if artist.posts.length == 1 %}

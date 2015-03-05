@@ -27,7 +27,7 @@
 {% endcapture %}
 
 <section class="section push-btm-list">	
-	<h2 class="section-header">New Releases</h2>
+	<h2 class="section-header">Featured Releases</h2>
 	<div class="section-content">
 		<ul class="split-2 albums">
 		</ul>
@@ -100,7 +100,6 @@
       });
 
       twitter.getBrickLaneTweets();  /// Home page call
-      //twitter.getTimeline(BLRConfig.Artists["chimurenga-renaissance"]);  /// Home page call
 
     // Facebook Call
     
@@ -138,6 +137,7 @@
   // counter to set the array id #
   k = 0;
 
+
   // finds number of artists
 
   var artistsNum = tourDates.artists.length;
@@ -157,11 +157,13 @@
   // call sort function on arr
   arr.sort(custom_sort);
 
+  console.log(arr);
+
   // set id to place first column of items
   var list = $("#events-l");
   var arrLength = arr.length;
 
-  for(var l = 0; l < 5 && arrLength; l++) {
+  for(var l = 0; l < 8 && arrLength; l++) {
     if (l > 3 ) {
       list = $("#events-r");
     }

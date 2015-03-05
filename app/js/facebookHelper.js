@@ -9,6 +9,7 @@ var facebookHelper = function (artists) {
     this.imgTemplate = "<div class=\"fb-media\"><a href=\"{url}\" data-featherlight=\"image\"> <figure style=\"background-image: url('{url}')\"/></figure></a></div>";
     // this.imgTemplate = "<div class=\"fb-media\"><img src=\"{url}\" title=\"{description}\"/></div>";
     this.videoTemplate = "<div class=\"fb-media video-responsive\"><iframe width=\"420\" height=\"345\" src=\"http://www.youtube.com/embed/{videoId}\"></iframe></div>";
+    this.soundCloudTemplate = "<iframe height=\"160\" scrolling=\"no\" frameborder=\"no\" class=\"soundcloud-embed\" src=\"https://w.soundcloud.com/player/?url={soundCloudUrl}&amp;auto_play=false&amp;show_artwork=true&amp;color=ed3b94\"></iframe>";
 
     this.$feedContainer = null;
     this.$lnkPrev = null;
@@ -200,24 +201,45 @@ facebookHelper.prototype.getMedia = function (post) {
     var imageUrl = post.type == "link" ? (post.picture ? this.cleanImageUrl(post.picture.match(/(url=)(.+)$/)[2]) : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
         .replace("{objectId}", post.object_id)
         .replace("{token}", this.accessToken));
-    if (post.type == "link" || post.type == "photo") {
-
+    if (post.type == "link" || post.type == "photo" || post.type == "event") {
+        // console.log('true');
         return imageUrl ? this.imgTemplate.replace(/{url}/g, imageUrl).replace(/{description}/g, post.description) : ""
         + (post.type == "link" ?
             this.linkTemplate.replace(/{linkText}/g, post.name ? post.name : post.story).replace(/{href}/g, post.link) + (post.description ? this.descriptionTemplate.replace(/{description}/g, post.description) : '')
             : ""
             );
     }
-    else if (post.type == "video") {
+    else if (post.type == "video" && post.caption.indexOf("soundcloud.com") == -1) {
         var videoId = post.link.split('/');
         videoId = videoId[videoId.length - 1];
         return this.videoTemplate.replace(/{videoId}/g, videoId)
         + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
         + this.descriptionTemplate.replace(/{description}/g, post.description);
-    }
+    } else {
+        console.log('true');
+       return this.soundCloudTemplate.replace(/{soundCloudUrl}/g, this.getSoundCloudUrl(post.source))
+       + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
+       + this.descriptionTemplate.replace(/{description}/g, post.description);
+   }
 }
 
 facebookHelper.prototype.cleanImageUrl = function (url) {
    var imageUrl = decodeURIComponent(url);
    return (imageUrl.indexOf('&') != -1 ? imageUrl.split('&')[0] : imageUrl);
+}
+
+
+facebookHelper.prototype.getSoundCloudUrl = function (source) {
+   var fragments = source.split('?'),
+   queryParams = fragments[1].split('&');
+   
+   for (var key in queryParams)
+   {
+       key = queryParams[key];
+       if (key.indexOf('url') != -1)
+       {
+           return key.split('=')[1];
+           break;
+       }
+   }
 }

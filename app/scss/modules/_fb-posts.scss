@@ -16,12 +16,32 @@
     article {
         margin-bottom: vr(1);
     }
+
+    a {
+        word-wrap: break-word;
+    }
 }
 
-.news .fb-media figure {
+.news .fb-media figure,
+.newsDetail .fb-media figure {
     height: 400px;
     background-size: contain;
     background-repeat: no-repeat;
     margin-bottom: vr(1);
 
+}
+
+.soundcloud-embed {
+    width: 100% !important;
+    margin-bottom: vr(1);
+}
+
+
+
+iframe + a {
+    display: none;
+}
+
+iframe + a + p {
+    display: none;
 }

@@ -3,7 +3,8 @@
     // this.baseUrl = "/api/twitter/";
     this.baseUrl = "http://dev.bricklanerecords.com/api/twitter/";
     this.brickLaneListName = config.HomePage.listName;
-    this.tweetTemplate = "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"artists/{artistUrlName}\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>";
+    this.tweetTemplateBlr = "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"http://store.bricklanerecords.com\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>";
+    this.tweetTemplate = "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"/artists/{artistUrlName}\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>";
     this.previousMaxId = 0;
 }
 
@@ -42,12 +43,20 @@ TwitterHelper.prototype.renderTweets = function (response) {
     var container = $(this.$container);
     for (var tweet in response) {
         tweet = response[tweet];
+        if (BLRConfig.Artists.getArtistByScreenName(tweet.ScreenName) == 'bricklanerecs') {
+            container.append(this.tweetTemplateBlr.replace(/{ScreenName}/g, tweet.ScreenName)
+            .replace(/{Name}/g, tweet.Name)
+            .replace(/{Text}/g, jEmoji.unifiedToHTML(tweet.Text))
+            .replace(/{TimeSinceNow}/g, tweet.TimeSinceNow)
+            );
+        } else {
         container.append(this.tweetTemplate.replace(/{ScreenName}/g, tweet.ScreenName)
             .replace(/{Name}/g, tweet.Name)
             .replace(/{artistUrlName}/g, BLRConfig.Artists.getArtistByScreenName(tweet.ScreenName))
             .replace(/{Text}/g, jEmoji.unifiedToHTML(tweet.Text))
             .replace(/{TimeSinceNow}/g, tweet.TimeSinceNow)
             );
+        }
     }
 }
 

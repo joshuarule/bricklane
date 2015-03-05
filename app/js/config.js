@@ -1,14 +1,14 @@
 ﻿var BLRConfig = {
     Artists: {
         "chimurenga-renaissance": {
-            screenName: "chimurenga1980",
+            screenNames: ["chimurenga1980", "Maraire", "husseinkalonji"],
             facebookPage: "https://www.facebook.com/chimurengarenaissance",
             twitterListName:"chimurenga-members",
             youtubePlaylistId: "PLd9HIwJD5brArNj-1gVlCanBag29uXXia",
             enabled: true,
         },
         "iska-dhaaf": {
-            screenName: "iska_dhaaf",
+            screenNames: ["iska_dhaaf", "BuffaloMadonna "],
             twitterListName:"iska-dhaaf-members",
             facebookPage: "https://www.facebook.com/iskadhaafmusic",
             youtubePlaylistId: "PLd9HIwJD5brBJoy8JLxaM8QD06sN4IHPa",
@@ -21,17 +21,20 @@
             enabled: true
         },
         "you-are-plural": {
-            screenName: "youareplural",
+            screenNames: ["youareplural", "onemorechad"],
             twitterListName:"you-are-plural-members",
             facebookPage: "https://www.facebook.com/youareplural",
             youtubePlaylistId: "PLd9HIwJD5brAOAZPpAu9Rxnd5T9MAk717",
             enabled: true
         },
         "ephriam-nagler": {
-            screenName: "ephriamnagler",
-            facebookPage: "https://www.facebook.com/youareplural",
+            screenName: "EphriamNagler",
+            facebookPage: "https://www.facebook.com/ephriamnagler",
             youtubePlaylistId: "PLd9HIwJD5brCViunRPyPTRRaRYvcpyKDD",
             enabled: true
+        },
+        "bricklanerecs": {
+            screenName: "bricklanerecs"
         },
         toArray: function () {
             var artists = [];
@@ -44,12 +47,17 @@
             return artists;
         },
         getArtistByScreenName: function (screenName) {
-            for (var artist in this) {
-                if (this[artist].screenName == screenName) {
-                    return artist;
-                }
-            }
-        },
+           for (var artist in this) {
+               if (typeof (this[artist]) !== 'function') {
+                    if (this[artist].screenName == screenName) {
+                       return artist;
+                    }
+                   if (this[artist].screenNames && this[artist].screenNames.indexOf(screenName)!=-1) {
+                       return artist;
+                   }
+               }
+           }
+       },
         getArtist:function(urlLocation) {
             if(urlLocation[urlLocation.length-1]=='/')
             {

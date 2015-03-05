@@ -1,11 +1,22 @@
 {% capture content %}
 
-<div id="divFeedContainer"></div>
+{% for page in site.pages.artists.pages %}
+    {% if page.title == title %}
+      <section class="hero">
+        <div class="hero-mobile">  
+          <div class="hero-image" style="background-image: url('{{page.assets[0]}}')"></div>      
+          <h1 class="hero-title"><span>{{page.title}}</span></h1>
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+
+<div id="divFeedContainer" class="newsDetail"></div>
 <a id="lnkPrev" href="javascript:void(0);">Previous</a><a id="lnkNext" href="javascript:void(0);">Next</a>
 
 <script type="text/javascript">
     var urlFragments = document.location.href.split("/");
-      //   if (artist.enabled) {
+  //       if (artist.enabled) {
   //       var currentArtist = new facebookHelper(artist);
   //       $(document).ready(function () {
   //           currentArtist.Initialize({ 
@@ -21,24 +32,26 @@
   //   }
     $(document).ready(function () {
 
-		// Facebook Call
-		var artist = BLRConfig.Artists[urlFragments[urlFragments.length - 1]];
+  		// Facebook Call
+  		// var artist = BLRConfig.Artists[urlFragments[urlFragments.length - 1]];
+      var artist = BLRConfig.Artists.getArtist(document.location.href);
 
-		console.log(artist);
 
-		var currentArtist = new facebookHelper(artist);
+  		console.log(artist);
 
-		currentArtist.Initialize({ 
-		  container: "#divFeedContainer", 
-		  postCount: 10,
-		  enableNavigation: true, 
-		  nextlink: "#lnkNext", 
-		  prevlink: "#lnkPrev"
-		});
+  		var currentArtist = new facebookHelper(artist);
 
-	});
+  		currentArtist.Initialize({ 
+  		  container: "#divFeedContainer", 
+  		  postCount: 10,
+  		  enableNavigation: true, 
+  		  nextlink: "#lnkNext", 
+  		  prevlink: "#lnkPrev"
+  		});
+
+  	});
 </script>
 
 {% endcapture %}
 
-{% include 'layouts/default' %}
+{% include 'layouts/no-hero' %}

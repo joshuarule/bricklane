@@ -98,9 +98,13 @@
 			{% if posts.size > 0 %}
 			<div class="split-2">
 				{% if posts.length > 1 %}
+
 					<ul class="left">
 						{% for post in posts reversed %}
 							{% assign half = forloop.length | divided_by: 2 %}
+								{% if forloop.length | modulo:2 > 0 %}
+									{% assign half = half | plus:'1' %}
+								{% endif %}
 							{% if forloop.index <= half %}
 								{% include 'includes/event' %}
 							{% endif %}
@@ -109,6 +113,9 @@
 					<ul class="right">
 						{% for post in posts reversed %}
 							{% assign half = forloop.length | divided_by: 2 %}
+							{% if forloop.length | modulo:2 > 0 %}
+								{% assign half = half | plus:'1' %}
+							{% endif %}
 							{% if forloop.index > half %}
 								{% include 'includes/event' %}
 							{% endif %}
@@ -135,4 +142,4 @@
 
 {% endcapture %}
 
-{% include 'layouts/tour-dates' %}
+{% include 'layouts/no-hero' %}
