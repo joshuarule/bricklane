@@ -2,15 +2,16 @@
 
 .tweet {
   img {
-    display: none;
-    // width: 100%;
-    // margin-top: vr(1);
-    // margin-bottom: vr(2);
-    // max-height: 100px;
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    padding: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
   }
 
   a {
     word-wrap: break-word;
+    word-break: break-word;
   }
 }
 

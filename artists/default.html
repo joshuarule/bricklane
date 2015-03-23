@@ -32,7 +32,7 @@
 	{% endcomment %}
 
 	
-	<h2 class="section-header">Releases</h2>
+	<h2 class="section-header">Releases & Merch</h2>
 	<div class="section-content">
 		<ul class="albums split-2-4"></ul>
 
@@ -79,7 +79,7 @@
 						</ul>
 					</div>
 					{% if artist.posts.size > 16 %}
-						<a href="/tour-dates/{{artist.slug}}">view more</a>
+						<a href="/tour-dates/{{artist.slug}}" class="fr">view more</a>
 					{% endif %}
 				{% endif %}
 			{% endfor %}
@@ -127,7 +127,7 @@
 	<h2 class="section-header">News</h2>
 	<div class="section-content">		
 		<ul id="divFeedContainer" class="split-2 fb-home"></ul>
-    	<p><a href="/news/{{slug}}" class="item-title">View more</a></p>
+    	<p><a href="/news/{{slug}}" class="item-title fr">View more</a></p>
 	</div>
 </section>
 
@@ -157,7 +157,7 @@
   function yourFunction(data) {
 
     var storeUrl = "http://bricklanerecords.limitedrun.com";
-    var productName, productImg, productUrl, productCount = 0;
+    var productName, productPrice, productImg, productUrl, productCount = 0, price;
     for (var i = 0; i < data.products.length; i ++) {
 
     	// check to see if they are this artists albums
@@ -166,15 +166,22 @@
     		productCount = productCount + 1;
     		productName = data.products[i].name;
 	      productUrl = data.products[i].url;
-	      productArtist = data.products[i].artist;
+          productArtist = data.products[i].artist;
+	      productPrice = data.products[i].price;
 	      productImg = data.products[i].images[0];
+
+          // check to see if product is free to set text on Buy link
+          if(productPrice == "$0.00") {price = "Free"} else {price = "Buy"};
+
 	      $(".albums").append(
 	        '<li class="item">' + 
 	          '<div class="item-image"><a href="' + storeUrl + productUrl + '"><img src="' + productImg + '"></a></div>' +
 	          '<div class="item-info"><div class="item-artist">' + productArtist + '</div>' +
 	          '<div class="item-album">' + productName + '</div></div>' +
-	          '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">Buy</a></p>' +
-	        "</li>");
+	          '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">' + 
+              price + '</a></p>' +
+                "</li>");
+              
     	}
     }
     

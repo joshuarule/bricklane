@@ -1,34 +1,44 @@
-.fb-home .fb-media {
-    margin-bottom: vr(1);
-
+.fb-media {
     > a figure {
-
         background-size: cover;
         background-position: center center;
-        padding-bottom: 60%;
+        background-repeat: no-repeat;
+        padding-bottom: 50%;
         width: 100%;
+        max-height: vr(10);
     }
+}
+
+.fb-home .fb-media {
+    margin-bottom: vr(1);
 }
 
 // add spacing for new articles on home page
 
 .fb-home {
+    // white-space: pre-wrap;
     article {
         margin-bottom: vr(1);
+
     }
 
-    a {
-        word-wrap: break-word;
+    // targets the links in facebook posts
+
+    article > div > a {
+        display: inline-block;
+        min-height: 0;
+        margin: 0;
+        padding: 0;
+        word-break: break-all;
+        -ms-hyphens: none;
+        text-oveflow: ellipsis;
+        hyphens: none;
     }
 }
 
 .news .fb-media figure,
 .newsDetail .fb-media figure {
-    height: 400px;
-    background-size: contain;
-    background-repeat: no-repeat;
     margin-bottom: vr(1);
-
 }
 
 .soundcloud-embed {

@@ -187,8 +187,7 @@ facebookHelper.prototype.decoratePost = function (post) {
     if (post.type == "status") return;
 
     var htmlPost = this.articleTemplate;
-    var postDate = new Date(Date.parse(post.created_time));
-    var date = this.dateTemplate.replace(/{formattedDate}/g, this.Months[postDate.getMonth()] + " " + postDate.getDate() + ", " + postDate.getFullYear());
+    var date = this.dateTemplate.replace(/{formattedDate}/g, moment(post.created_time).format("MMMM DD, YYYY"));
     var contentSection = this.contentSectionTemplate.replace(/{message}/g, this.turnUrlsIntoLinks(post.message))
     .replace(/{media}/g, this.getMedia(post))
     .replace(/{formattedDate}/g, date)
@@ -202,7 +201,6 @@ facebookHelper.prototype.getMedia = function (post) {
         .replace("{objectId}", post.object_id)
         .replace("{token}", this.accessToken));
     if (post.type == "link" || post.type == "photo" || post.type == "event") {
-        // console.log('true');
         return imageUrl ? this.imgTemplate.replace(/{url}/g, imageUrl).replace(/{description}/g, post.description) : ""
         + (post.type == "link" ?
             this.linkTemplate.replace(/{linkText}/g, post.name ? post.name : post.story).replace(/{href}/g, post.link) + (post.description ? this.descriptionTemplate.replace(/{description}/g, post.description) : '')
@@ -216,7 +214,6 @@ facebookHelper.prototype.getMedia = function (post) {
         + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
         + this.descriptionTemplate.replace(/{description}/g, post.description);
     } else {
-        console.log('true');
        return this.soundCloudTemplate.replace(/{soundCloudUrl}/g, this.getSoundCloudUrl(post.source))
        + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
        + this.descriptionTemplate.replace(/{description}/g, post.description);

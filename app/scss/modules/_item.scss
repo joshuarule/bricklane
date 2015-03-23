@@ -4,7 +4,8 @@
 
 .item {
 
-  .split-2-4 & {
+  .split-2-4 &,
+  .split-2 & {
     position: relative;
     margin-bottom: vr(1);
   }
@@ -23,6 +24,14 @@
 .item-mainImg {
   margin-bottom: vr(1);
 
+  .product-img {
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
   a:hover {
     cursor: zoom-in;
   }
@@ -34,19 +43,18 @@
 
 .item-info {
 
-  .split-2-4 & {
+  .split-2-4 &,
+  .split-2 & {
     margin-bottom: vr(3);
   }
 }
 
 .item-artist {
   font-weight: bold;
-  // display: inline-block;
   margin-right: vr(1);
 }
 
 .item-album {
-  // display: inline-block;
   font-style: italic;
   margin-right: vr(1);
 }
@@ -58,7 +66,8 @@
 .item-buy {
   margin-top: vr(1);
 
-  .split-2-4 & {
+  .split-2-4 &,
+  .split-2 & {
     position: absolute;
     bottom: 0;
     margin-bottom: 0;

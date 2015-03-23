@@ -4,16 +4,14 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>{{site.title}} | {{title}}</title>
+    {% include "includes/meta" %}
     <link rel="alternate" type="application/rss+xml" href="{{site.feed_url}}" />
     <link rel="stylesheet" type="text/css" href="/assets/css/app.css" />
     <link href="//cdn.rawgit.com/noelboss/featherlight/1.2.0/release/featherlight.min.css" type="text/css" rel="stylesheet" title="Featherlight Styles" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/emoji/0.2.2/emoji.js" type="text/javascript"></script>
-    <script src="https://apis.google.com/js/client.js?onload=load"></script>
-    <script src="//cdn.rawgit.com/noelboss/featherlight/1.2.0/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
-    
   </head>
 
   <body class="{{title | slugify}}">
@@ -21,9 +19,8 @@
     {% include "includes/svgstore" %}
 
     {% include "includes/header" %}
-    
-    <div class="container">
 
+    <div class="container">
       {{ content }}
 
     </div>
@@ -32,12 +29,17 @@
 
     <script src="/assets/scripts/app.js"></script>
     <script type="text/javascript">
-        var artist = BLRConfig.Artists.getArtist(document.location.href);
-        console.log(artist);
+
+    	// get url
+    	var url = document.location.href;
+    	var n = url.indexOf('?');
+    	url = url.substring(0, n != -1 ? n : url.length);
+
+        var artist = BLRConfig.Artists.getArtist(url);
         if (artist.enabled) {
             var currentArtist = new facebookHelper(artist);
             $(document).ready(function () {
-                currentArtist.Initialize({ 
+                currentArtist.Initialize({
                     container: "#divFeedContainer",
                     postCount: 2,
                     dateTemplate: "<span class=\"bold\">{formattedDate}</span><br>",
@@ -56,7 +58,7 @@
         var twitter = new TwitterHelper(BLRConfig.Twitter);
           twitter.Initialize({
               container: "divTweetsContainer",
-              count: 4
+              count: 8
           });
 
           if (artist.twitterListName) {
@@ -64,7 +66,7 @@
           } else {
             twitter.getTimeline(artist);
           }
-          
+
     </script>
     <div id="tmplVideoItem" style="display:none;">
         <li>
@@ -75,6 +77,9 @@
           <p>{publishedAt} - {viewCount} views</p>
         </li>
     </div>
+
+    <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/1.2.0/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://apis.google.com/js/client.js?onload=getVideos"></script>
 
   </body>

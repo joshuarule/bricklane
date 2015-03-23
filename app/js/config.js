@@ -8,7 +8,7 @@
             enabled: true,
         },
         "iska-dhaaf": {
-            screenNames: ["iska_dhaaf", "BuffaloMadonna "],
+            screenNames: ["iska_dhaaf", "BuffaloMadonna"],
             twitterListName:"iska-dhaaf-members",
             facebookPage: "https://www.facebook.com/iskadhaafmusic",
             youtubePlaylistId: "PLd9HIwJD5brBJoy8JLxaM8QD06sN4IHPa",
@@ -18,6 +18,7 @@
             screenName: "BenjaminVerdoes",
             facebookPage: "https://www.facebook.com/BenjaminVerdoesMusic",
             youtubePlaylistId: "PLd9HIwJD5brClfVr0mk6BlW3HtDauAnC5",
+            twitterListName: "bv-members",
             enabled: true
         },
         "you-are-plural": {
@@ -28,13 +29,21 @@
             enabled: true
         },
         "ephriam-nagler": {
-            screenName: "EphriamNagler",
+            screenName: ["EphriamNagler"],
             facebookPage: "https://www.facebook.com/ephriamnagler",
+            twitterListName: "en-members",
             youtubePlaylistId: "PLd9HIwJD5brCViunRPyPTRRaRYvcpyKDD",
             enabled: true
         },
         "bricklanerecs": {
-            screenName: "bricklanerecs"
+            screenName: "bricklanerecs",
+            enabled: true,
+            template: "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"http://store.bricklanerecords.com\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>"
+        },
+        "katewayo": {
+            screenName: "katewayo",
+            enabled: true,
+            template: "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"/about\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>"
         },
         toArray: function () {
             var artists = [];

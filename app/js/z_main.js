@@ -24,7 +24,6 @@ $(document).ready(function(){
 
   $('.view-more-item').on('click', function() {
     var container = $(this).prev('.split-2');
-    console.log(container);
     $(container).addClass('is-open');
     $(this).remove();
     
@@ -58,15 +57,56 @@ $(document).ready(function(){
   // redirects
 
   $('a[href="/releases"]').click(function(){
-    console.log("click");
      window.location.href='http://store.bricklanerecords.com/releases';
      return false;
   })
 
   $('a[href="/shop"]').click(function(){
-    console.log("click");
      window.location.href='http://store.bricklanerecords.com/';
      return false;
   })
+
+  equalheight = function(container){
+
+  var currentTallest = 0,
+       currentRowStart = 0,
+       rowDivs = new Array(),
+       $el,
+       topPosition = 0;
+   $(container).each(function() {
+
+     $el = $(this);
+     $($el).height('auto')
+     topPostion = $el.position().top;
+
+     if (currentRowStart != topPostion) {
+       for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+         rowDivs[currentDiv].height(currentTallest);
+       }
+       rowDivs.length = 0; // empty the array
+       currentRowStart = topPostion;
+       currentTallest = $el.height();
+       rowDivs.push($el);
+     } else {
+       rowDivs.push($el);
+       currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
+    }
+     for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+       rowDivs[currentDiv].height(currentTallest);
+     }
+   });
+  }
+
+  $(window).load(function() {
+    equalheight('.split-2-4 .item');
+    equalheight('.split-2 .item');
+
+  });
+
+
+  $(window).resize(function(){
+    equalheight('.split-2-4 .item');
+    equalheight('.split-2 .item');
+  });
 
 });

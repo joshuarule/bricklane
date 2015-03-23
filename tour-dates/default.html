@@ -25,7 +25,9 @@
 				{% if assets.size > 0 %}
 					<div>
 						{% for asset in assets | first %}
-				         	<img src="{{asset.url}}" alt="{{title}} - {{date | date: "%B %-d, %Y" }} - flyer">
+							<a href="{{asset.url}}" data-featherlight="image" class="img-thumb"> 
+				         		<img src="{{asset.url}}" alt="{{title}} - {{date | date: "%B %-d, %Y" }} - flyer">
+				         	</a>
 				        {% endfor %}
 					</div>
 				{% endif %}
@@ -98,12 +100,12 @@
 			{% if posts.size > 0 %}
 			<div class="split-2">
 				{% if posts.length > 1 %}
-
 					<ul class="left">
 						{% for post in posts reversed %}
 							{% assign half = forloop.length | divided_by: 2 %}
-								{% if forloop.length | modulo:2 > 0 %}
-									{% assign half = half | plus:'1' %}
+								{% assign remainder = forloop.length | modulo:2 %}
+								{% if remainder > 0 %}
+									{% assign half = half | plus:'1' %}	
 								{% endif %}
 							{% if forloop.index <= half %}
 								{% include 'includes/event' %}
@@ -113,9 +115,10 @@
 					<ul class="right">
 						{% for post in posts reversed %}
 							{% assign half = forloop.length | divided_by: 2 %}
-							{% if forloop.length | modulo:2 > 0 %}
-								{% assign half = half | plus:'1' %}
-							{% endif %}
+							{% assign remainder = forloop.length | modulo:2 %}
+								{% if remainder > 0 %}
+									{% assign half = half | plus:'1' %}	
+								{% endif %}
 							{% if forloop.index > half %}
 								{% include 'includes/event' %}
 							{% endif %}

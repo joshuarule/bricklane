@@ -34,14 +34,6 @@
 	</div>
 </section>
 
-<!-- <section class="section push-btm-list"> 
-  <h2 class="section-header">Merch</h2>
-  <div class="section-content">
-    <ul class="split-2 merch">
-    </ul>
-  </div>
-</section> -->
-
 <section class="section"> 
   <h2 class="section-header">News</h2>
   <div class="section-content">   
@@ -157,8 +149,6 @@
   // call sort function on arr
   arr.sort(custom_sort);
 
-  console.log(arr);
-
   // set id to place first column of items
   var list = $("#events-l");
   var arrLength = arr.length;
@@ -187,12 +177,17 @@
         productUrl = data.products[i].url;
         productArtist = data.products[i].artist;
         productImg = data.products[i].images[0];
+        productPrice = data.products[i].price;
+
+        // check to see if product is free to set text on Buy link
+        if(productPrice == "$0.00") {price = "Free"} else {price = "Buy"};
+
         $(".albums").append(
-          '<li>' + 
+          '<li class="item">' + 
             '<div class="item-image"><a href="' + storeUrl + productUrl + '"><img src="' + productImg + '"></a></div>' +
-            '<div class="item-artist">' + productArtist + '</div>' +
-            '<div class="item-album">' + productName + '</div>' +
-            '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">Buy</a></p>' +
+            '<div class="item-info"><div class="item-artist">' + productArtist + '</div>' +
+            '<div class="item-album">' + productName + '</div></div>' +
+            '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">' + price + '</a></p>' +
           "</li>");
     }
   }

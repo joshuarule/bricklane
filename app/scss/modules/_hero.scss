@@ -39,7 +39,8 @@
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   color: $white;
   font-size: rem(18);
   line-height: 1;
@@ -47,7 +48,8 @@
   @include mq($med) {
     @include span(3);
     font-size: rem(36);
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 
   span {

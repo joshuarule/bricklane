@@ -1,9 +1,8 @@
 ﻿var TwitterHelper = function (config) {
     this._config = config;
     // this.baseUrl = "/api/twitter/";
-    this.baseUrl = "http://dev.bricklanerecords.com/api/twitter/";
+    this.baseUrl = "http://bricklanerecords.com/api/twitter/";
     this.brickLaneListName = config.HomePage.listName;
-    this.tweetTemplateBlr = "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"http://store.bricklanerecords.com\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>";
     this.tweetTemplate = "<li><div class=\"user\"><div class=\"item-title\"><span><a href=\"/artists/{artistUrlName}\">{Name}</a></span></div><a href=\"https://twitter.com/{ScreenName}\" target=\"_blank\">@{ScreenName}</a><span class=\"timePosted\"> - Posted {TimeSinceNow}</span></div><p class=\"tweet\">{Text}</p></li>";
     this.previousMaxId = 0;
 }
@@ -43,20 +42,14 @@ TwitterHelper.prototype.renderTweets = function (response) {
     var container = $(this.$container);
     for (var tweet in response) {
         tweet = response[tweet];
-        if (BLRConfig.Artists.getArtistByScreenName(tweet.ScreenName) == 'bricklanerecs') {
-            container.append(this.tweetTemplateBlr.replace(/{ScreenName}/g, tweet.ScreenName)
-            .replace(/{Name}/g, tweet.Name)
-            .replace(/{Text}/g, jEmoji.unifiedToHTML(tweet.Text))
-            .replace(/{TimeSinceNow}/g, tweet.TimeSinceNow)
-            );
-        } else {
-        container.append(this.tweetTemplate.replace(/{ScreenName}/g, tweet.ScreenName)
+        var artist = BLRConfig.Artists.getArtist(tweet.ScreenName);
+        var template = (artist ? artist.template : null) || this.tweetTemplate;
+        container.append(template.replace(/{ScreenName}/g, tweet.ScreenName)
             .replace(/{Name}/g, tweet.Name)
             .replace(/{artistUrlName}/g, BLRConfig.Artists.getArtistByScreenName(tweet.ScreenName))
-            .replace(/{Text}/g, jEmoji.unifiedToHTML(tweet.Text))
+            .replace(/{Text}/g, twemoji.parse(tweet.Text))
             .replace(/{TimeSinceNow}/g, tweet.TimeSinceNow)
             );
-        }
     }
 }
 
@@ -78,19 +71,25 @@ TwitterHelper.prototype.Initialize = function (options) {
 
 TwitterHelper.prototype.getTimeline = function (artist) {
     this._artist = artist;
+    console.log(artist);
     if (this._artist.enabled) {
         this.getTimelinePage(artist.screenName, 1);
     }
 }
 
 TwitterHelper.prototype.getTimelinePage = function (screenName, pageNumber) {
+    
     var h = this;
+    console.log(this.baseUrl + "GetTimeline?screenName={screenName}");
+    console.log(screenName);
+
     $.ajax({
         url: this.baseUrl + "GetTimeline?screenName={screenName}"
             .replace(/{screenName}/g, screenName) +
             (this._options.enableNavigation ? ("&$top=" + this._options.count + "&$skip=" + ((pageNumber - 1) * this._options.count)) : "&$top=" + this._options.count)
 
     }).done(function (response) {
+        console.log(response);
         h.renderTweets(response);
 
         if (h._options.enableNavigation) {
