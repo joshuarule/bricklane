@@ -7,7 +7,6 @@ var facebookHelper = function (artists) {
     this.descriptionTemplate = "<p>{description}</p>";
     this.likeTemplate = "<iframe src=\"{likeUrl}\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; height:21px;\" allowTransparency=\"true\"></iframe>";
     this.imgTemplate = "<div class=\"fb-media\"><a href=\"{url}\" data-featherlight=\"image\"> <figure style=\"background-image: url('{url}')\"/></figure></a></div>";
-    // this.imgTemplate = "<div class=\"fb-media\"><img src=\"{url}\" title=\"{description}\"/></div>";
     this.videoTemplate = "<div class=\"fb-media video-responsive\"><iframe width=\"420\" height=\"345\" src=\"http://www.youtube.com/embed/{videoId}\"></iframe></div>";
     this.soundCloudTemplate = "<iframe height=\"160\" scrolling=\"no\" frameborder=\"no\" class=\"soundcloud-embed\" src=\"https://w.soundcloud.com/player/?url={soundCloudUrl}&amp;auto_play=false&amp;show_artwork=true&amp;color=ed3b94\"></iframe>";
 
@@ -46,7 +45,7 @@ var facebookHelper = function (artists) {
 facebookHelper.prototype.turnUrlsIntoLinks = function (text) {
     if (text) {
         var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-        return text.replace(exp, "<a href='$1'>$1</a>");
+        return text.replace(exp, "<a href='$1' target='_blank' >$1</a>");
     }
     else { return ""; }
 }
@@ -197,6 +196,7 @@ facebookHelper.prototype.decoratePost = function (post) {
 }
 
 facebookHelper.prototype.getMedia = function (post) {
+	console.log(post.type);
     var imageUrl = post.type == "link" ? (post.picture ? this.cleanImageUrl(post.picture.match(/(url=)(.+)$/)[2]) : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
         .replace("{objectId}", post.object_id)
         .replace("{token}", this.accessToken));
@@ -211,12 +211,12 @@ facebookHelper.prototype.getMedia = function (post) {
         var videoId = post.link.split('/');
         videoId = videoId[videoId.length - 1];
         return this.videoTemplate.replace(/{videoId}/g, videoId)
-        + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
-        + this.descriptionTemplate.replace(/{description}/g, post.description);
+        // + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
+        // + this.descriptionTemplate.replace(/{description}/g, post.description);
     } else {
        return this.soundCloudTemplate.replace(/{soundCloudUrl}/g, this.getSoundCloudUrl(post.source))
-       + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
-       + this.descriptionTemplate.replace(/{description}/g, post.description);
+       // + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
+       // + this.descriptionTemplate.replace(/{description}/g, post.description);
    }
 }
 
@@ -229,7 +229,7 @@ facebookHelper.prototype.cleanImageUrl = function (url) {
 facebookHelper.prototype.getSoundCloudUrl = function (source) {
    var fragments = source.split('?'),
    queryParams = fragments[1].split('&');
-   
+
    for (var key in queryParams)
    {
        key = queryParams[key];

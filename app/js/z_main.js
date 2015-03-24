@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   // nav toggle
 
   $('.main-nav-toggle').on('click', function() {
@@ -26,7 +27,7 @@ $(document).ready(function(){
     var container = $(this).prev('.split-2');
     $(container).addClass('is-open');
     $(this).remove();
-    
+
     // $('> *', container).show();
   });
 
@@ -44,7 +45,7 @@ $(document).ready(function(){
   $('.drop-down-toggle').on('click', function() {
     $(this).closest('.drop-down').toggleClass('drop-down-active');
   });
-  
+
   // drop-down close if clicked outside
 
   $(document).on('click', function(e) {

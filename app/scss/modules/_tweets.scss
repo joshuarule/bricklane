@@ -10,8 +10,14 @@
   }
 
   a {
-    word-wrap: break-word;
-    word-break: break-word;
+  	display: inline-block;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    -ms-hyphens: none;
+    text-oveflow: ellipsis;
+    hyphens: none;
   }
 }
 

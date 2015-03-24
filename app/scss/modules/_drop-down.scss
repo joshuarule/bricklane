@@ -20,6 +20,10 @@
   }
 }
 
+.drop-down {
+	@include font-size(18);
+}
+
 .drop-down,
 .select {
   position: relative;
@@ -31,8 +35,8 @@
   position: absolute;
   right: 0;
   top: rem(3);
-  width:  0; 
-  height: 0; 
+  width:  0;
+  height: 0;
   border-left:  rem(5) solid transparent;
   border-right: rem(5) solid transparent;
   border-top:   rem(5) solid $pink;
@@ -60,9 +64,9 @@
   &:before {
     position: absolute;
     right: 0;
-    top: rem(5);
-    width: 0; 
-    height: 0; 
+    top: rem(10);
+    width: 0;
+    height: 0;
     border-left:  rem(5) solid transparent;
     border-right: rem(5) solid transparent;
     border-top:   rem(5) solid $pink;
@@ -104,7 +108,7 @@
     color: $white;
     display: block;
     padding: vr(0.75);
-    
+
     &:hover {
       @include link-reset;
       background: darken($pink, 5%);

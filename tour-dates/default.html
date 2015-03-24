@@ -5,8 +5,8 @@
 	{% for page in site.pages.artists.pages %}
 		{% if page.title == parent.title %}
 			<section class="hero">
-				<div class="hero-mobile">  
-					<div class="hero-image" style="background-image: url('{{page.assets[0]}}')"></div>  		
+				<div class="hero-mobile">
+					<div class="hero-image" style="background-image: url('{{page.assets[0]}}')"></div>
 					<h1 class="hero-title"><span>{{page.title}}</span></h1>
 				</div>
 			</section>
@@ -18,14 +18,14 @@
 			<h1>{{date | date: "%B %-d, %Y" }}</h1>
 			<h4>{{meta['location']}}</h4>
 		</div>
-		
-		
+
+
 		<div class="section-content">
 			<div class="split-1-2">
 				{% if assets.size > 0 %}
 					<div>
 						{% for asset in assets | first %}
-							<a href="{{asset.url}}" data-featherlight="image" class="img-thumb"> 
+							<a href="{{asset.url}}" data-featherlight="image" class="img-thumb">
 				         		<img src="{{asset.url}}" alt="{{title}} - {{date | date: "%B %-d, %Y" }} - flyer">
 				         	</a>
 				        {% endfor %}
@@ -79,6 +79,8 @@
 					{% endif %}
 				</div>
 			</div>
+			<br>
+			<a class="bold" href="/artists/{{parent.title | slugify}}">&lt;&lt;&lt; Back to {{parent.title}}</a>
 		</div>
 	</div>
 {% else %}
@@ -86,8 +88,8 @@
 	{% for page in site.pages.artists.pages %}
 		{% if page.title == title %}
 			<section class="hero">
-				<div class="hero-mobile">  
-					<div class="hero-image" style="background-image: url('{{page.assets[0]}}')"></div>  		
+				<div class="hero-mobile">
+					<div class="hero-image" style="background-image: url('{{page.assets[0]}}')"></div>
 					<h1 class="hero-title"><span>{{page.title}}</span></h1>
 				</div>
 			</section>
@@ -105,7 +107,7 @@
 							{% assign half = forloop.length | divided_by: 2 %}
 								{% assign remainder = forloop.length | modulo:2 %}
 								{% if remainder > 0 %}
-									{% assign half = half | plus:'1' %}	
+									{% assign half = half | plus:'1' %}
 								{% endif %}
 							{% if forloop.index <= half %}
 								{% include 'includes/event' %}
@@ -117,7 +119,7 @@
 							{% assign half = forloop.length | divided_by: 2 %}
 							{% assign remainder = forloop.length | modulo:2 %}
 								{% if remainder > 0 %}
-									{% assign half = half | plus:'1' %}	
+									{% assign half = half | plus:'1' %}
 								{% endif %}
 							{% if forloop.index > half %}
 								{% include 'includes/event' %}
@@ -137,6 +139,8 @@
 			{% else %}
 			<p>no tour dates at this time</p>
 			{% endif %}
+			<br>
+			<a class="bold" href="/artists/{{title | slugify}}">&lt;&lt;&lt; Back to {{title}}</a>
 		</div>
 	</div>
 {% endif %}

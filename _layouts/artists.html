@@ -32,10 +32,12 @@
 
     	// get url
     	var url = document.location.href;
-    	var n = url.indexOf('?');
+    	var n = url.indexOf('/?');
     	url = url.substring(0, n != -1 ? n : url.length);
 
+    	// Get artist from config
         var artist = BLRConfig.Artists.getArtist(url);
+
         if (artist.enabled) {
             var currentArtist = new facebookHelper(artist);
             $(document).ready(function () {
@@ -81,6 +83,7 @@
     <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
     <script src="//cdn.rawgit.com/noelboss/featherlight/1.2.0/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://apis.google.com/js/client.js?onload=getVideos"></script>
+    {% include "includes/analytics" %}
 
   </body>
 
