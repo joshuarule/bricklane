@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLR.Web.TwitterHelper
 {
-    public class InMemberCachingHelper<T> where T : class
+    public class InMemoryCachingHelper<T> where T : class
     {
         private static MemoryCache _memoryCache = MemoryCache.Default;
 

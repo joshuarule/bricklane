@@ -20,7 +20,7 @@ namespace BLR.Web.TwitterHelper
     {
         private static TwitterRepository _instance;
         private TwitterContext _context;
-        private InMemberCachingHelper<List<Tweet>> _cachingHelper;
+        private InMemoryCachingHelper<List<Tweet>> _cachingHelper;
 
         public List<Tweet> GetList(string listName)
         {
@@ -55,7 +55,7 @@ namespace BLR.Web.TwitterHelper
         {
             Task.Factory.StartNew((repo) =>
             {
-                InMemberCachingHelper<List<Tweet>> repository = repo as InMemberCachingHelper<List<Tweet>>;
+                InMemoryCachingHelper<List<Tweet>> repository = repo as InMemoryCachingHelper<List<Tweet>>;
 
                 if (type == TweetType.Timeline)
                     repository.Add(key, TweetFormatter.FormatTweets(FetchTimeline(key, true)), new DateTimeOffset(DateTime.Now.AddMinutes(ConfigProvider.CacheExpiration)));
@@ -141,7 +141,7 @@ namespace BLR.Web.TwitterHelper
              };
 
             _context = new TwitterContext(auth);
-            _cachingHelper = new InMemberCachingHelper<List<Tweet>>();
+            _cachingHelper = new InMemoryCachingHelper<List<Tweet>>();
         }
 
         public static TwitterRepository getInstance()
