@@ -1,4 +1,0 @@
-source :rubygems
-
-gem "siteleaf", "~> 0.9.22"
-gem 'scss-lint', '~> 0.29.0'

@@ -1,9 +1,0 @@
-{% assign city = post.meta['cityStateZip'] | split:"," %}
-<li>	
-	<p>
-		<a href="{{post.url}}">
-			<span class="event-date">{{post.date | date: "%B %-d" }}</span><br>
-			<span class="event-city">{{post.meta['location']}}</span>
-		</a>
-	</p>
-</li>
