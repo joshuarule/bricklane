@@ -1,0 +1,104 @@
+*,
+*:before,
+*:after {box-sizing: border-box;}
+
+html,
+body { 
+  font-size: $font-size + 0px;
+  line-height: $line-height + 0px;
+}
+
+body {
+  font-family: $font-sans;
+  color: $gray;
+}
+
+p {margin-bottom: $base-spacing-unit;}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-sans;
+  margin-bottom: $base-spacing-unit;
+}
+
+h1 {@include font-size(36);}
+h2 {@include font-size(30);}
+h3 {@include font-size(24);}
+h4 {@include font-size(18);}
+h5 {@include font-size(14);}
+h6 {@include font-size(12);}
+
+strong {
+  font-weight: bold;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+pre {
+  display: inline-block;
+  padding: 0 3px;
+  border: 1px solid #ff0000;
+}
+
+a {
+  color: $pink;
+  text-decoration: none;
+  
+  &:hover {
+    @include link-underline;
+  }
+}
+
+button {
+  outline: none;
+  border:  none;
+  -webkit-appearance: none;
+  padding-top:    0 !important;
+  padding-bottom: 0 !important;
+  border-radius: 0;
+  height: rem(35);
+  line-height: rem(37);
+  font-family: $font-sans;
+  font-size: $font-size + 0px;
+  #width:0px;
+  overflow: visible;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+select {
+  border: 1px solid $pink;
+  border-radius: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-weight: bold;
+  color: $pink;
+}
+
+cite {
+  display: block;
+  
+  &:before {
+    content: '- ';
+  }
+}
+
+em {
+  font-style: italic;
+}

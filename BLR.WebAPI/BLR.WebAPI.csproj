@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{121E74BD-7603-431C-BC40-6ADC00ECB70D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BLR.WebAPI</RootNamespace>
+    <AssemblyName>BLR.WebAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.2\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.2\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.2.2\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="about.html" />
+    <Content Include="app\bower_components\susy\LICENSE.txt" />
+    <Content Include="app\js\config.js" />
+    <Content Include="app\js\facebookHelper.js" />
+    <Content Include="app\js\twitterHelper.js" />
+    <Content Include="app\js\youtube.js" />
+    <Content Include="app\js\z_main.js" />
+    <Content Include="app\js\_moment.min.js" />
+    <Content Include="app\svg\blr-logo.svg" />
+    <Content Include="artists\default.html" />
+    <Content Include="artists\index.html" />
+    <Content Include="assets\audio\start-again.mp3" />
+    <Content Include="assets\fonts\2D932D_0_0.svg" />
+    <Content Include="assets\fonts\2D932D_1_0.svg" />
+    <Content Include="assets\fonts\2D932D_2_0.svg" />
+    <Content Include="assets\fonts\2D932D_3_0.svg" />
+    <Content Include="assets\scripts\app.js" />
+    <Content Include="assets\scripts\app.min.js" />
+    <Content Include="default.html" />
+    <Content Include="digital.html" />
+    <Content Include="event-detail.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="news\default.html" />
+    <Content Include="news\index.html" />
+    <Content Include="releases\default.html" />
+    <Content Include="releases\index.html" />
+    <Content Include="shop\default.html" />
+    <Content Include="shop\index.html" />
+    <Content Include="test-page.html" />
+    <Content Include="tour-dates\default.html" />
+    <Content Include="tour-dates\index.html" />
+    <Content Include="tweets.html" />
+    <Content Include="TwitterTemplates\HashTagTemplate.html" />
+    <Content Include="TwitterTemplates\UrlTemplate.html" />
+    <Content Include="TwitterTemplates\UserMentionTemplate.html" />
+    <Content Include="videos.html" />
+    <Content Include="Web.config" />
+    <Content Include="_includes\analytics.html" />
+    <Content Include="_includes\event.html" />
+    <Content Include="_includes\footer.html" />
+    <Content Include="_includes\header.html" />
+    <Content Include="_includes\hero.html" />
+    <Content Include="_includes\item.html" />
+    <Content Include="_includes\meta.html" />
+    <Content Include="_includes\svgstore.html" />
+    <Content Include="_layouts\artists.html" />
+    <Content Include="_layouts\default.html" />
+    <Content Include="_layouts\no-hero.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\twitterController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include=".gitignore" />
+    <Content Include=".scss-lint.yml" />
+    <Content Include=".siteleafignore" />
+    <Content Include="404.html.liquid" />
+    <Content Include="app\bower_components\bourbon\.bower.json" />
+    <Content Include="app\bower_components\bourbon\.npmignore" />
+    <Content Include="app\bower_components\bourbon\bower.json" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_button.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_clearfix.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_directional-values.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_ellipsis.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_font-family.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_hide-text.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_html5-input-types.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_position.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_prefixer.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_retina-image.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_size.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_timing-functions.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_triangle.scss" />
+    <Content Include="app\bower_components\bourbon\dist\addons\_word-wrap.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_animation.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_appearance.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_backface-visibility.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_background-image.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_background.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_border-image.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_border-radius.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_box-sizing.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_calc.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_columns.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_filter.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_flex-box.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_font-face.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_font-feature-settings.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_hidpi-media-query.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_hyphens.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_image-rendering.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_keyframes.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_linear-gradient.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_perspective.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_placeholder.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_radial-gradient.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_transform.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_transition.scss" />
+    <Content Include="app\bower_components\bourbon\dist\css3\_user-select.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_assign.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_color-lightness.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_flex-grid.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_golden-ratio.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_grid-width.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_modular-scale.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_px-to-em.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_px-to-rem.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_strip-units.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_tint-shade.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_transition-property-name.scss" />
+    <Content Include="app\bower_components\bourbon\dist\functions\_unpack.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_convert-units.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_gradient-positions-parser.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_is-num.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_linear-angle-parser.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_linear-gradient-parser.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_linear-positions-parser.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_linear-side-corner-parser.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_radial-arg-parser.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_radial-gradient-parser.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_radial-positions-parser.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_render-gradients.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_shape-size-stripper.scss" />
+    <Content Include="app\bower_components\bourbon\dist\helpers\_str-to-num.scss" />
+    <Content Include="app\bower_components\bourbon\dist\settings\_asset-pipeline.scss" />
+    <Content Include="app\bower_components\bourbon\dist\settings\_prefixer.scss" />
+    <Content Include="app\bower_components\bourbon\dist\settings\_px-to-em.scss" />
+    <Content Include="app\bower_components\bourbon\dist\_bourbon-deprecated-upcoming.scss" />
+    <Content Include="app\bower_components\bourbon\dist\_bourbon.scss" />
+    <Content Include="app\bower_components\bourbon\LICENSE" />
+    <Content Include="app\bower_components\bourbon\package.json" />
+    <Content Include="app\bower_components\bourbon\readme.md" />
+    <Content Include="app\bower_components\meyer-reset\.bower.json" />
+    <Content Include="app\bower_components\meyer-reset\bower.json" />
+    <Content Include="app\bower_components\meyer-reset\README.md" />
+    <Content Include="app\bower_components\meyer-reset\reset.scss" />
+    <Content Include="app\bower_components\susy\.bower.json" />
+    <Content Include="app\bower_components\susy\bower.json" />
+    <Content Include="app\bower_components\susy\CONTRIBUTING.md" />
+    <Content Include="app\bower_components\susy\lib\compass-susy.rb" />
+    <Content Include="app\bower_components\susy\lib\susy.rb" />
+    <Content Include="app\bower_components\susy\README.md" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susyone\_background.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susyone\_functions.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susyone\_grid.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susyone\_isolation.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susyone\_margin.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susyone\_media.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susyone\_padding.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susyone\_settings.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_background.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_bleed.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_box-sizing.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_breakpoint-plugin.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_container.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_context.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_gallery.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_grids.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_gutters.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_isolate.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_margins.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_padding.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_rows.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_settings.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_span.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\susy\_validation.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\_susy.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\language\_susyone.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\math\su\_grid.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\math\su\_maps.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\math\su\_settings.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\math\su\_validation.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\math\_su.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\float\_container.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\float\_end.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\float\_isolate.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\float\_span.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\shared\_background.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\shared\_container.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\shared\_direction.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\shared\_inspect.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\shared\_margins.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\shared\_output.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\shared\_padding.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\support\_background.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\support\_box-sizing.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\support\_clearfix.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\support\_prefix.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\support\_rem.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\support\_support.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\_float.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\_shared.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\output\_support.scss" />
+    <Content Include="app\bower_components\susy\sass\susy\_math.scss" />
+    <Content Include="app\bower_components\susy\sass\_susy.scss" />
+    <Content Include="app\bower_components\susy\sass\_susyone.scss" />
+    <Content Include="app\bower_components\susy\templates\project\manifest.rb" />
+    <Content Include="app\bower_components\susy\templates\project\style.scss" />
+    <Content Include="app\bower_components\susy\templates\project\_grids.scss" />
+    <Content Include="app\bower_components\susy\VERSION" />
+    <Content Include="app\scss\app.scss" />
+    <Content Include="app\scss\base\_base.scss" />
+    <Content Include="app\scss\base\_index.scss" />
+    <Content Include="app\scss\elements\_button.scss" />
+    <Content Include="app\scss\elements\_img-thumb.scss" />
+    <Content Include="app\scss\elements\_index.scss" />
+    <Content Include="app\scss\elements\_select.scss" />
+    <Content Include="app\scss\elements\_svg.scss" />
+    <Content Include="app\scss\elements\_video-responsive.scss" />
+    <Content Include="app\scss\layout\_container.scss" />
+    <Content Include="app\scss\layout\_float.scss" />
+    <Content Include="app\scss\layout\_index.scss" />
+    <Content Include="app\scss\layout\_section.scss" />
+    <Content Include="app\scss\layout\_split.scss" />
+    <Content Include="app\scss\modules\_article.scss" />
+    <Content Include="app\scss\modules\_drop-down.scss" />
+    <Content Include="app\scss\modules\_event.scss" />
+    <Content Include="app\scss\modules\_fb-posts.scss" />
+    <Content Include="app\scss\modules\_footer-nav.scss" />
+    <Content Include="app\scss\modules\_hero.scss" />
+    <Content Include="app\scss\modules\_index.scss" />
+    <Content Include="app\scss\modules\_item.scss" />
+    <Content Include="app\scss\modules\_main-nav.scss" />
+    <Content Include="app\scss\modules\_order.scss" />
+    <Content Include="app\scss\modules\_primary-header.scss" />
+    <Content Include="app\scss\modules\_track-list.scss" />
+    <Content Include="app\scss\modules\_tweets.scss" />
+    <Content Include="app\scss\modules\_view-more.scss" />
+    <Content Include="app\scss\utilities\lib\_pesticide.scss" />
+    <Content Include="app\scss\utilities\_fonts.scss" />
+    <Content Include="app\scss\utilities\_functions.scss" />
+    <Content Include="app\scss\utilities\_global.scss" />
+    <Content Include="app\scss\utilities\_helpers.scss" />
+    <Content Include="app\scss\utilities\_index.scss" />
+    <Content Include="app\scss\utilities\_mixins.scss" />
+    <Content Include="app\scss\_ie.scss" />
+    <Content Include="app\scss\_shame.scss" />
+    <Content Include="assets\fonts\2D932D_0_0.eot" />
+    <Content Include="assets\fonts\2D932D_0_0.ttf" />
+    <Content Include="assets\fonts\2D932D_0_0.woff" />
+    <Content Include="assets\fonts\2D932D_0_0.woff2" />
+    <Content Include="assets\fonts\2D932D_1_0.eot" />
+    <Content Include="assets\fonts\2D932D_1_0.ttf" />
+    <Content Include="assets\fonts\2D932D_1_0.woff" />
+    <Content Include="assets\fonts\2D932D_1_0.woff2" />
+    <Content Include="assets\fonts\2D932D_2_0.eot" />
+    <Content Include="assets\fonts\2D932D_2_0.ttf" />
+    <Content Include="assets\fonts\2D932D_2_0.woff" />
+    <Content Include="assets\fonts\2D932D_2_0.woff2" />
+    <Content Include="assets\fonts\2D932D_3_0.eot" />
+    <Content Include="assets\fonts\2D932D_3_0.ttf" />
+    <Content Include="assets\fonts\2D932D_3_0.woff" />
+    <Content Include="assets\fonts\2D932D_3_0.woff2" />
+    <Content Include="bower.json" />
+    <Content Include="bricklane.sublime-project" />
+    <Content Include="bricklane.sublime-workspace" />
+    <Content Include="config.ru" />
+    <Content Include="gemfile" />
+    <Content Include="Gemfile.lock" />
+    <Content Include="package.json" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLR.Configuration\BLR.Configuration.csproj">
+      <Project>{1312b886-2a0c-494f-9e14-be7a02dfcd83}</Project>
+      <Name>BLR.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLR.Web.TwitterHelper\BLR.Web.TwitterHelper.csproj">
+      <Project>{0599c232-223e-47ce-ad09-3bc17e232ad5}</Project>
+      <Name>BLR.Web.TwitterHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>41924</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/blr</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

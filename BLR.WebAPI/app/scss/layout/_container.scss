@@ -1,0 +1,6 @@
+.container,
+%container {
+  @include container;
+  padding: 0 gutter();
+  max-width: $max-width;
+}

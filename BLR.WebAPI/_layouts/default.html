@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    {% include "includes/meta" %}
+
+    <title>{{site.title}} | {{title}}</title>
+    <link rel="alternate" type="application/rss+xml" href="{{site.feed_url}}" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/app.css" />
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.2.0/release/featherlight.min.css" type="text/css" rel="stylesheet" title="Featherlight Styles" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  </head>
+
+  <body class="{{title | slugify}}">
+
+    {% include "includes/svgstore" %}
+
+    {% include "includes/header" %}
+
+    <div class="container">
+
+
+      {% include 'includes/hero' %}
+
+      {{ content }}
+
+    </div>
+
+    {% include "includes/footer"  %}
+
+
+    <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/1.2.0/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/scripts/app.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=getVideos"></script>
+    {% include "includes/analytics" %}
+
+
+  </body>
+
+</html>

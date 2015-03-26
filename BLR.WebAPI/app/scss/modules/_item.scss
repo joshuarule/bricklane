@@ -1,0 +1,111 @@
+.albums > li {
+  margin-bottom: $list-spacing-unit;
+}
+
+.item {
+
+  .split-2-4 &,
+  .split-2 & {
+    position: relative;
+    margin-bottom: vr(1);
+  }
+  
+}
+
+.item-image {
+  display: block;
+  margin-bottom: vr(1);
+
+  a {
+    display: block;
+  }
+}
+
+.item-mainImg {
+  margin-bottom: vr(1);
+
+  .product-img {
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  a:hover {
+    cursor: zoom-in;
+  }
+}
+
+.item-image-shop {
+  border: 2px solid $gray-light;
+}
+
+.item-info {
+
+  .split-2-4 &,
+  .split-2 & {
+    margin-bottom: vr(3);
+  }
+}
+
+.item-artist {
+  font-weight: bold;
+  margin-right: vr(1);
+}
+
+.item-album {
+  font-style: italic;
+  margin-right: vr(1);
+}
+
+.item-type {
+  display: inline-block;
+}
+
+.item-buy {
+  margin-top: vr(1);
+
+  .split-2-4 &,
+  .split-2 & {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+  }
+
+}
+
+.item-title {
+  font-weight: bold;
+}
+
+.item-thumbs {
+  @extend %cf;
+  margin-bottom: vr(1);
+
+  > * {
+    @include span(3);
+    margin-bottom: vr(1);
+    border: 2px solid $gray-light;
+
+    @include mq($med) {
+      @include span(1 of 4);
+    }
+
+    &:nth-child(4n) {
+      @include last;
+    }
+
+    &:nth-child(4n+1) {
+      clear: both;
+    }
+
+    &.active {
+      border-color: $pink;
+    }
+  }
+
+  a {
+    cursor: pointer;
+  }
+}

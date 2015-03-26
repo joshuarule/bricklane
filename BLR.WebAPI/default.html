@@ -1,0 +1,203 @@
+{% capture content %}
+
+{% capture json %}
+{
+{% for page in site.pages %}
+  {% if page.title == "Tour Dates" %}
+    "artists": [
+    {% for page in page.pages %}
+      {
+        "name" : "{{page.title}}",
+        "events" : [
+        {% for post in page.posts %}
+          {
+            "posted": "{{post.date | date: "%D"}}",
+            "date" : "{{post.date | date: "%B %-d" }}",
+            "city": "{{post.meta['location']}}",
+            "url": "{{post.url}}"
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+        ]
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ]
+  {% endif %}
+{% endfor %}
+}
+{% endcapture %}
+
+<section class="section push-btm-list">	
+	<h2 class="section-header">Featured Releases</h2>
+	<div class="section-content">
+		<ul class="split-2 albums">
+		</ul>
+	</div>
+</section>
+
+<section class="section"> 
+  <h2 class="section-header">News</h2>
+  <div class="section-content">   
+      <ul id="divFeedContainer" class="split-2 fb-home"></ul>
+    <p class="float-right"><a href="/news" class="item-title">View more</a></p>
+  </div>
+</section>
+
+<section class="section">	
+	<h2 class="section-header">Tweets</h2>
+	<div class="section-content">		
+		<ul id="divTweetsContainer" class="split-2"></ul>
+    <p class="float-right"><a href="/tweets" class="item-title">View more</a></p>
+	</div>
+</section>
+
+<section class="section">	
+	<h2 class="section-header">Touring Now</h2>
+	<div class="section-content">
+		<div class="split-2">
+		<ul id="events-l"></ul>
+		<ul id="events-r"></ul>
+		</div>
+    <p class="float-right"><a href="/tour-dates" class="item-title">View more</a></p>
+	</div>
+</section>
+
+<section class="section"> 
+	<h2 class="section-header">Videos</h2>
+	<div class="section-content">
+		<ul id="divPlaylistContainer" class="split-2"></ul>
+    <div id="tmplVideoItem" style="display:none;">
+    <li>
+      <div class="video-responsive">
+          <iframe src="{videoSrc}?&showinfo=0"  width="560" height="315" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <a href="http://www.youtube.com/watch?v={videoUrl}" target="_blank">{title}</a>
+        <p>By <a href="artists/{artist}">{channelTitle}</a> - {publishedAt} - {viewCount} views</p>
+      </li>
+    </div>
+    <p class="float-right"><a href="/videos" class="item-title">View more</a></p>
+	</div>
+</section>
+
+<script> 
+
+	
+
+  // Twiter Call
+
+  $(document).ready(function () {
+    var twitter = new TwitterHelper(BLRConfig.Twitter);
+      twitter.Initialize({
+          container: "divTweetsContainer",
+          count: 12
+      });
+
+      twitter.getBrickLaneTweets();  /// Home page call
+
+    // Facebook Call
+    
+    var currentArtist = new facebookHelper(BLRConfig.blrNews);
+    currentArtist.Initialize({ 
+      container: "#divFeedContainer", 
+      postCount: 2,
+      dateTemplate: "<span class=\"bold\">{formattedDate}</span><br>",
+      // contentSectionTemplate: "<div>{message}{media}{formattedDate}{like}</div>",
+      contentSectionTemplate: "<div>{media}{formattedDate}{message}</div>",
+      articleTemplate: "<article>{content}</article>"
+
+    });
+
+  });
+
+  // Youtube Videos Call
+
+  var getVideos = function () {
+    load(BLRConfig.blrVideos, "divPlaylistContainer", 4);
+  }
+
+  // 
+  // Tour Dates Array
+  // 
+
+  // sorts the array by date
+
+  var custom_sort = function(a, b) {
+    return new Date(a.posted).getTime() - new Date(b.posted).getTime();
+  }
+
+  var tourDates = {{ json | strip_newlines | replace:'  ','' }},
+  arr = [],
+  // counter to set the array id #
+  k = 0;
+
+
+  // finds number of artists
+
+  var artistsNum = tourDates.artists.length;
+
+  for (var i = 0; i < artistsNum; i++){
+    var artistName = tourDates.artists[i].name;
+    var artistEvents = tourDates.artists[i].events;
+    var dates = artistEvents.length;
+
+    for (var j = 0; j < dates; j++ ) {
+      k++;
+      // add items to array
+      arr.push({"id": k, "artist": artistName, "posted": artistEvents[j].posted, "date": artistEvents[j].date, "city": artistEvents[j].city, "url": artistEvents[j].url });
+    }
+  }
+
+  // call sort function on arr
+  arr.sort(custom_sort);
+
+  // set id to place first column of items
+  var list = $("#events-l");
+  var arrLength = arr.length;
+
+  for(var l = 0; l < 8 && arrLength; l++) {
+    if (l > 3 ) {
+      list = $("#events-r");
+    }
+    list.append('<li><p><a href="' + arr[l].url + '"><span class="event-artist">' + arr[l].artist + '</span>' + 
+                ' • <span class="event-date">' + arr[l].date + '</span><br>' +
+                // '<span class="event-venue">' + arr[l].venue + '</span>' + 
+                '<span class="event-city">' + arr[l].city + '</span>' +
+                '</a></p></li>');
+  }
+
+  // Store Items
+
+  function storeItems(data) {
+    var storeUrl = "http://store.bricklanerecords.com";
+    var productName, productImg, productUrl, productArtist;
+    for (var i = 0; i < 4; i ++) {
+
+      // check to see if they are this artists albums
+
+        productName = data.products[i].name;
+        productUrl = data.products[i].url;
+        productArtist = data.products[i].artist;
+        productImg = data.products[i].images[0];
+        productPrice = data.products[i].price;
+
+        // check to see if product is free to set text on Buy link
+        if(productPrice == "$0.00") {price = "Free"} else {price = "Buy"};
+
+        $(".albums").append(
+          '<li class="item">' + 
+            '<div class="item-image"><a href="' + storeUrl + productUrl + '"><img src="' + productImg + '"></a></div>' +
+            '<div class="item-info"><div class="item-artist">' + productArtist + '</div>' +
+            '<div class="item-album">' + productName + '</div></div>' +
+            '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">' + price + '</a></p>' +
+          "</li>");
+    }
+  }
+
+</script>
+ 
+<script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/featured.json?q=storeItems"></script>
+
+{% endcapture %}
+
+{% include 'layouts/default' %}
+
+
