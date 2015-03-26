@@ -1,0 +1,36 @@
+.section {
+  @extend %clearfix;
+  margin-bottom: vr(2);
+
+  @include mq($med) {
+    margin-bottom: vr(4);
+  }
+}
+
+.section-compact {
+  margin-bottom: 0;
+
+  @include mq($med) {
+    margin-bottom: vr(1);
+  }
+}
+
+.section-header {
+  color: $pink;
+  font-size: rem(18);
+  line-height: 1;
+
+  @include mq($med) {
+    @include span(3);
+    font-size: rem(36);
+  }
+}
+
+.section-content {
+  @extend %clearfix;
+
+  @include mq($med) {
+    @include span(8);
+    @include last;
+  }
+}

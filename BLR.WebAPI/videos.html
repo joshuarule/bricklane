@@ -1,0 +1,72 @@
+{% capture content %}
+
+<!-- <div class="section section-compact">
+	<div class="section-content">
+		<div class="drop-down">
+			<a class="drop-down-toggle">Date added (newest to oldest)</a>
+			<ul class="drop-down-list">
+				<li><a href="#">Example 1</a></li>
+				<li><a href="#">Example 2<br>line break test</a></li>
+				<li><a href="#">Example 3</a></li>
+				<li><a href="#">Example 4 Example 4 Example 4</a></li>
+				<li><a href="#">Example 5</a></li>
+			</ul>
+		</div>
+	</div>
+</div> -->
+<section class="section">
+	<h2 class="section-header">Videos</h2>
+	<div class="section-content">
+		
+		<ul id="divPlaylistContainer" class="split-2"></ul>
+	</div>
+</section>
+
+
+<div id="tmplVideoItem" style="display:none;">
+	<li>
+		<div>
+			<div>
+				<div class="video-responsive">
+				  <iframe src="{videoSrc}?&showinfo=0"  width="560" height="315" frameborder="0" allowfullscreen></iframe>
+			  </div>
+		  	</div>
+			  <a href="http://www.youtube.com/watch?v={videoUrl}" target="_blank">{title}</a>
+			  <p>By <a href="artists/{artist}">{channelTitle}</a> - {publishedAt} - {viewCount} views</p>
+		  </div>
+	  </div>
+	</li>
+</div>
+
+
+<!-- {% for post in posts %}	
+	<div class="section">
+		<h1 class="section-header">{{post.date | date: "%B %-d" }}, {{post.date | date: "%Y" }}</h1>
+		<div class="section-content">
+			<div class="split-1-2">
+				<div>
+					<div class="video-responsive">
+						<video src="https://www.youtube.com/watch?v=ZFopwzbQKKI" autoplay poster="http://placekitten.com/g/320/180"></video>
+					</div>
+				</div>
+				<div>
+					<a href="#">The Vinyl District presents Mayors of Liberty - Unforgiven</a><br>
+					by <a href="#">Mayors of Liberty</a> - 3 months ago - 129 views
+					<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endfor %} -->
+
+<script>
+	var getVideos = function () {
+	    load(BLRConfig.blrVideos, "divPlaylistContainer");
+	  }
+</script>
+
+
+
+{% endcapture %}
+
+{% include 'layouts/default' %}

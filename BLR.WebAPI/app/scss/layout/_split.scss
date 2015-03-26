@@ -1,0 +1,96 @@
+// 1 column for mobile, 2 for desktop
+.split-1-2 {
+  @extend %cf;
+
+  > * {
+
+    @include mq($med) {
+      @include span(4 of 8);
+    }
+
+    &:nth-child(2n) {
+
+      @include mq($med) {
+        @include last;
+      }      
+    }
+
+    &:nth-child(2n+1) {
+
+      @include mq($med) {
+        clear: both;
+      }      
+    }
+  }
+}
+
+// 2 columns for mobile, 4 for desktop
+.split-2-4 {
+  @extend %cf;
+
+  > * {
+    @include span(6);
+
+    @include mq($med) {
+      @include span(2 of 8);
+    }
+
+    // mobile
+    &:nth-child(2n) {
+      @include last;
+
+      // reset for desktop
+      @include mq($med) {
+        float: left;
+        margin-right: gutter(8);
+      }
+    }
+
+    // mobile
+    &:nth-child(2n+1) {
+      clear: both;
+
+      // reset for desktop
+      @include mq($med) {
+        clear: none;
+      }
+    }
+
+    // desktop
+    &:nth-child(4n) {
+
+      @include mq($med) {
+        @include last;
+      }
+    }
+
+    // desktop
+    &:nth-child(4n+1) {
+
+      @include mq($med) {
+        clear: both;
+      }
+    }
+  }
+}
+
+// 2 columns
+.split-2 {
+  @extend %cf;
+
+  > * {
+    @include span(6);
+
+    @include mq($med) {
+      @include span(4 of 8);
+    }
+
+    &:nth-child(2n) {
+      @include last;
+    }
+
+    &:nth-child(2n+1) {
+      clear: both;
+    }
+  }
+}

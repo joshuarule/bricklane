@@ -1,0 +1,13 @@
+.footer-nav {
+  margin-bottom: vr(2);
+
+  @include mq($med) {
+    @include span(8);
+    @include last;
+  }
+
+  li {
+    display: inline;
+    margin-right: vr(1);
+  }
+}

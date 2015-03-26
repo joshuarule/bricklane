@@ -1,0 +1,43 @@
+{% capture content %}
+
+{% for artist in pages %}
+	{% if artist.posts.size > 0 %}
+	<div class="section">
+		<h1 class="section-header">{{artist.title}}</h1>
+		<div class="section-content">
+			<div class="split-2">
+				{% if artist.posts.length > 1 %}
+					<ul class="left">
+						{% for post in artist.posts reversed %}
+							{% unless forloop.index > 4 %}
+								{% include 'includes/event' %}
+							{% endunless %}
+						{% endfor %}
+					</ul>
+					<ul class="right">
+						{% for post in artist.posts reversed %}
+							{% unless forloop.index < 5 or forloop.index > 8 %}
+								{% include 'includes/event' %}
+							{% endunless %}
+						{% endfor %}
+					</ul>
+				{% else if artist.posts.length == 1 %}
+					<ul class="left">
+						{% for post in artist.posts %}
+							{% include 'includes/event' %}
+						{% endfor %}
+					</ul>
+				{% endif %}
+			</div>
+			{% if artist.posts.size > 4 %}
+				<a class="fr" href="/tour-dates/{{artist.slug}}">view more</a>
+			{% endif %}
+		</div>
+	</div>
+	{% endif %}
+	
+{% endfor %}
+
+{% endcapture %}
+
+{% include 'layouts/default' %}

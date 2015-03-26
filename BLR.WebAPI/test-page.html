@@ -1,0 +1,117 @@
+{% capture content %}
+
+
+<section class="content">
+  <div id="wall"></div>
+
+  {% comment %}{% for page in site.pages %}
+    {% if page.title == "Tour Dates" %}
+      {% for page in page.pages %}
+        <h1>{{page.title}}</h1>
+        {{ page.posts | json }}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}{% endcomment %}
+
+  <div id="example1"></div>
+
+  <div id="fb-root" class=" fb_reset"></div>
+
+  {% if pages %}
+    {% comment %} Show subpages if there are any available {% endcomment %}
+    <nav class="subpage-menu">
+      {% for subpage in pages %}
+        <a href="{{subpage.url}}">{{subpage.title}}</a>
+      {% endfor %}
+    </nav>
+  {% endif %}
+
+  <!-- {{body}} -->
+
+  {% if type == "post" %}
+    {% comment %} Show tagsets if this is a post {% endcomment %}
+
+    {% for tagset in taxonomy %}
+      <strong>{{tagset.key}} ({{tagset | size}} tags)</strong>
+      <ul>
+        {% for tag in tagset %}
+          <li><a href="{{tag.url}}">{{tag.value}}</a></li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+
+  {% else %}
+    {% comment %} Loop through any posts and show an excerpt {% endcomment %}
+    {% for post in posts %}
+      <article class="post-preview">
+        <h2><a href="{{post.url}}">{{post.title}}</a></h2>
+        {{post.body | strip_html | truncatewords: 100}}
+        <p><a href="{{post.url}}">View post</a>
+      </article>
+    {% endfor %}
+
+  {% endif %}
+
+  {% if parent %}
+    <p><a href="{{parent.url}}">&larr; Back to {{parent.title}}</a></p>
+  {% endif %}
+
+  <div id="api-call">
+    <h1>Iska Dhaaf Albums</h1>
+    <ul class="albums"></ul>
+  </div>
+
+</section><!-- /content -->
+
+<script type="application/javascript">
+  function yourFunction(data) {
+    console.log(data);
+
+    var storeUrl = "http://bricklanerecords.limitedrun.com";
+    var productName, productImg, productUrl;
+    for (var i = 0; i < data.products.length; i ++) {
+      productName = data.products[i].name;
+      productUrl = data.products[i].url;
+      productImg = data.products[i].images[0];
+      $(".albums").append(
+        "<li>" + 
+          "<img src=" + productImg + ">" +
+          "<h3>" + productName + "</h3>" +
+          "<a href=" + storeUrl + productUrl + ">Buy</a>" +
+        "</li>");
+    }
+  }
+</script>
+ 
+<script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/products.json?q=yourFunction"></script>
+  
+
+
+<script type="application/javascript">
+  // function yourFunction(data) {
+  //   console.log(data);
+
+  //   var storeUrl = "http://bricklanerecords.limitedrun.com";
+  //   var productName, productImg, productUrl;
+  //   for (var i = 0; i < data.products.length; i ++) {
+  //     productName = data.products[i].name;
+  //     productUrl = data.products[i].url;
+  //     productImg = data.products[i].images[0];
+  //     $(".albums").append(
+  //       "<li>" + 
+  //         "<img src=" + productImg + ">" +
+  //         "<h3>" + productName + "</h3>" +
+  //         "<a href=" + productUrl + ">Buy</a>" +
+  //       "</li>");
+  //   }
+  }
+</script>
+ 
+{% comment %}<script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/categories.json?q=yourFunction"></script>{% endcomment %}
+  
+
+
+
+{% endcapture %}
+
+{% include 'layouts/default' %}
