@@ -20,7 +20,8 @@ namespace BLR.Configuration
         public static int NumberOfMaxTweetsAtFirst = 10;
         public static int CacheSize = 200;
         public static int CacheExpiration = 10;
-
+        public static List<string> ListNames = null;
+        public static List<string> TwitterNames = null;
         static ConfigProvider()
         {
             HashTagTemplate = ReadTemplateFromFile("HashTagTemplate.html");
@@ -32,11 +33,13 @@ namespace BLR.Configuration
             NumberOfMaxTweetsAtFirst = getConfigValue<int>("NumberOfMaxTweetsAtFirst");
             CacheSize = getConfigValue<int>("CacheSize");
             CacheExpiration = getConfigValue<int>("CacheExpiration");
+            ListNames = getConfigValue<string>("ListNames").ToLowerInvariant().Split(',').ToList();
+            TwitterNames = getConfigValue<string>("TwitterNames").ToLowerInvariant().Split(',').ToList();
         }
 
         private static string ReadTemplateFromFile(string templateName)
         {
-            return File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "TwitterTemplates", templateName));
+            return File.ReadAllText(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "TwitterTemplates", templateName));
         }
 
         private static T getConfigValue<T>(string key)

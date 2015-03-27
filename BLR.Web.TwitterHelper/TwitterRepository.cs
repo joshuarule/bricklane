@@ -7,62 +7,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using BLR.Caching;
 
 namespace BLR.Web.TwitterHelper
 {
-    public enum TweetType
-    {
-        Timeline = 0,
-        List = 1
-    }
-
     public class TwitterRepository
     {
         private static TwitterRepository _instance;
         private TwitterContext _context;
-        private InMemoryCachingHelper<List<Tweet>> _cachingHelper;
+        public CacheManager<string, List<Tweet>> CacheManager;
 
         public List<Tweet> GetList(string listName)
         {
-            return GetLatestListOf(listName, ConfigProvider.NumberOfMaxTweetsAtFirst);
+            return CacheManager.Get(listName.ToLowerInvariant());
         }
 
         public List<Tweet> GetTimeline(string screenName)
         {
-            return GetLatestTimelineOf(screenName, ConfigProvider.NumberOfMaxTweetsAtFirst);
+            return CacheManager.Get(screenName.ToLowerInvariant());
         }
 
-        private List<Tweet> GetLatestTimelineOf(string screenName, int numberOfTweets = 0)
+        private List<Tweet> InitiateCache(string key)
         {
-            List<Tweet> result = null;
-
-            if (!_cachingHelper.Contains(screenName))
-            {
-                result = TweetFormatter.FormatTweets(FetchTimeline(screenName, true, numberOfTweets));
-                InitiateCache(screenName, TweetType.Timeline);
-                return result;
-            }
-
-            ulong maxRepoId = _cachingHelper.GetValue(screenName).Max(t => t.StatusId);
-
-            if (result == null)
-                return _cachingHelper.GetValue(screenName);
-
-            return result;
+            return InitiateCache(key, 0);
         }
 
-        private void InitiateCache(string key, TweetType type)
+        private List<Tweet> InitiateCache(string key, int numberOfRetry = 0)
         {
-            Task.Factory.StartNew((repo) =>
+            try
             {
-                InMemoryCachingHelper<List<Tweet>> repository = repo as InMemoryCachingHelper<List<Tweet>>;
-
-                if (type == TweetType.Timeline)
-                    repository.Add(key, TweetFormatter.FormatTweets(FetchTimeline(key, true)), new DateTimeOffset(DateTime.Now.AddMinutes(ConfigProvider.CacheExpiration)));
+                if (ConfigProvider.TwitterNames.Contains(key))
+                    return TweetFormatter.FormatTweets(FetchTimeline(key, true));
+                else if (ConfigProvider.ListNames.Contains(key))
+                    return TweetFormatter.FormatTweets(FetchList(key, true));
                 else
-                    repository.Add(key, TweetFormatter.FormatTweets(FetchList(key, true)), new DateTimeOffset(DateTime.Now.AddMinutes(ConfigProvider.CacheExpiration)));
-
-            }, _cachingHelper);
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                if (numberOfRetry < 3)
+                    return InitiateCache(key, ++numberOfRetry);
+                else
+                    return null;
+            }
         }
 
         private List<Status> FetchTimeline(string screenName, bool all = false, int numberOfTweets = 0)
@@ -84,26 +71,6 @@ namespace BLR.Web.TwitterHelper
                               tweet.Count == 1
                         select tweet).ToList();
             }
-        }
-
-        private List<Tweet> GetLatestListOf(string listName, int numberOfRecords)
-        {
-            List<Tweet> tweets = null;
-
-            if (!_cachingHelper.Contains(listName))
-            {
-                tweets = TweetFormatter.FormatTweets(FetchList(listName, true, numberOfRecords));
-                InitiateCache(listName, TweetType.List);
-
-                return tweets;
-            }
-
-            if (tweets == null)
-            {
-                return _cachingHelper.GetValue(listName);
-            }
-
-            return tweets;
         }
 
         private List<Status> FetchList(string listName, bool all = false, int numberOfTweets = 0)
@@ -141,7 +108,10 @@ namespace BLR.Web.TwitterHelper
              };
 
             _context = new TwitterContext(auth);
-            _cachingHelper = new InMemoryCachingHelper<List<Tweet>>();
+            CacheManager = CacheManager<string, List<Tweet>>.GetInstance(InitiateCache, ConfigProvider.CacheExpiration);
+            ConfigProvider.TwitterNames.ForEach(CacheManager.AddKey);
+            ConfigProvider.ListNames.ForEach(CacheManager.AddKey);
+            CacheManager.StartBuildingCache();
         }
 
         public static TwitterRepository getInstance()
