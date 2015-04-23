@@ -197,6 +197,7 @@ facebookHelper.prototype.decoratePost = function (post) {
 
 facebookHelper.prototype.getMedia = function (post) {
 	console.log(post.type);
+	console.log(post.caption);
     var imageUrl = post.type == "link" ? (post.picture ? this.cleanImageUrl(post.picture.match(/(url=)(.+)$/)[2]) : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
         .replace("{objectId}", post.object_id)
         .replace("{token}", this.accessToken));
@@ -207,16 +208,21 @@ facebookHelper.prototype.getMedia = function (post) {
             : ""
             );
     }
-    else if (post.type == "video" && post.caption.indexOf("soundcloud.com") == -1) {
+    // videos that have no caption
+    else if (post.type == "video" && post.caption == undefined) {
+        return imageUrl ? this.imgTemplate.replace(/{url}/g, imageUrl).replace(/{description}/g, post.description) : ""
+        + (post.type == "link" ?
+            this.linkTemplate.replace(/{linkText}/g, post.name ? post.name : post.story).replace(/{href}/g, post.link) + (post.description ? this.descriptionTemplate.replace(/{description}/g, post.description) : '')
+            : ""
+            );
+    }
+    // any video that the caption isn't soundcloud
+    else if (post.type == "video" && post.caption != "soundcloud.com") {
         var videoId = post.link.split('/');
         videoId = videoId[videoId.length - 1];
         return this.videoTemplate.replace(/{videoId}/g, videoId)
-        // + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
-        // + this.descriptionTemplate.replace(/{description}/g, post.description);
     } else {
        return this.soundCloudTemplate.replace(/{soundCloudUrl}/g, this.getSoundCloudUrl(post.source))
-       // + this.linkTemplate.replace(/{linkText}/g, post.name).replace(/{href}/g, post.link)
-       // + this.descriptionTemplate.replace(/{description}/g, post.description);
    }
 }
 

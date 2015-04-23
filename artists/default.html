@@ -62,17 +62,24 @@
 				{% if artist.slug == {{slug}} %}
 					<div class="split-2">
 
+						{% assign half = artist.posts.length | divided_by:2 %}
+						<!-- if only one post then set half = 1 -->
+						{% if artist.posts.length == 1 %}
+							{% assign half = 1 %}
+						{% endif %}
+						{% assign overHalf = half | plus:1 %}
 
 						<ul class="left">
+
 							{% for post in artist.posts reversed %}
-								{% unless forloop.index > 8 %}
-										{% include 'includes/event' %}
-									{% endunless %}
+								{% unless forloop.index > half %}
+									{% include 'includes/event' %}
+								{% endunless %}
 							{% endfor %}
 						</ul>
 						<ul class="right">
 							{% for post in artist.posts reversed %}
-								{% unless forloop.index < 9 or forloop.index > 16 %}
+								{% unless forloop.index < overHalf or forloop.index > 16 %}
 									{% include 'includes/event' %}
 								{% endunless %}
 							{% endfor %}
