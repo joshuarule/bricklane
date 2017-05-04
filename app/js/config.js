@@ -1,4 +1,4 @@
-﻿var BLRConfig = {
+var BLRConfig = {
     Artists: {
         "chimurenga-renaissance": {
             screenNames: ["chimurenga1980", "Maraire", "husseinkalonji"],
@@ -10,15 +10,22 @@
         "iska-dhaaf": {
             screenNames: ["iska_dhaaf", "BuffaloMadonna"],
             twitterListName:"iska-dhaaf-members",
-            facebookPage: "https://www.facebook.com/iskadhaafmusic",
+            facebookPage: "https://www.facebook.com/iska.dhaaf",
             youtubePlaylistId: "PLd9HIwJD5brBJoy8JLxaM8QD06sN4IHPa",
             enabled: true,
         },
         "benjamin-verdoes": {
             screenName: "BenjaminVerdoes",
-            facebookPage: "https://www.facebook.com/BenjaminVerdoesMusic",
+            facebookPage: "https://www.facebook.com/benjamin.verdoes",
             youtubePlaylistId: "PLd9HIwJD5brClfVr0mk6BlW3HtDauAnC5",
             twitterListName: "bv-members",
+            enabled: true
+        },
+        "kirt-debique": {
+            screenName: "katewayo",
+            facebookPage: "https://www.facebook.com/kirtdebiquemusic",
+            youtubePlaylistId: "PLd9HIwJD5brBwZ-5N10-bV-wrDNiCiw6T",
+            twitterListName: "kd-members",
             enabled: true
         },
         "you-are-plural": {
@@ -26,6 +33,13 @@
             twitterListName:"you-are-plural-members",
             facebookPage: "https://www.facebook.com/youareplural",
             youtubePlaylistId: "PLd9HIwJD5brAOAZPpAu9Rxnd5T9MAk717",
+            enabled: true
+        },
+        "valley-maker": {
+            screenName: "valleymaker",
+            twitterListName:"vm-members",
+            facebookPage: "https://www.facebook.com/valleymaker",
+            youtubePlaylistId: "PLd9HIwJD5brAhQjE0w2Xg_MQtbcBRh_4V",
             enabled: true
         },
         "ephriam-nagler": {
@@ -70,7 +84,7 @@
         getArtist:function(urlLocation) {
             if(urlLocation[urlLocation.length-1]=='/')
             {
-         urlLocation=    urlLocation.slice(0,-1);   
+         urlLocation=    urlLocation.slice(0,-1);
             }
             var urlFragments = urlLocation.split("/");
             return BLRConfig.Artists[urlFragments[urlFragments.length - 1]];

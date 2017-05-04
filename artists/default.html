@@ -55,18 +55,99 @@
 {% endcomment %}
 
 {% if hasEvents %}
+  <section class="section">
+    <h2 class="section-header">Tour Dates</h2>
+    <div class="section-content">
+      {% for artist in site.pages.tour-dates.pages %}
+        {% if artist.slug == {{slug}} %}
+
+          <div class="split-2">
+            {% assign totalDates = artist.posts.length %}
+            {% assign maxDates = 16 %}
+
+            {% if totalDates > maxDates %}
+              {% assign exceedsMaxDates = true %}
+              {% assign half = maxDates | divided_by: 2 %}
+              {% assign offsetL = totalDates | minus: half %}
+              {% assign offsetR = totalDates | minus: maxDates %}
+
+              <ul class="left">
+                {% for post in artist.posts reversed | offset: offsetL %}
+                    {% include 'includes/event' %}
+                {% endfor %}
+              </ul>
+
+              <ul class="right">
+                {% for post in artist.posts reversed | offset: offsetR | limit: half %}
+                    {% include 'includes/event' %}
+                {% endfor %}
+              </ul>
+            {% else %}
+              {% if totalDates == 1 %}
+                {% assign half = 1 %}
+              {% else %}
+                {% assign half = totalDates | divided_by:2 %}
+
+                {% assign remainder = totalDates | modulo: 2 %}
+                {% if remainder > 0 %}
+                  {% assign half = half | plus:'1' %}
+                {% endif %}
+                {% assign overHalf = half | plus:1 %}
+              {% endif %}
+
+              <ul class="left">
+              {% for post in artist.posts reversed %}
+                {% if forloop.index0 < half %}
+                  {% include 'includes/event' %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+
+            <ul class="right">
+              {% for post in artist.posts reversed %}
+                {% if forloop.index0 >= half %}
+                  {% include 'includes/event' %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+
+            {% endif %}
+
+          </div>
+
+          {% if exceedsMaxDates %}
+            <a href="/tour-dates/{{artist.slug}}" class="fr">view more</a>
+          {% endif %}
+
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+
+
+<!-- {% if hasEvents %}
 	<section class="section">
 		<h2 class="section-header">Tour Dates</h2>
 		<div class="section-content">
 			{% for artist in site.pages.tour-dates.pages %}
 				{% if artist.slug == {{slug}} %}
 					<div class="split-2">
+            {% if artist.posts.length > 16 %}
+              {% assign half = 8 %}
+            {% else %}
+						  {% assign half = artist.posts.length | divided_by:2 %}
+            {% endif %}
 
-						{% assign half = artist.posts.length | divided_by:2 %}
-						<!-- if only one post then set half = 1 -->
+						{% comment %} if only one post then set half = 1 {% endcomment %}
 						{% if artist.posts.length == 1 %}
 							{% assign half = 1 %}
 						{% endif %}
+            {% assign remainder = artist.posts.length | modulo: 2 %}
+            {% if remainder > 0 %}
+              {% assign half = half | plus:'1' %}
+            {% endif %}
 						{% assign overHalf = half | plus:1 %}
 
 						<ul class="left">
@@ -93,7 +174,9 @@
 
 		</div>
 	</section>
-{% endif %}
+{% endif %} -->
+
+
 
 {% comment %}
 	Finds if an artist has tour dates and sets hasEvents
@@ -161,6 +244,9 @@
 
 
 <script type="application/javascript">
+
+  // $fix - there is som reusuable code here on the front page
+
   function yourFunction(data) {
 
     var storeUrl = "http://store.bricklanerecords.com";
@@ -172,22 +258,33 @@
     	if (data.products[i].artist == "{{title}}") {
     		productCount = productCount + 1;
     		productName = data.products[i].name;
-	      productUrl = data.products[i].url;
-          productArtist = data.products[i].artist;
+        externalUrl = data.products[i].externalUrl;
+        buttonText = data.products[i].buttonText;
+	      productUrl = externalUrl ? '<a href="' + externalUrl + '" target="_blank">' : '<a href="' + storeUrl + data.products[i].url + '">';
+        buttonUrl = externalUrl ? '<a href="' + externalUrl + '" target="_blank" class="button">' : '<a href="' + storeUrl + data.products[i].url + '" class="button">';
+        productArtist = data.products[i].artist;
 	      productPrice = data.products[i].price;
 	      productImg = data.products[i].images[0];
 
-          // check to see if product is free to set text on Buy link
-          if(productPrice == "$0.00") {price = "Free"} else {price = "Buy"};
+        // check to see if product is free to set text on Buy link
+        if (buttonText) {
+          price = buttonText;
+        } else if (productPrice == "$0.00") {
+          price = "Free";
+        } else {
+          price = "Buy";
+        };
 
 	      $(".albums").append(
 	        '<li class="item">' +
-	          '<div class="item-image"><a href="' + storeUrl + productUrl + '"><img src="' + productImg + '"></a></div>' +
+	          '<div class="item-image">' +
+            productUrl +
+            '<img src="' + productImg + '"></a></div>' +
 	          '<div class="item-info"><div class="item-artist">' + productArtist + '</div>' +
 	          '<div class="item-album">' + productName + '</div></div>' +
-	          '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">' +
-              price + '</a></p>' +
-                "</li>");
+	          '<p class="item-buy">' +
+            buttonUrl +
+              price + '</a></p></li>');
 
     	}
     }
@@ -198,7 +295,6 @@
   }
 
   if (window.location.search.indexOf('cart=open') > -1) {
-    console.log(window.location);
     Store.cart.show()
 }
 

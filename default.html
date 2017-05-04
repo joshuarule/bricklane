@@ -26,7 +26,7 @@
 }
 {% endcapture %}
 
-<section class="section push-btm-list">	
+<section class="section push-btm-list">
 	<h2 class="section-header">Featured Releases</h2>
 	<div class="section-content">
 		<ul class="split-2 albums">
@@ -34,34 +34,34 @@
 	</div>
 </section>
 
-<section class="section"> 
+<section class="section">
   <h2 class="section-header">News</h2>
-  <div class="section-content">   
+  <div class="section-content">
       <ul id="divFeedContainer" class="split-2 fb-home"></ul>
     <p class="float-right"><a href="/news" class="item-title">View more</a></p>
   </div>
 </section>
 
-<section class="section">	
+<section class="section">
 	<h2 class="section-header">Tweets</h2>
-	<div class="section-content">		
+	<div class="section-content">
 		<ul id="divTweetsContainer" class="split-2"></ul>
     <p class="float-right"><a href="/tweets" class="item-title">View more</a></p>
 	</div>
 </section>
 
-<section class="section">	
+<section class="section">
 	<h2 class="section-header">Touring Now</h2>
-	<div class="section-content">
+	<div id="tourDates" class="section-content">
 		<div class="split-2">
-		<ul id="events-l"></ul>
-		<ul id="events-r"></ul>
+		  <ul id="events-l"></ul>
+		  <ul id="events-r"></ul>
 		</div>
     <p class="float-right"><a href="/tour-dates" class="item-title">View more</a></p>
 	</div>
 </section>
 
-<section class="section"> 
+<section class="section">
 	<h2 class="section-header">Videos</h2>
 	<div class="section-content">
 		<ul id="divPlaylistContainer" class="split-2"></ul>
@@ -78,9 +78,9 @@
 	</div>
 </section>
 
-<script> 
+<script>
 
-	
+
 
   // Twiter Call
 
@@ -94,10 +94,10 @@
       twitter.getBrickLaneTweets();  /// Home page call
 
     // Facebook Call
-    
+
     var currentArtist = new facebookHelper(BLRConfig.blrNews);
-    currentArtist.Initialize({ 
-      container: "#divFeedContainer", 
+    currentArtist.Initialize({
+      container: "#divFeedContainer",
       postCount: 2,
       dateTemplate: "<span class=\"bold\">{formattedDate}</span><br>",
       // contentSectionTemplate: "<div>{message}{media}{formattedDate}{like}</div>",
@@ -114,9 +114,9 @@
     load(BLRConfig.blrVideos, "divPlaylistContainer", 4);
   }
 
-  // 
+  //
   // Tour Dates Array
-  // 
+  //
 
   // sorts the array by date
 
@@ -153,47 +153,63 @@
   var list = $("#events-l");
   var arrLength = arr.length;
 
-  for(var l = 0; l < 8 && arrLength; l++) {
-    if (l > 3 ) {
-      list = $("#events-r");
+  // if we have tour dates then add them to the html
+  if (arrLength) {
+    for(var l = 0; l < 8 && arrLength; l++) {
+      if (l > 3 ) {
+        list = $("#events-r");
+      }
+      list.append('<li><p><a href="' + arr[l].url + '"><span class="event-artist">' + arr[l].artist + '</span>' +
+                  ' • <span class="event-date">' + arr[l].date + '</span><br>' +
+                  '<span class="event-city">' + arr[l].city + '</span>' +
+                  '</a></p></li>');
     }
-    list.append('<li><p><a href="' + arr[l].url + '"><span class="event-artist">' + arr[l].artist + '</span>' + 
-                ' • <span class="event-date">' + arr[l].date + '</span><br>' +
-                // '<span class="event-venue">' + arr[l].venue + '</span>' + 
-                '<span class="event-city">' + arr[l].city + '</span>' +
-                '</a></p></li>');
+  } else {
+    $('#tourDates').html('<div>No events at this time</div>');
   }
 
-  // Store Items
+  // Store Items $fix - this should be done with a function
 
   function storeItems(data) {
     var storeUrl = "http://store.bricklanerecords.com";
-    var productName, productImg, productUrl, productArtist;
+    var productName, productImg, productUrl, productArtist, productPrice, price;
     for (var i = 0; i < 4; i ++) {
 
       // check to see if they are this artists albums
-
         productName = data.products[i].name;
         productUrl = data.products[i].url;
+        externalUrl = data.products[i].externalUrl;
+        buttonText = data.products[i].buttonText;
+        productUrl = externalUrl ? '<a href="' + externalUrl + '" target="_blank">' : '<a href="' + storeUrl + data.products[i].url + '">';
+        buttonUrl = externalUrl ? '<a href="' + externalUrl + '" target="_blank" class="button">' : '<a href="' + storeUrl + data.products[i].url + '" class="button">';
         productArtist = data.products[i].artist;
         productImg = data.products[i].images[0];
         productPrice = data.products[i].price;
 
         // check to see if product is free to set text on Buy link
-        if(productPrice == "$0.00") {price = "Free"} else {price = "Buy"};
+        if (buttonText) {
+          price = buttonText;
+        } else if (productPrice == "$0.00") {
+          price = "Free";
+        } else {
+          price = "Buy";
+        };
 
         $(".albums").append(
-          '<li class="item">' + 
-            '<div class="item-image"><a href="' + storeUrl + productUrl + '"><img src="' + productImg + '"></a></div>' +
+          '<li class="item">' +
+            '<div class="item-image">' +
+            productUrl +
+            '<img src="' + productImg + '"></a></div>' +
             '<div class="item-info"><div class="item-artist">' + productArtist + '</div>' +
             '<div class="item-album">' + productName + '</div></div>' +
-            '<p class="item-buy"><a href="' + storeUrl + productUrl + '" class="button">' + price + '</a></p>' +
-          "</li>");
+            '<p class="item-buy">' +
+            buttonUrl +
+              price + '</a></p></li>');
     }
   }
 
 </script>
- 
+
 <script type="application/javascript" src="https://bricklanerecords.limitedrun.com/feeds/featured.json?q=storeItems"></script>
 
 {% endcapture %}

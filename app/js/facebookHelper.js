@@ -14,7 +14,7 @@ var facebookHelper = function (artists) {
     this.$lnkPrev = null;
     this.$lnkNext = null;
 
-    this.fbFeedUrl = "https://graph.facebook.com/v2.2/"
+    this.fbFeedUrl = "https://graph.facebook.com/v2.3/"
     this.fbSourceUrl = "{artistId}/posts?access_token={accessToken}&format=json&limit={postCount}&method=get&pretty=0&suppress_http_code=1";
     this.likeUrl = "http://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2F{artistId}%2Fposts%2F{postId}&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21"
     this.nextUrl = null;
@@ -81,7 +81,7 @@ facebookHelper.prototype.getAccessToken = function () {
                             .replace("{secretKey}", this.AppSecretKey)
 
     }).done(function (response) {
-        h.accessToken = response.toString().split('=')[1];
+        h.accessToken = response.access_token;
     }).then(function () {
         for (var artist in h._artists) {
             var isLast = (artist == h._artists.length - 1);
@@ -103,6 +103,7 @@ facebookHelper.prototype.fetchPosts = function (url, isFirst, artistId) {
     $.ajax({
         url: url,
     }).done(function (response) {
+      console.log(response);
         if (artistId) {
             h.posts[artistId] = response.data;
         }
@@ -198,7 +199,7 @@ facebookHelper.prototype.decoratePost = function (post) {
 facebookHelper.prototype.getMedia = function (post) {
 	console.log(post.type);
 	console.log(post.caption);
-    var imageUrl = post.type == "link" ? (post.picture ? this.cleanImageUrl(post.picture.match(/(url=)(.+)$/)[2]) : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
+    var imageUrl = post.type == "link" ? (post.picture ? post.picture.match(/(url=)/) ? this.cleanImageUrl(post.picture.match(/(url=)(.+)$/)[2]) : post.picture : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
         .replace("{objectId}", post.object_id)
         .replace("{token}", this.accessToken));
     if (post.type == "link" || post.type == "photo" || post.type == "event") {
