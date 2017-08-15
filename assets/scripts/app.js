@@ -128,8 +128,8 @@ var facebookHelper = function (artists) {
     this.$lnkPrev = null;
     this.$lnkNext = null;
 
-    this.fbFeedUrl = "https://graph.facebook.com/v2.3/"
-    this.fbSourceUrl = "{artistId}/posts?access_token={accessToken}&format=json&limit={postCount}&method=get&pretty=0&suppress_http_code=1";
+    this.fbFeedUrl = "https://graph.facebook.com/v2.10/"
+    this.fbSourceUrl = "{artistId}/feed?access_token={accessToken}&format=json&limit={postCount}&method=get&pretty=0&suppress_http_code=1&fields=message,attachments{media},type,name,story,picture,full_picture,object_id,caption,created_time,id,description,link";
     this.likeUrl = "http://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2F{artistId}%2Fposts%2F{postId}&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21"
     this.nextUrl = null;
     this.prevUrl = null;
@@ -217,7 +217,6 @@ facebookHelper.prototype.fetchPosts = function (url, isFirst, artistId) {
     $.ajax({
         url: url,
     }).done(function (response) {
-      console.log(response);
         if (artistId) {
             h.posts[artistId] = response.data;
         }
@@ -299,6 +298,9 @@ facebookHelper.prototype.handleResponse = function (response, isFirst) {
 
 facebookHelper.prototype.decoratePost = function (post) {
     if (post.type == "status") return;
+    if (post.type == undefined ) {
+      return;
+    }
 
     var htmlPost = this.articleTemplate;
     var date = this.dateTemplate.replace(/{formattedDate}/g, moment(post.created_time).format("MMMM DD, YYYY"));
@@ -311,13 +313,11 @@ facebookHelper.prototype.decoratePost = function (post) {
 }
 
 facebookHelper.prototype.getMedia = function (post) {
-	console.log(post.type);
-	console.log(post.caption);
-    var imageUrl = post.type == "link" ? (post.picture ? post.picture.match(/(url=)/) ? this.cleanImageUrl(post.picture.match(/(url=)(.+)$/)[2]) : post.picture : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
-        .replace("{objectId}", post.object_id)
-        .replace("{token}", this.accessToken));
+    // var imageUrl = post.type == "link" ? (post.fullpicture ? post.picture.match(/(url=)/) ? this.cleanImageUrl(post.picture.match(/(url=)(.+)$/)[2]) : post.picture : null) : (this.fbFeedUrl + "{objectId}/picture?type=normal&redirect=true&access_token={token}"
+    //     .replace("{objectId}", post.object_id)
+    //     .replace("{token}", this.accessToken));
     if (post.type == "link" || post.type == "photo" || post.type == "event") {
-        return imageUrl ? this.imgTemplate.replace(/{url}/g, imageUrl).replace(/{description}/g, post.description) : ""
+        return post.full_picture ? this.imgTemplate.replace(/{url}/g, post.full_picture).replace(/{description}/g, post.description) : ""
         + (post.type == "link" ?
             this.linkTemplate.replace(/{linkText}/g, post.name ? post.name : post.story).replace(/{href}/g, post.link) + (post.description ? this.descriptionTemplate.replace(/{description}/g, post.description) : '')
             : ""
@@ -335,7 +335,8 @@ facebookHelper.prototype.getMedia = function (post) {
     else if (post.type == "video" && post.caption != "soundcloud.com") {
         var videoId = post.link.split('/');
         videoId = videoId[videoId.length - 1];
-        return this.videoTemplate.replace(/{videoId}/g, videoId)
+        videoId = videoId.split('=');
+        return this.videoTemplate.replace(/{videoId}/g, videoId[videoId.length - 1])
     } else {
        return this.soundCloudTemplate.replace(/{soundCloudUrl}/g, this.getSoundCloudUrl(post.source))
    }
